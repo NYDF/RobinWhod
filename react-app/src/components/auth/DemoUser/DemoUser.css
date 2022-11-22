@@ -1,0 +1,15 @@
+.demo-user-login-button{
+    border: none;
+    background-color: rgb(88,101,242);
+    font-size: 15px;
+    border-radius: 8px;
+    width: 83%;
+    color:white;
+    height: 40px;
+    /* margin-left: -1px; */
+    margin-bottom: 25px;
+}
+
+/* .demo-user-login-button:hover {
+    filter: brightness(90%)
+} */

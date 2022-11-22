@@ -39,7 +39,7 @@ class Asset(db.Model):
             "ticker_name": self.ticker_name,
             "is_cash": self.is_cash,
             "quantity": self.quantity,
-            "total": self.total,
+            "purchased_price": self.purchased_price,
             "owner_id": self.owner_id,
         }
         return asset_dict

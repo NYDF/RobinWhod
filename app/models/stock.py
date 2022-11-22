@@ -17,3 +17,11 @@ class Stock(db.Model):
         secondary=watchlist_stock,
         back_populates='item_in_list'
     )
+
+    def to_dict(self):
+        stock_dict = {
+            "id": self.id,
+            "symbol": self.symbol,
+            "ticker_name": self.ticker_name
+        }
+        return stock_dict
