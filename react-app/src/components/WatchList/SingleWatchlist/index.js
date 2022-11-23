@@ -20,9 +20,9 @@ const SingleWatchlist = ({watchlist}) => {
         <div>
             <>watchlistName: {watchlist?.name}</>
             {watchlist?.item_in_list?.map((item) => {
-            <div key={item.id}></div>
+            <div></div>
             return (
-              <div>
+              <div key={item.id}>
                 <>{item.symbol}</>
                 <br></br>
                 <>{item.ticker_name}</>

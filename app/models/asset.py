@@ -9,7 +9,6 @@ class Asset(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     symbol = db.Column(db.String(10), nullable=False)
-    ticker_name = db.Column(db.String(50), nullable=False)
     is_cash = db.Column(db.Boolean, nullable=False)
     quantity = db.Column(db.Float, nullable=False)
     purchased_price = db.Column(db.Float, nullable=False)
@@ -36,7 +35,6 @@ class Asset(db.Model):
         asset_dict = {
             "id": self.id,
             "symbol": self.symbol,
-            "ticker_name": self.ticker_name,
             "is_cash": self.is_cash,
             "quantity": self.quantity,
             "purchased_price": self.purchased_price,

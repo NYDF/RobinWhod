@@ -51,26 +51,26 @@ export const thunkLoadAllAsset  = () => async (dispatch) => {
 }
 
 
-// export const thunkAddAsset = (data) => async dispatch => {
-//     const { symbol, ticker_name, owner_id, quantity, purchased_price } = data
+export const thunkAddAsset = (data) => async dispatch => {
+    const { symbol, quantity, purchased_price } = data
 
-//     // console.log('thunk!!!!', name)
+    console.log('thunk!!!!', symbol, quantity, purchased_price)
 
-//     const response = await fetch(`/api/watchlists/new`, {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ name }),
-//     })
-//     // console.log('!!!!!!response', response)
-//     if (response.ok) {
-//         // console.log('!!!!!!response', response)
-//         const newWatchlist = await response.json();
-//         // console.log(newWatchlist)
-//         dispatch(addWatchlist(newWatchlist))
-//         // console.log('newChannel!!!!!!', newChannel)
-//         return newWatchlist
-//     }
-// }
+    const response = await fetch(`/api/assets/new`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ symbol, quantity, purchased_price }),
+    })
+    console.log('!!!!!!response', response)
+    if (response.ok) {
+        // console.log('!!!!!!response', response)
+        const newAsset = await response.json();
+        // console.log(newAsset)
+        dispatch(addAsset(newAsset))
+        // console.log('newChannel!!!!!!', newChannel)
+        return newAsset
+    }
+}
 
 
 
@@ -114,19 +114,20 @@ export const thunkLoadAllAsset  = () => async (dispatch) => {
 
 const assetReducer = (state = {}, action) => {
     switch (action.type) {
-        case LOAD_ALL_WATCHLIST:
-            const newWatchlistState = {};
-            // console.log("action!!!!!!!!", action.watchlists.watchlists)
-            action.watchlists.watchlists.forEach(watchlist => {
-                newWatchlistState[watchlist.id] = watchlist
+        case LOAD_ALL_ASSET:
+            const newAssetState = {};
+            console.log("action!!!!!!!!", action)
+            action.assets.assets.forEach(asset => {
+                newAssetState[asset.id] = asset
             });
-            return { ...newWatchlistState };
+
+            return { ...newAssetState };
 
 
 
-        // case ADD_ONE_WATCHLIST:
-        //     // console.log('!!!action', action)
-        //     return { ...state, [action.watchlist.id]: { ...action.watchlist } };
+        case ADD_NEW_ASSET:
+            console.log('!!!action', action)
+            // return { ...state, [action.watchlist.id]: { ...action.watchlist } };
 
         // case EDIT_WATCHLIST:
         //     // console.log('action!!!!!!!!!!!!', action.spot)

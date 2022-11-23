@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user, login_user
 from app.models import User, Asset
 from app.forms import AssetForm
+import json
 
 asset_routes = Blueprint('assets', __name__)
 
@@ -12,6 +13,7 @@ def asset_list():
     """
     Query for all assets belong to the current user
     """
+    print ('here--------------------')
     current_assets = Asset.query.filter_by(is_cash = False)
     dicts = [asset.to_dict() for asset in current_assets]
     user = current_user
@@ -22,19 +24,19 @@ def asset_list():
     return json.dumps({"assets" : result})
 
 
-@asset_routes.route('/current', methods=["POST"])
+@asset_routes.route('/new', methods=["POST"])
 @login_required
 def add_new_asset():
     """
     Query to buy a new asset
     """
     form = AssetForm()
+    print ('here!!in !! route')
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         new_add_stock= Portfolio(
             symbol = data["symbol"],
-            ticker_name = data["ticker_name"],
             owner_id = current_user.id,
             quantity = data["quantity"],
             purchased_price = data["purchased_price"],

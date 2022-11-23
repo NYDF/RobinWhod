@@ -9,7 +9,6 @@ class Stock(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     symbol = db.Column(db.String(10), nullable=False)
-    ticker_name = db.Column(db.String(50), nullable=False)
 
 
     stock_in_list = db.relationship(
@@ -22,6 +21,5 @@ class Stock(db.Model):
         stock_dict = {
             "id": self.id,
             "symbol": self.symbol,
-            "ticker_name": self.ticker_name
         }
         return stock_dict

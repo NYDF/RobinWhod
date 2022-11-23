@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import AddAsset from '../../Asset/AddAsset';
 
 
 import './SingleStock.css'
@@ -20,7 +21,7 @@ function SingleStock() {
       </>
 
       <>
-        buy and sell function
+        <AddAsset />
       </>
 
       <>
