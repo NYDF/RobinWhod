@@ -9,7 +9,6 @@ class Transaction(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     symbol = db.Column(db.String(10), nullable=False)
-    ticker_name = db.Column(db.String(50), nullable=False)
     move = db.Column(db.String(50), nullable=False)
     quantity = db.Column(db.Float, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
@@ -27,7 +26,6 @@ class Transaction(db.Model):
         transaction_dict = {
             "id": self.id,
             "symbol": self.symbol,
-            "ticker_name": self.ticker_name,
             "move": self.move,
             "quantity": self.quantity,
             "owner_id": self.owner_id,

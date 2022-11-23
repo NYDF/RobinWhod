@@ -53,13 +53,14 @@ export const thunkLoadAllAsset  = () => async (dispatch) => {
 
 export const thunkAddAsset = (data) => async dispatch => {
     const { symbol, quantity, purchased_price } = data
+    let is_cash = false
 
-    console.log('thunk!!!!', symbol, quantity, purchased_price)
+    // console.log('thunk!!!!', symbol, quantity, purchased_price, is_cash)
 
-    const response = await fetch(`/api/assets/new`, {
+    const response = await fetch(`/api/assets/new/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ symbol, quantity, purchased_price }),
+        body: JSON.stringify({ symbol, quantity, purchased_price, is_cash }),
     })
     console.log('!!!!!!response', response)
     if (response.ok) {

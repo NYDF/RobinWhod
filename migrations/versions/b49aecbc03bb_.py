@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 5d0022270396
+Revision ID: b49aecbc03bb
 Revises: 
-Create Date: 2022-11-22 17:23:40.820924
+Create Date: 2022-11-23 12:02:43.943696
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5d0022270396'
+revision = 'b49aecbc03bb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,7 +21,6 @@ def upgrade():
     op.create_table('stocks',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('symbol', sa.String(length=10), nullable=False),
-    sa.Column('ticker_name', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
@@ -35,7 +34,6 @@ def upgrade():
     op.create_table('assets',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('symbol', sa.String(length=10), nullable=False),
-    sa.Column('ticker_name', sa.String(length=50), nullable=False),
     sa.Column('is_cash', sa.Boolean(), nullable=False),
     sa.Column('quantity', sa.Float(), nullable=False),
     sa.Column('purchased_price', sa.Float(), nullable=False),
@@ -46,7 +44,6 @@ def upgrade():
     op.create_table('transactions',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('symbol', sa.String(length=10), nullable=False),
-    sa.Column('ticker_name', sa.String(length=50), nullable=False),
     sa.Column('move', sa.String(length=50), nullable=False),
     sa.Column('quantity', sa.Float(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),

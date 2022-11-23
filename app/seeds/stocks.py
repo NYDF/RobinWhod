@@ -1,50 +1,48 @@
 from app.models import db, Stock
 
+
 def seed_stocks():
     stock_btc = Stock(
-                        symbol = 'btc',
-                        ticker_name = 'Bitcoin')
+        symbol='btc',
+    )
 
     stock_aapl = Stock(
-                        symbol = 'aapl',
-                        ticker_name = 'Apple')
+        symbol='aapl',
+    )
 
     stock_msft = Stock(
-                        symbol = 'msft',
-                        ticker_name = 'Microsoft')
+        symbol='msft',
+    )
 
     stock_amzn = Stock(
-                        symbol = 'amzn',
-                        ticker_name = 'Amazon')
+        symbol='amzn',
+    )
 
     stock_tcehy = Stock(
-                        symbol = 'tcehy',
-                        ticker_name = 'Tencent')
+        symbol='tcehy',
+    )
 
     stock_dis = Stock(
-                        symbol = 'dis',
-                        ticker_name = 'Disney')
+        symbol='dis',
+    )
 
     stock_ibm = Stock(
-                        symbol = 'ibm',
-                        ticker_name = 'IBM')
+        symbol='ibm')
 
     stock_nflx = Stock(
-                        symbol = 'nflx',
-                        ticker_name = 'Netflix')
+        symbol='nflx',
+    )
 
     stock_snow = Stock(
-                        symbol = 'snow',
-                        ticker_name = 'Snowflake')
+        symbol='snow',
+    )
 
     stock_shop = Stock(
-                        symbol = 'shop',
-                        ticker_name = 'Shopify')
+        symbol='shop',
+    )
 
     stock_ea = Stock(
-                        symbol = 'ea',
-                        ticker_name = 'EA')
-
+        symbol= 'ea')
 
     db.session.add(stock_btc)
     db.session.add(stock_aapl)
@@ -58,9 +56,8 @@ def seed_stocks():
     db.session.add(stock_shop)
     db.session.add(stock_ea)
 
-
-
     db.session.commit()
+
 
 def undo_stocks():
     db.session.execute('TRUNCATE stocks RESTART IDENTITY CASCADE;')

@@ -3,7 +3,6 @@ from app.models import db, Asset
 def seed_assets():
     demo_btc = Asset(
                         owner_id = 1,
-                        ticker_name = 'bitcoin',
                         symbol = 'btc',
                         is_cash = False,
                         purchased_price = 10000,
@@ -11,7 +10,6 @@ def seed_assets():
 
     demo_cash = Asset(
                         owner_id = 1,
-                        ticker_name = '$',
                         symbol = '$',
                         is_cash = True ,
                         purchased_price = 1 ,

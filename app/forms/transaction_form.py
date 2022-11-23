@@ -4,7 +4,6 @@ from wtforms.validators import DataRequired
 
 
 class TransactionForm(FlaskForm):
-    ticker_name = StringField('Stock Name', validators=[DataRequired()])
     symbol = StringField('STOCK SYMBOL', validators=[DataRequired()])
     move = StringField("BUY OR SELL", validators=[DataRequired()])
     quantity = FloatField('QUANTITY', validators=[DataRequired()])

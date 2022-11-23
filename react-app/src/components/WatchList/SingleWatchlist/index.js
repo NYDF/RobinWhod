@@ -25,7 +25,6 @@ const SingleWatchlist = ({watchlist}) => {
               <div key={item.id}>
                 <>{item.symbol}</>
                 <br></br>
-                <>{item.ticker_name}</>
                 <br></br>
                 <hr></hr>
               </div>

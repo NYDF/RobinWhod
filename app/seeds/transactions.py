@@ -4,7 +4,6 @@ from datetime import datetime
 def seed_transactions():
     demo_btc = Transaction(
                         owner_id = 1,
-                        ticker_name = 'bitcoin',
                         symbol = 'btc',
                         move = 'in',
                         quantity = 2,
@@ -13,7 +12,6 @@ def seed_transactions():
 
     demo_cash = Transaction(
                         owner_id = 1,
-                        ticker_name = '$',
                         symbol = '$',
                         move = 'in',
                         quantity = 10000,
