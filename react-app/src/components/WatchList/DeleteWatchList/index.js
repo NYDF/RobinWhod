@@ -7,9 +7,9 @@ import { thunkDeleteOneWatchlist, thunkLoadAllWatchlist } from '../../../store/w
 import "./DeleteWatchList.css"
 
 
-const DeleteWatchList = ({ id }) => {
+const DeleteWatchList = ({ watchlistId }) => {
   const dispatch = useDispatch();
-  let watchlist_id = id
+  let watchlist_id = watchlistId
   // console.log('watchlist_id', watchlist_id)
 
   const handleDelete = async () => {

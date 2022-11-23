@@ -38,9 +38,15 @@ const GetWatchlist = () => {
           {watchlistArr.map((watchlist) => {
             return (
               <>
-              <SingleWatchlist watchlist={watchlist} key={watchlist.id} />
-              <UpdateWatchList id={watchlist.id} key={watchlist.id+100} />
-              <DeleteWatchList id={watchlist.id} key={watchlist.id+1000} />
+              <>
+              <SingleWatchlist watchlist={watchlist} key={watchlist?.id} />
+              </>
+              <>
+              <UpdateWatchList watchlistId={watchlist.id} key={watchlist?.id} />
+              </>
+              <>
+              <DeleteWatchList watchlistId={watchlist.id} key={watchlist?.id} />
+              </>
               </>
             )
 

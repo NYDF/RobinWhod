@@ -9,13 +9,14 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import MainPage from './components/DashBoard/MainPage';
+import SingleStock from './components/Market/SingleStock';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -31,6 +32,10 @@ function App() {
       <NavBar />
 
       <Switch>
+        <Route path='/stocks/:symbol' exact={true}>
+          <SingleStock />
+        </Route>
+
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -40,7 +45,7 @@ function App() {
         </Route>
 
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
 
         <ProtectedRoute path='/users/:userId' exact={true} >
@@ -48,11 +53,11 @@ function App() {
         </ProtectedRoute>
 
         <Route path='/portfolio' exact={true} >
-         <MainPage />
+          <MainPage />
         </Route>
 
         <Route path='/' exact={true} >
-           <h1>This is the splash page</h1>
+          <h1>This is the splash page</h1>
         </Route>
 
       </Switch>

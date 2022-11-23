@@ -82,7 +82,9 @@ export const thunkAddWatchlist = (data) => async dispatch => {
     })
     // console.log('!!!!!!response', response)
     if (response.ok) {
+        // console.log('!!!!!!response', response)
         const newWatchlist = await response.json();
+        // console.log(newWatchlist)
         dispatch(addWatchlist(newWatchlist))
         // console.log('newChannel!!!!!!', newChannel)
         return newWatchlist

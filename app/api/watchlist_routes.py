@@ -34,7 +34,7 @@ def add_watchlist():
     # print('here')
     form = WatchlistForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    # print('form!!!!!!!!!', form)
     if form.validate_on_submit():
         new_watchlist = Watchlist(
             name=form.data["name"],

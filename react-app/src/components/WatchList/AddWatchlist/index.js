@@ -31,7 +31,7 @@ const AddWatchlist = () => {
     setValidationErrors(errors);
   }, [name])
 
-  // console.log("------------------------", validationErrors.length)
+  // console.log("------------------------", name)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ const AddWatchlist = () => {
 
     const watchlistPayload = { name }
 
-    // console.log("!!!!!frontend", channelPayload)
+    // console.log("!!!!!frontend", watchlistPayload)
     let createdWatchlist = await dispatch(thunkAddWatchlist(watchlistPayload))
 
     setErrors(validationErrors)

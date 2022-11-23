@@ -8,7 +8,7 @@ import { thunkEditWatchlist, thunkLoadAllWatchlist } from '../../../store/watchl
 import "./UpdateWatchList.css"
 
 
-const UpdateWatchList = ({ id }) => {
+const UpdateWatchList = ({ watchlistId }) => {
 
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -40,7 +40,7 @@ const UpdateWatchList = ({ id }) => {
     if (validationErrors.length) { return }
 
     const editedWatchlistPayload = { name }
-    editedWatchlistPayload.watchlistId = id
+    editedWatchlistPayload.watchlistId = watchlistId
     console.log('!!!!!name', editedWatchlistPayload.name, editedWatchlistPayload.watchlistId)
     let editedWatchlist = await dispatch(thunkEditWatchlist(editedWatchlistPayload))
 
