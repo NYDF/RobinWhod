@@ -44,7 +44,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/channels/@me'/>;
+    return <Redirect to='/portfolio' />;
   }
 
   return (

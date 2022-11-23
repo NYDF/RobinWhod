@@ -5,7 +5,7 @@ from app.models import Stock
 stock_routes = Blueprint('stocks', __name__)
 
 
-@user_routes.route('/')
+@stock_routes.route('/')
 def all_stocks():
     """
     Query for all stocks

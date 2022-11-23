@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, FloatField, SubmitField
+from wtforms import StringField, FloatField, SubmitField, IntegerField
 from wtforms.validators import DataRequired
 # Temporary form for testing, will update
 class AssetForm(FlaskForm):

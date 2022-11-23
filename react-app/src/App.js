@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/loginForm/LoginForm';
+import LoginForm from './components/auth/loginForm';
 import SignUpForm from './components/auth/signupForm/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import MainPage from './components/DashBoard/MainPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,8 +47,12 @@ function App() {
           <User />
         </ProtectedRoute>
 
+        <Route path='/portfolio' exact={true} >
+         <MainPage />
+        </Route>
+
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+           <h1>This is the splash page</h1>
         </Route>
 
       </Switch>

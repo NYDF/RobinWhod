@@ -3,7 +3,7 @@ from .watchlist_stock import watchlist_stock
 
 
 class Watchlist(db.Model):
-    __tablename__ = 'Watchlist'
+    __tablename__ = 'watchlists'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -14,12 +14,13 @@ class Watchlist(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod('users.id')), nullable=False)
 
-    watchlist_owner = db.relationship('User', back_populates='self_watchlists', cascade='all, delete')
+    watchlist_owner = db.relationship('User', back_populates='self_watchlists')
 
     item_in_list = db.relationship(
         'Stock',
-        secondary=watchlist_stock,
-        back_populates='stock_in_list'
+        secondary = watchlist_stock,
+        back_populates='stock_in_list',
+        cascade="all, delete"
     )
 
 

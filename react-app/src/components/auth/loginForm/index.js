@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../../store/session';
 import DemoUserLogin from '../DemoUser';
-import "../loginForm/loginForm.css"
+import "./loginForm.css"
 
 
 const LoginForm = () => {
@@ -30,17 +30,17 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/channels/@me'/>;
+    return <Redirect to='/portfolio' />;
   }
 
   return (
-    <div className='login-page'>
-      <div className='login-form'>
+    <div >
+      <div >
         <form onSubmit={onLogin}>
-          <div className='welcome-title'>
-            <h2>Welcome to Eriscord!</h2>
+          <div >
+            <h2>Welcome to RobinWhod</h2>
           </div>
-          <div className='welcome-content'>
+          <div >
             <h3>We're so excited to see you!</h3>
           </div>
           <div className='error-lists'>
@@ -48,8 +48,8 @@ const LoginForm = () => {
               <div key={ind}>{error}</div>
             ))}
           </div>
-          <div className='e-p-input-div'>
-            <div className='e-font'>
+          <div >
+            <div >
               <label htmlFor='email'>EMAIL</label>
             </div>
 
@@ -62,8 +62,8 @@ const LoginForm = () => {
 
 
           </div>
-          <div className='e-p-input-div'>
-            <div className='p-font'>
+          <div >
+            <div >
               <label htmlFor='password'>PASSWORD</label>
             </div>
             <div>
@@ -75,7 +75,7 @@ const LoginForm = () => {
               />
             </div>
 
-            <div className='login-button'>
+            <div >
               <button type='submit'>Log In</button>
             </div>
           </div>
