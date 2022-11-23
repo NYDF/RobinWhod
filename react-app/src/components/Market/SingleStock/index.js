@@ -2,6 +2,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import AddAsset from '../../Asset/AddAsset';
+import BuyAsset from '../../Asset/BuyAsset';
+import SellAsset from '../../Asset/SellAsset';
 
 
 import './SingleStock.css'
@@ -22,6 +24,14 @@ function SingleStock() {
 
       <>
         <AddAsset />
+      </>
+
+      <>
+        <BuyAsset />
+      </>
+
+      <>
+        <SellAsset />
       </>
 
       <>

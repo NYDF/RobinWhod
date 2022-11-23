@@ -2,6 +2,7 @@
 const LOAD_ALL_ASSET = 'asset/loadAllasset'
 const ADD_NEW_ASSET = 'asset/addAsset'
 const BUY_SELL_ASSET = 'asset/editAsset'
+const SELL_ASSET = 'asset/sellAsset'
 const SOLD_ALL_ASSET = 'asset/deleteOneAsset'
 
 
@@ -24,6 +25,13 @@ export const addAsset = (asset) => {
 export const editAsset = (asset) => {
     return {
         type: BUY_SELL_ASSET,
+        asset
+    };
+};
+
+export const sellAsset = (asset) => {
+    return {
+        type: SELL_ASSET,
         asset
     };
 };
@@ -62,7 +70,7 @@ export const thunkAddAsset = (data) => async dispatch => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ symbol, quantity, purchased_price, is_cash }),
     })
-    console.log('!!!!!!response', response)
+    // console.log('!!!!!!response', response)
     if (response.ok) {
         // console.log('!!!!!!response', response)
         const newAsset = await response.json();
@@ -74,30 +82,55 @@ export const thunkAddAsset = (data) => async dispatch => {
 }
 
 
+// sell asset
+export const thunkSellAsset = (data) => async dispatch => {
+    const { quantity, symbol, purchased_price } = data;
+    let is_cash = false
 
-// export const thunkEditAsset = (data) => async dispatch => {
-//     const { name, watchlistId } = data;
+    // console.log('hereeee!!!!!!')
+    // console.log('data!!!!!!!!!', quantity, symbol, purchased_price )
 
+    const response = await fetch(`/api/assets/sell/${symbol}`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            symbol, quantity, purchased_price, is_cash
+        }),
+    });
+    // console.log('response', response)
 
-//     console.log('data!!!!!!!!!', name, watchlistId )
-//     let watchlist_id = watchlistId
+    if (response.ok) {
+        const editedAsset = await response.json();
+        // console.log('spot!!!!!!!!!!!!', spot)
+        dispatch(sellAsset(editedAsset));
+        return editedAsset;
+    }
+}
 
-//     const response = await fetch(`/api/watchlists/${watchlist_id}`, {
-//         method: "POST",
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//             name
-//         }),
-//     });
-//     // console.log('response', response)
+// buy asset
+export const thunkEditAsset = (data) => async dispatch => {
+    const { quantity, symbol, purchased_price } = data;
+    let is_cash = false
 
-//     if (response.ok) {
-//         const editedWatchlist = await response.json();
-//         // console.log('spot!!!!!!!!!!!!', spot)
-//         dispatch(editWatchlist(editedWatchlist));
-//         return editedWatchlist;
-//     }
-// }
+    // console.log('hereeee!!!!!!')
+    // console.log('data!!!!!!!!!', quantity, symbol, purchased_price )
+
+    const response = await fetch(`/api/assets/${symbol}`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            symbol, quantity, purchased_price, is_cash
+        }),
+    });
+    // console.log('response', response)
+
+    if (response.ok) {
+        const editedAsset = await response.json();
+        // console.log('spot!!!!!!!!!!!!', spot)
+        dispatch(editAsset(editedAsset));
+        return editedAsset;
+    }
+}
 
 
 // export const thunkDeleteOneAsset = (watchlist_id) => async dispatch => {
@@ -117,22 +150,20 @@ const assetReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_ALL_ASSET:
             const newAssetState = {};
-            console.log("action!!!!!!!!", action)
+            // console.log("action!!!!!!!!", action)
             action.assets.assets.forEach(asset => {
                 newAssetState[asset.id] = asset
             });
 
             return { ...newAssetState };
 
-
-
         case ADD_NEW_ASSET:
-            console.log('!!!action', action)
-            // return { ...state, [action.watchlist.id]: { ...action.watchlist } };
+            // console.log('!!!action', action.asset)
+            return { ...state, [action.asset.id]: { ...action.asset } };
 
-        // case EDIT_WATCHLIST:
-        //     // console.log('action!!!!!!!!!!!!', action.spot)
-        //     return { ...state, [action.watchlist.id]: { ...state[action.watchlist.id], ...action.watchlist } }
+        case BUY_SELL_ASSET:
+            console.log('action!!!!!!!!!!!!', action)
+            return { ...state, [action.asset.id]: { ...state[action.asset.id], ...action.asset } }
 
         // case DELETE_WATCHLIST:
         //     let newState = { ...state }

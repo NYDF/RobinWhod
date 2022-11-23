@@ -12,7 +12,7 @@ import "./AddAsset.css"
 const AddAsset = () => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState('');
-  // const [price, setPrice] = useState('');
+
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [validationErrors, setValidationErrors] = useState([]);
   const [errors, setErrors] = useState([]);
@@ -77,7 +77,7 @@ const AddAsset = () => {
           />
         </div>
         <div className="c-create-button">
-          <button type="submit" onClick={handleSubmit}>buy</button>
+          <button type="submit" onClick={handleSubmit}>buy new</button>
         </div>
       </div>
     </form></>

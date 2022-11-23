@@ -70,37 +70,79 @@ def add_new_asset():
 
 
 
-# @asset_routes.route('/<symbol>', methods=["PUT"])
-# @login_required
-# def update_one_asset():
-#     """
-#     Query to buy or sell current asset
-#     """
-#     form = AssetForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     currentStock = Asset.query.filter_by(
-#     symbol = form.data['symbol'],
-#     owner_id = current_user.id
-#     )
-#     if form.validate_on_submit():
-#         data = form.data
-#         portfolio = {'asset': [stock.to_dict() for stock in currentStock]}
-#         pre_purchased_price = portfolio['asset'][0]['purchased_price']
-#         pre_quantity = portfolio['asset'][0]['quantity']
-#         portfolio['asset'][0]['quantity'] = float(pre_quantity) + float(form.data['quantity'])
-#         if (float(form.data['quantity'] > 0)):
-#            portfolio['asset'][0]['purchased_price'] =((float(pre_purchased_price)*float(pre_quantity)) +
-#            (float(form.data['purchased_price'])*(abs(float(form.data['quantity'])))))/(float(pre_quantity) +
-#            float(form.data['quantity']))
+@asset_routes.route('/<symbol>', methods=["PUT"])
+@login_required
+def buy_one_asset(symbol):
+    """
+    Query to buy current asset
+    """
+    # print('++++++++++++++++++++++++++++++++++++++++++++')
 
-#         currentStock.quantity = portfolio['asset'][0]['quantity']
-#         if (currentStock.quantity > 0):
-#             currentStock.purchased_price = portfolio['asset'][0]['purchased_price']
+    preAsset = Asset.query.filter_by(
+    symbol = symbol,
+    owner_id = current_user.id
+    ).first()
 
-#         db.session.commit()
-#         return portfolio
-#     else:
-#         return {"errors": "Can't buy current asset"}, 404
+    # print('preAsset--------------------------', preAsset)
+
+    form = AssetForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # print('form+++++++++++++++++++++++++++++', form.data)
+    if form.validate_on_submit():
+
+        data = form.data
+
+        pre_purchased_price = preAsset.purchased_price
+        pre_quantity = preAsset.quantity
+
+        if (float(form.data['quantity'] > 0)):
+            preAsset.quantity = float(pre_quantity) + float(form.data['quantity'])
+            preAsset.purchased_price = ((float(pre_purchased_price))*(float(pre_quantity))+
+            (float(form.data['purchased_price']))*(float(form.data['quantity'])))/(preAsset.quantity)
+
+        db.session.commit()
+        return preAsset.to_dict(), 200
+    else:
+        return {"errors": "Can't buy current asset"}, 406
+
+
+
+@asset_routes.route('/sell/<symbol>', methods=["PUT"])
+@login_required
+def sell_one_asset(symbol):
+    """
+    Query to sell current asset
+    """
+
+    preAsset = Asset.query.filter_by(
+    symbol = symbol,
+    owner_id = current_user.id
+    ).first()
+
+    # print('preAsset--------------------------', preAsset)
+
+    form = AssetForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # print('form+++++++++++++++++++++++++++++', form.data)
+    if form.validate_on_submit():
+
+        data = form.data
+
+        pre_purchased_price = preAsset.purchased_price
+        pre_quantity = preAsset.quantity
+
+        if (float(form.data['quantity'] > 0)):
+            preAsset.quantity = float(pre_quantity) - float(form.data['quantity'])
+            preAsset.purchased_price = ((float(pre_purchased_price))*(float(pre_quantity))-
+            (float(form.data['purchased_price']))*(float(form.data['quantity'])))/(preAsset.quantity)
+
+        db.session.commit()
+        return preAsset.to_dict(), 200
+    else:
+        return {"errors": "Can't buy current asset"}, 406
+
+
+
 
 
 # @asset_routes.route('/<symbol>', methods= ["DELETE"])
