@@ -10,7 +10,7 @@ import "./GetAllAsset.css"
 const GetAllAsset = () => {
   const dispatch = useDispatch();
   let allAsset = useSelector(state => state.assetReducer)
-  console.log('allAsset!!!!!!!!!!!!!!', allAsset)
+  // console.log('allAsset!!!!!!!!!!!!!!', allAsset)
   let allAssetArr = Object.values(allAsset)
 
   useEffect(() => {

@@ -24,6 +24,42 @@ def asset_list():
     return json.dumps({"assets": result})
 
 
+@asset_routes.route('/get/<symbol>')
+@login_required
+def this_asset(symbol):
+    """
+    Query for one asset
+    """
+    # print ('here--------------------')
+    thisAsset = Asset.query.filter_by(
+        symbol=symbol,
+        owner_id=current_user.id
+    ).first()
+
+    if thisAsset:
+        return thisAsset.to_dict()
+    else:
+        return {"errors": "This asset couldn't be found"}, 406
+
+
+@asset_routes.route('/cash')
+@login_required
+def user_cash():
+    """
+    Query for current user cash
+    """
+    # print ('here--------------------')
+    current_cash = Asset.query.filter_by(
+        is_cash=True,
+        owner_id=current_user.id
+    ).first()
+
+    if current_cash:
+        return current_cash.to_dict()
+    else:
+        return {"errors": "Where is your cash?"}, 406
+
+
 @asset_routes.route('/new/', methods=["POST"])
 @login_required
 def add_new_asset():

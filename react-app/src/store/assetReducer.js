@@ -1,5 +1,7 @@
 
 const LOAD_ALL_ASSET = 'asset/loadAllasset'
+const GET_ONE_ASSET = 'asset/getOneAsset'
+const LOAD_CASH_ASSET = 'asset/loadCash'
 const ADD_NEW_ASSET = 'asset/addAsset'
 const BUY_SELL_ASSET = 'asset/editAsset'
 const SELL_ASSET = 'asset/sellAsset'
@@ -11,6 +13,20 @@ export const loadAllAsset = (assets) => {
     return {
         type: LOAD_ALL_ASSET,
         assets
+    }
+}
+
+export const getOneAsset = (asset) => {
+    return {
+        type: GET_ONE_ASSET,
+        asset
+    }
+}
+
+export const loadCash = (cash) => {
+    return {
+        type: LOAD_CASH_ASSET,
+        cash
     }
 }
 
@@ -44,19 +60,45 @@ export const deleteOneAsset = (symbol) => {
 
 
 
-export const thunkLoadAllAsset  = () => async (dispatch) => {
+export const thunkLoadAllAsset = () => async (dispatch) => {
 
     const response = await fetch(`/api/assets/current`)
     // console.log('herre')
     // console.log('response', response)
     if (response.ok) {
         const assets = await response.json();
-        // console.log("!!!!!!!!channel!!!!!!!!!!", channel)
+
         dispatch(loadAllAsset(assets))
         return assets
     }
 }
 
+
+export const thunkGetOneAsset = (symbol) => async (dispatch) => {
+
+    const response = await fetch(`/api/assets/get/${symbol}`)
+    // console.log('herre')
+    // console.log('response', response)
+    if (response.ok) {
+        const asset = await response.json();
+
+        dispatch(getOneAsset(asset))
+        return asset
+    }
+}
+
+export const thunkLoadCash = () => async (dispatch) => {
+
+    const response = await fetch(`/api/assets/cash`)
+    // console.log('herre')
+    // console.log('response', response)
+    if (response.ok) {
+        const cash = await response.json();
+        // console.log("!!!!!!!!cash!!!!!!!!!!", cash)
+        dispatch(loadCash(cash))
+        return cash
+    }
+}
 
 export const thunkAddAsset = (data) => async dispatch => {
     const { symbol, quantity, purchased_price } = data
@@ -133,7 +175,7 @@ export const thunkEditAsset = (data) => async dispatch => {
 
 
 export const thunkDeleteOneAsset = (symbol) => async dispatch => {
-    console.log("here=============", symbol)
+    // console.log("here=============", symbol)
     const response = await fetch(`/api/assets/sellall/${symbol}`, {
         method: 'DELETE',
         // headers: { 'Content-Type': 'application/json' }
@@ -156,6 +198,14 @@ const assetReducer = (state = {}, action) => {
             });
 
             return { ...newAssetState };
+
+        case GET_ONE_ASSET:
+            return { ...state, [action.asset.id]: { ...action.asset } }
+
+        case LOAD_CASH_ASSET:
+            // console.log("action!!!!!!!!", action)
+            return { ...state, ...action.cash }
+
 
         case ADD_NEW_ASSET:
             // console.log('!!!action', action.asset)

@@ -11,7 +11,7 @@ import "./DeleteAsset.css"
 const DeleteAsset = () => {
   const dispatch = useDispatch();
   const { symbol } = useParams();
-  console.log('symbol!!!!!!!!!!!!!!!!', symbol)
+  // console.log('symbol!!!!!!!!!!!!!!!!', symbol)
   const handleDelete = async () => {
 
     dispatch(thunkDeleteOneAsset(symbol));
