@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import AddAsset from '../../Asset/AddAsset';
 import BuyAsset from '../../Asset/BuyAsset';
+import DeleteAsset from '../../Asset/DeleteAsset';
 import SellAsset from '../../Asset/SellAsset';
 
 
@@ -32,6 +33,10 @@ function SingleStock() {
 
       <>
         <SellAsset />
+      </>
+
+      <>
+        <DeleteAsset />
       </>
 
       <>

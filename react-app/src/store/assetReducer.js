@@ -14,7 +14,6 @@ export const loadAllAsset = (assets) => {
     }
 }
 
-
 export const addAsset = (asset) => {
     return {
         type: ADD_NEW_ASSET,
@@ -133,17 +132,18 @@ export const thunkEditAsset = (data) => async dispatch => {
 }
 
 
-// export const thunkDeleteOneAsset = (watchlist_id) => async dispatch => {
-//     const response = await fetch(`/api/watchlists/${watchlist_id}`, {
-//         method: 'DELETE',
-//         headers: { 'Content-Type': 'application/json' }
-//     });
-//     // console.log('response!!!!!!!!!!', response)
-//     if (response.ok) {
-//         // const channelToDelete = await response.json();
-//         dispatch(deleteOneWatchlist(watchlist_id));
-//     }
-// }
+export const thunkDeleteOneAsset = (symbol) => async dispatch => {
+    console.log("here=============", symbol)
+    const response = await fetch(`/api/assets/sellall/${symbol}`, {
+        method: 'DELETE',
+        // headers: { 'Content-Type': 'application/json' }
+    });
+    // console.log('response!!!!!!!!!!', response)
+    if (response.ok) {
+        // const channelToDelete = await response.json();
+        dispatch(deleteOneAsset(symbol));
+    }
+}
 
 
 const assetReducer = (state = {}, action) => {
@@ -165,12 +165,12 @@ const assetReducer = (state = {}, action) => {
             console.log('action!!!!!!!!!!!!', action)
             return { ...state, [action.asset.id]: { ...state[action.asset.id], ...action.asset } }
 
-        // case DELETE_WATCHLIST:
-        //     let newState = { ...state }
-        //     // console.log('!!!action', action)
-        //     // console.log('here')
-        //     delete newState[action.id]
-        //     return newState
+        case SOLD_ALL_ASSET:
+            let newState = { ...state }
+            // console.log('!!!action', action)
+            // console.log('here')
+            delete newState[action.id]
+            return newState
 
         default:
             return state;

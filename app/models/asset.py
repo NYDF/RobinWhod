@@ -17,7 +17,7 @@ class Asset(db.Model):
         add_prefix_for_prod('users.id')), nullable=False)
 
 
-    owner_asset = db.relationship("User", back_populates="asset_owner", cascade='all, delete')
+    owner_asset = db.relationship("User", back_populates="asset_owner")
 
 
 
