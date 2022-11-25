@@ -7,6 +7,7 @@ import DeleteAsset from '../../Asset/DeleteAsset';
 import LoadCash from '../../Asset/LoadCash';
 import LoadOneAsset from '../../Asset/LoadOneAsset';
 import SellAsset from '../../Asset/SellAsset';
+import SingleStockGraph from '../SingleStockGraph';
 
 
 import './SingleStock.css'
@@ -22,7 +23,7 @@ function SingleStock() {
   return (
     <div className='Single-Stock-page-container'>
       <>
-        single stock graph
+        <SingleStockGraph />
       </>
 
       <>

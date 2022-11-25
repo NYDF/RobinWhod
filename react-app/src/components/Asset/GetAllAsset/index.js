@@ -23,7 +23,7 @@ const GetAllAsset = () => {
     <>
       {allAssetArr.map((asset) => (
                     <NavLink
-                        to={`/channels`}
+                        to={`/stocks/${asset.symbol}`}
                         key={asset.id}>
                         <div className="single-channel-in-server">
 
