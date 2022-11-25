@@ -1,6 +1,7 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import AddAsset from '../../Asset/AddAsset';
 import BuyAsset from '../../Asset/BuyAsset';
 import DeleteAsset from '../../Asset/DeleteAsset';
@@ -15,44 +16,71 @@ import './SingleStock.css'
 
 function SingleStock() {
 
-
-
-
+  const [marketPrice, setMarketPrice] = useState();
+  const [isBuy, setIsBuy] = useState(true);
+  const { symbol } = useParams();
 
 
   return (
     <div className='Single-Stock-page-container'>
-      <>
-        <SingleStockGraph />
-      </>
+      <div className='Single-Stock-page-left'>
+        <SingleStockGraph marketPrice={marketPrice} setMarketPrice={setMarketPrice} />
+      </div>
 
-      <>
-        <AddAsset />
-      </>
+      <div className='Single-Stock-page-right'>
 
-      <>
-        <BuyAsset />
-      </>
+        <div>
+          <button onClick={(e) => setIsBuy(true)}>Buy {symbol}</button>
+        </div>
 
-      <>
-        <SellAsset />
-      </>
+        <div>
+          <button onClick={(e) => setIsBuy(false)}>Sell {symbol}</button>
+        </div>
 
-      <>
-        <DeleteAsset />
-      </>
+        {isBuy && (
+          <>
 
-      <>
-        <LoadOneAsset />
-      </>
+            <>
+              <AddAsset marketPrice={marketPrice} />
+            </>
 
-      <>
-        <LoadCash />
-      </>
+            <>
+              <BuyAsset marketPrice={marketPrice} />
+            </>
 
-      <>
-        add to list function
-      </>
+            <>
+              <LoadOneAsset marketPrice={marketPrice} />
+            </>
+
+          </>
+        )}
+        
+        {!isBuy && (
+          <>
+
+
+            <>
+              <SellAsset marketPrice={marketPrice} />
+            </>
+
+            <>
+              <DeleteAsset marketPrice={marketPrice} />
+            </>
+
+            <>
+              <LoadCash marketPrice={marketPrice} />
+            </>
+
+          </>
+        )}
+
+
+
+
+        <>
+          add to list function
+        </>
+      </div>
     </div>
   );
 }
