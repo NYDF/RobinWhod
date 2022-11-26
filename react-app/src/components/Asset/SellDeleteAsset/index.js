@@ -67,7 +67,6 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
   }
 
 
-
   return (
    <>
       <form onSubmit={handleSubmit} className="channel-edit-form">

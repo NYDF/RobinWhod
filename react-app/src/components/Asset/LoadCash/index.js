@@ -22,7 +22,7 @@ const LoadCash = ({ marketPrice }) => {
   let currentAsset = useSelector(state => state.assetReducer)
 
   let currentAssetValue = Object.values(currentAsset).filter(x=>x.symbol==symbol)[0]
-  console.log('currentAssetValue!!!!!!!!!!!!!!', currentAssetValue)
+  // console.log('currentAssetValue!!!!!!!!!!!!!!', currentAssetValue)
 
   const buyingPower = currentCash?.quantity?.toFixed(2)
 
@@ -35,7 +35,7 @@ const LoadCash = ({ marketPrice }) => {
     if(currentAssetValue==undefined){setIsNew(true)}else{setIsNew(false)}
   }, [dispatch, currentAsset]);
 
-  console.log('isNew++++++++++++',isNew)
+  // console.log('isNew++++++++++++',isNew)
 
   if(currentAsset.length){setIsNew(false)}
 

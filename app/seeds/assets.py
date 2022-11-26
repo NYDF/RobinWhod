@@ -1,11 +1,11 @@
 from app.models import db, Asset
 
 def seed_assets():
-    demo_btc = Asset(
+    demo_tsla = Asset(
                         owner_id = 1,
-                        symbol = 'aa',
+                        symbol = 'tsla',
                         is_cash = False,
-                        purchased_price = 47,
+                        purchased_price = 180,
                         quantity = 200)
 
     demo_cash = Asset(
@@ -15,13 +15,26 @@ def seed_assets():
                         purchased_price = 1 ,
                         quantity = 10000.00)
 
+    demo_ibm = Asset(
+                        owner_id = 1,
+                        symbol = 'ibm',
+                        is_cash = False,
+                        purchased_price = 140,
+                        quantity = 300)
+
+    demo_aapl = Asset(
+                        owner_id = 1,
+                        symbol = 'aapl',
+                        is_cash = False,
+                        purchased_price = 120,
+                        quantity = 600)
 
 
-
-    db.session.add(demo_btc)
+    db.session.add(demo_tsla)
+    db.session.add(demo_ibm)
+    db.session.add(demo_aapl)
     db.session.add(demo_cash)
-
-
+    
 
     db.session.commit()
 

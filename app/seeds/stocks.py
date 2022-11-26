@@ -2,8 +2,8 @@ from app.models import db, Stock
 
 
 def seed_stocks():
-    stock_btc = Stock(
-        symbol='btc',
+    stock_tsla = Stock(
+        symbol='tsla',
     )
 
     stock_aapl = Stock(
@@ -44,7 +44,7 @@ def seed_stocks():
     stock_ea = Stock(
         symbol= 'ea')
 
-    db.session.add(stock_btc)
+    db.session.add(stock_tsla)
     db.session.add(stock_aapl)
     db.session.add(stock_msft)
     db.session.add(stock_amzn)

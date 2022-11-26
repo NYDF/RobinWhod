@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link, NavLink } from 'react-router-dom';
 
 import { thunkLoadAllAsset } from '../../../store/assetReducer';
+import SmallGraph from '../../DashBoard/SmallGraph';
 
 import "./GetAllAsset.css"
 
@@ -14,7 +15,7 @@ const GetAllAsset = () => {
   let allAssetArr = Object.values(allAsset)
 
   useEffect(() => {
-      dispatch(thunkLoadAllAsset())
+    dispatch(thunkLoadAllAsset())
   }, [dispatch]);
 
 
@@ -22,25 +23,27 @@ const GetAllAsset = () => {
   return (
     <>
       {allAssetArr.map((asset) => (
-                    <NavLink
-                        to={`/stocks/${asset.symbol}`}
-                        key={asset.id}>
-                        <div className="single-channel-in-server">
+        <NavLink
+          to={`/stocks/${asset.symbol}`}
+          key={asset.id}>
+          <div className="single-channel-in-server">
 
 
-                                <div className="single-channel-in-server-name">
-                                    stock:{asset.symbol}
-                                </div>
+            <div className="single-channel-in-server-name">
+              stock:{asset.symbol}
+            </div>
 
-                                <div className="single-channel-in-server-name">
-                                    how many you own : {asset.quantity}
-                                </div>
+            <div className="single-channel-in-server-name">
+              how many you own : {asset.quantity}
+            </div>
 
-                        </div>
+            <SmallGraph symbol={asset.symbol} />
 
-                  <hr></hr>
-                    </NavLink>
-                ))}
+          </div>
+
+          <hr></hr>
+        </NavLink>
+      ))}
     </>
   );
 };

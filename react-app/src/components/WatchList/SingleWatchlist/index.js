@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
+import SmallGraph from '../../DashBoard/SmallGraph';
 
 
 
@@ -25,6 +26,7 @@ const SingleWatchlist = ({watchlist}) => {
               <div key={item.id}>
                 <>{item.symbol}</>
                 <br></br>
+                <SmallGraph symbol = {item.symbol} />
                 <br></br>
                 <hr></hr>
               </div>
