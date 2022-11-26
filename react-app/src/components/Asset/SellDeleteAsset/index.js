@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from "react-router";
 
-import { thunkDeleteOneAsset } from '../../../store/assetReducer';
-import { thunkSellAsset } from '../../../store/assetReducer';
+import { thunkDeleteOneAsset, thunkSellAsset, thunkGetOneAsset } from '../../../store/assetReducer';
 
 import "./SellDeleteAsset.css"
 
@@ -38,9 +37,9 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
   if(!!isDelete){
     handleSubmit = async () => {
 
-    dispatch(thunkDeleteOneAsset(symbol));
+    await dispatch(thunkDeleteOneAsset(symbol));
     setIsDelete(false)
-    // await dispatch(thunkLoadAllWatchlist())
+      await  dispatch(thunkGetOneAsset(symbol))
 
   }} else {
     handleSubmit = async (e) => {
@@ -59,6 +58,7 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
         setHasSubmitted(true);
         if (editedAsset) {
           // history.push(`/`)
+          await  dispatch(thunkGetOneAsset(symbol))
           setValidationErrors([]);
           setErrors([]);
         }
