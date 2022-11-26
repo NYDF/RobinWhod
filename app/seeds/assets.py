@@ -3,10 +3,10 @@ from app.models import db, Asset
 def seed_assets():
     demo_btc = Asset(
                         owner_id = 1,
-                        symbol = 'btc',
+                        symbol = 'aa',
                         is_cash = False,
-                        purchased_price = 10000,
-                        quantity = 2)
+                        purchased_price = 47,
+                        quantity = 200)
 
     demo_cash = Asset(
                         owner_id = 1,

@@ -78,7 +78,7 @@ const SingleStockGraph = ({marketPrice, setMarketPrice}) => {
 
     fetchYahooData(symbol).then((
       function (data) {
-        console.log('data------------------', data);
+        // console.log('data------------------', data);
         setMarketPrice(data.chart.result[0].meta.regularMarketPrice.toFixed(2))
       }
     )).catch(e => { alert(e) })

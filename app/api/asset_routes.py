@@ -38,8 +38,7 @@ def this_asset(symbol):
 
     if thisAsset:
         return thisAsset.to_dict()
-    else:
-        return {"errors": "This asset couldn't be found"}, 406
+
 
 
 @asset_routes.route('/cash')

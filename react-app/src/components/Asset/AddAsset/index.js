@@ -9,7 +9,7 @@ import { thunkAddAsset } from '../../../store/assetReducer';
 import "./AddAsset.css"
 
 
-const AddAsset = () => {
+const AddAsset = ({marketPrice, buyingPower}) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState('');
 
@@ -24,6 +24,9 @@ const AddAsset = () => {
     if (quantity <= 0) {
       errors.push("Please input valid numbers")
     }
+    if (quantity * marketPrice > buyingPower) {
+      errors.push("Sorry You dont have so much buyingpower")
+  }
     setValidationErrors(errors);
   }, [quantity])
 
@@ -36,7 +39,7 @@ const AddAsset = () => {
     if (validationErrors.length) { return }
 
     const assetPayload = { quantity, symbol }
-    assetPayload.purchased_price = 100
+    assetPayload.purchased_price = marketPrice
 
     // console.log("!!!!!frontend", assetPayload)
 

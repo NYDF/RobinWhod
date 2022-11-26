@@ -1,60 +1,75 @@
 import React, { useState, useEffect } from 'react';
-import {  useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from "react-router";
-import { useHistory } from 'react-router-dom';
 
-import { thunkEditAsset } from '../../../store/assetReducer';
+import { thunkDeleteOneAsset } from '../../../store/assetReducer';
+import { thunkSellAsset } from '../../../store/assetReducer';
 
-import "./BuyAsset.css"
+import "./SellDeleteAsset.css"
 
 
-const BuyAsset = ({marketPrice, buyingPower}) => {
+const SellDeleteAsset = ({ marketPrice, numShares }) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState('');
-
+  const [isDelete, setIsDelete] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [validationErrors, setValidationErrors] = useState([]);
   const [errors, setErrors] = useState([]);
-  const history = useHistory();
-  const { symbol } = useParams();
 
+  const { symbol } = useParams();
 
   useEffect(() => {
     const errors = [];
     if (quantity <= 0) {
       errors.push("Please input valid numbers")
     }
-    if (quantity * marketPrice > buyingPower) {
-      errors.push("Sorry You dont have so much buyingpower")
-  }
+    if (quantity > numShares) {
+      errors.push("Sorry you don't have so many shares")
+    }
+    if (quantity  == numShares) {
+      setIsDelete(true)
+    }
     setValidationErrors(errors);
   }, [quantity])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setHasSubmitted(true);
+  let handleSubmit
 
-    if (validationErrors.length) { return }
 
-    const editedAssetPayload = { quantity, symbol }
-    editedAssetPayload.purchased_price = marketPrice
-    // console.log('editedAssetPayload!!!!!!!!!!!!', editedAssetPayload)
+  if(!!isDelete){
+    handleSubmit = async () => {
 
-    let editedAsset = await dispatch(thunkEditAsset(editedAssetPayload))
+    dispatch(thunkDeleteOneAsset(symbol));
+    setIsDelete(false)
+    // await dispatch(thunkLoadAllWatchlist())
 
-    if (!validationErrors.length) {
+  }} else {
+    handleSubmit = async (e) => {
+      e.preventDefault();
       setHasSubmitted(true);
-      if (editedAsset) {
-        // history.push(`/`)
-        setValidationErrors([]);
-        setErrors([]);
+
+      if (validationErrors.length) { return }
+
+      const editedAssetPayload = { quantity, symbol }
+      editedAssetPayload.purchased_price = marketPrice
+      // console.log('editedAssetPayload!!!!!!!!!!!!', editedAssetPayload)
+
+      let editedAsset = await dispatch(thunkSellAsset(editedAssetPayload))
+
+      if (!validationErrors.length) {
+        setHasSubmitted(true);
+        if (editedAsset) {
+          // history.push(`/`)
+          setValidationErrors([]);
+          setErrors([]);
+        }
       }
     }
   }
 
 
+
   return (
-    <>
+   <>
       <form onSubmit={handleSubmit} className="channel-edit-form">
 
                     {hasSubmitted && !!validationErrors.length && (
@@ -72,14 +87,19 @@ const BuyAsset = ({marketPrice, buyingPower}) => {
                         />
                     </div>
 
+                    <div>
+                      <span>Market Price</span>
+                      <span>${marketPrice}</span>
+                    </div>
+
                     <div className="editedChannel-button">
                         <button className="e-c-button"
                             onClick={handleSubmit}
-                            type="submit">buy asset</button>
+                            type="submit">sell asset</button>
                     </div>
                 </form>
     </>
   );
 };
 
-export default BuyAsset;
+export default SellDeleteAsset;

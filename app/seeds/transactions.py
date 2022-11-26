@@ -4,10 +4,10 @@ from datetime import datetime
 def seed_transactions():
     demo_btc = Transaction(
                         owner_id = 1,
-                        symbol = 'btc',
+                        symbol = 'aa',
                         move = 'in',
-                        quantity = 2,
-                        purchased_price = 10000,
+                        quantity = 200,
+                        purchased_price = 47,
                         created_at = datetime.now())
 
     demo_cash = Transaction(

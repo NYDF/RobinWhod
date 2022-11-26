@@ -1,34 +1,50 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 
 import { thunkGetOneAsset } from '../../../store/assetReducer';
+import SellDeleteAsset from '../SellDeleteAsset';
 
 import "./LoadOneAsset.css"
 
 
-const LoadOneAsset = () => {
+const LoadOneAsset = ({ marketPrice }) => {
   const dispatch = useDispatch();
-  const {symbol} = useParams();
+  const { symbol } = useParams();
   let currentAsset = useSelector(state => state.assetReducer)
   // console.log('currentAsset!!!!!!!!!!!!!!', currentAsset)
-  let currentAssetValue = Object.values(currentAsset)[0]
+  let currentAssetValue = Object.values(currentAsset).filter(x=>x.symbol==symbol)[0]
   // console.log('currentAssetValue!!!!!!!!!!!!!!', currentAssetValue)
+  let numShares = currentAssetValue?.quantity
 
   useEffect(() => {
     dispatch(thunkGetOneAsset(symbol))
   }, [dispatch]);
 
-  if(!currentAsset){return null}
+  if (!currentAsset) { return null }
 
 
   return (
     <>
-    current asset name = {symbol}
-    <br></br>
-      <>how many shares you have: {currentAssetValue?.quantity}</>
+      <div>
+        <span>Order Type</span>
+        <span>Market Order</span>
+      </div>
+
+      <div>
+        <span>Sell In</span>
+        <span>Shares</span>
+      </div>
+
+      <div>
+        <SellDeleteAsset marketPrice={marketPrice} numShares={numShares} />
+      </div>
+
       <br></br>
-      <>your average price: {currentAssetValue?.purchased_price}</>
+      {!!currentAssetValue && <>how many shares you have: {currentAssetValue?.quantity}</>}
+      {!currentAssetValue && <>You dont have this stock</>}
+      <br></br>
+
       <hr></hr>
     </>
   );
