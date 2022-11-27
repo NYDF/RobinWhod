@@ -23,7 +23,7 @@ class Watchlist(db.Model):
         cascade="all, delete"
     )
 
-
+    
     def to_dict(self):
         watchlist_dict = {
             "id": self.id,

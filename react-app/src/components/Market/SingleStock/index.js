@@ -5,6 +5,7 @@ import DeleteAsset from '../../Asset/DeleteAsset';
 import LoadCash from '../../Asset/LoadCash';
 import LoadOneAsset from '../../Asset/LoadOneAsset';
 import SellAsset from '../../Asset/SellAsset';
+import AddToWatchlist from '../../WatchList/AddToWatchlist';
 import SingleStockGraph from '../SingleStockGraph';
 
 
@@ -50,7 +51,7 @@ function SingleStock() {
           </>
         )}
         <>
-          add to list function
+          <AddToWatchlist />
         </>
       </div>
     </div>

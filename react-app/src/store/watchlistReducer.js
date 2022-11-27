@@ -43,7 +43,6 @@ export const deleteOneWatchlist = (id) => {
 };
 
 
-
 export const thunkLoadAllWatchlist = () => async (dispatch) => {
 
     const response = await fetch(`/api/watchlists/current`)
@@ -92,6 +91,18 @@ export const thunkAddWatchlist = (data) => async dispatch => {
 }
 
 
+export const thunkDeleteOneWatchlist = (watchlist_id) => async dispatch => {
+    const response = await fetch(`/api/watchlists/${watchlist_id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' }
+    });
+    // console.log('response!!!!!!!!!!', response)
+    if (response.ok) {
+        // const channelToDelete = await response.json();
+        dispatch(deleteOneWatchlist(watchlist_id));
+    }
+}
+
 
 export const thunkEditWatchlist = (data) => async dispatch => {
     const { name, watchlistId } = data;
@@ -103,9 +114,7 @@ export const thunkEditWatchlist = (data) => async dispatch => {
     const response = await fetch(`/api/watchlists/${watchlist_id}`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            name
-        }),
+        body: JSON.stringify({ name, watchlist_id }),
     });
     // console.log('response', response)
 
@@ -114,19 +123,6 @@ export const thunkEditWatchlist = (data) => async dispatch => {
         // console.log('spot!!!!!!!!!!!!', spot)
         dispatch(editWatchlist(editedWatchlist));
         return editedWatchlist;
-    }
-}
-
-
-export const thunkDeleteOneWatchlist = (watchlist_id) => async dispatch => {
-    const response = await fetch(`/api/watchlists/${watchlist_id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' }
-    });
-    // console.log('response!!!!!!!!!!', response)
-    if (response.ok) {
-        // const channelToDelete = await response.json();
-        dispatch(deleteOneWatchlist(watchlist_id));
     }
 }
 
@@ -163,6 +159,8 @@ const watchlistReducer = (state = {}, action) => {
             // console.log('here')
             delete newState[action.id]
             return newState
+
+
 
         default:
             return state;

@@ -51,17 +51,16 @@ def add_watchlist():
 @watchlist_routes.route('/<int:watchlist_id>', methods=['POST'])
 @login_required
 def edit_watchlist_by_id(watchlist_id):
-    print('watchlist_id!!!!!!!!', watchlist_id)
+
     watchlist = Watchlist.query.get(watchlist_id)
-    print('watchlist_id!!!!!!!!', watchlist_id)
+    # print('watchlist_id!!!!!!!!', watchlist_id)
     if watchlist:
         form = WatchlistForm()
         form['csrf_token'].data = request.cookies['csrf_token']
+        # print('form++++++', form.data)
         if form.validate_on_submit:
             data = form.data
-
-            # print (channel.id)
-
+            print('form-------', form.data)
             watchlist.name = data["name"]
             watchlist.owner_id = current_user.id
 

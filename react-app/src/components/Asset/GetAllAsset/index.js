@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { thunkLoadAllAsset } from '../../../store/assetReducer';
 import SmallGraph from '../../DashBoard/SmallGraph';

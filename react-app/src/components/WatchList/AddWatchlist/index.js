@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 
 import { thunkAddWatchlist, thunkLoadAllWatchlist } from '../../../store/watchlistReducer';
 
@@ -14,7 +14,7 @@ const AddWatchlist = () => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [validationErrors, setValidationErrors] = useState([]);
   const [errors, setErrors] = useState([]);
-  const history = useHistory();
+
 
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const AddWatchlist = () => {
     const watchlistPayload = { name }
 
     // console.log("!!!!!frontend", watchlistPayload)
-    let createdWatchlist = await dispatch(thunkAddWatchlist(watchlistPayload))
+    let createdWatchlist = dispatch(thunkAddWatchlist(watchlistPayload))
 
     setErrors(validationErrors)
     if (!validationErrors.length) {

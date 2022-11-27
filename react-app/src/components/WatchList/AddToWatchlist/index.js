@@ -5,10 +5,10 @@ import { useHistory } from 'react-router-dom';
 import { thunkEditWatchlist, thunkLoadAllWatchlist } from '../../../store/watchlistReducer';
 
 
-import "./UpdateWatchList.css"
+import "./AddToWatchlist.css"
 
 
-const UpdateWatchList = ({ watchlistId }) => {
+const AddToWatchlist = ({ watchlistId }) => {
 
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -41,10 +41,10 @@ const UpdateWatchList = ({ watchlistId }) => {
 
     const editedWatchlistPayload = { name }
     editedWatchlistPayload.watchlistId = watchlistId
-    // console.log('!!!!!name', editedWatchlistPayload.name, editedWatchlistPayload.watchlistId)
+
     let editedWatchlist = await dispatch(thunkEditWatchlist(editedWatchlistPayload))
 
-    if (editedWatchlist) {dispatch(thunkLoadAllWatchlist())}
+    if (editedWatchlist) { dispatch(thunkLoadAllWatchlist()) }
   }
 
 
@@ -52,30 +52,15 @@ const UpdateWatchList = ({ watchlistId }) => {
     <>
       <form onSubmit={handleSubmit} >
 
-                    {hasSubmitted && !!validationErrors.length && (
-                        <div className='error3-lists'>
-                            <ul className='error-list'>
-                                {validationErrors.map((error) => <li id='errors' key={error}>{error}</li>)}
-                            </ul>
-                        </div>
-                    )}
+        <div className="editedChannel-button">
+          <button className="e-c-button"
+            onClick={handleSubmit}
+            type="submit">Add to watchlist</button>
+        </div>
 
-                    <div className="input-content">
-                        <input type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="editedChannel-button">
-                        <button className="e-c-button"
-                            onClick={handleSubmit}
-                            type="submit">Save Changes</button>
-                    </div>
-
-                </form>
+      </form>
     </>
   );
 };
 
-export default UpdateWatchList;
+export default AddToWatchlist;
