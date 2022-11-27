@@ -1,4 +1,4 @@
-from app.models import db, Watchlist, Stock
+from app.models import db, Watchlist, Stock, environment, SCHEMA
 from datetime import datetime
 
 def seed_watchlists():

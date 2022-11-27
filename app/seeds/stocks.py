@@ -1,4 +1,4 @@
-from app.models import db, Stock
+from app.models import db, Stock, environment, SCHEMA
 
 
 def seed_stocks():

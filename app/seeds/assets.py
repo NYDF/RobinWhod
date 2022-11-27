@@ -1,4 +1,4 @@
-from app.models import db, Asset
+from app.models import db, Asset, environment, SCHEMA
 
 def seed_assets():
     demo_tsla = Asset(
