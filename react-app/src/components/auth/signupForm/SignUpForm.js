@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../../store/session';
 import "../signupForm/signupForm.css"
+import signupPic from "../../../img/signup.png"
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -48,71 +49,90 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className='signup-page'>
-      <div className='signup-form'>
+    <div className='signup-page-container'>
+
+      <div className='signup-page-left'>
+        <div className='signup-page-left-top'>
+          <div >RobinWhod</div>
+          <>Invest with zero commission fees</>
+          <>Plus, request 24/7 live support right from the app.</>
+        </div>
+
+        <div className='signup-page-left-down'>
+          <div className='login-page-left'>
+            <img id='signupPic' src={signupPic} />
+          </div>
+          <>Stocks, options, and ETFs are offered through Robinhood Financial. Crypto is offered through Robinhood Crypto.</>
+        </div>
+
+      </div>
+
+
+      <div className='signup-page-right'>
         <form onSubmit={onSignUp}>
-          <div className='form-title'>
-            <h1>Create an account </h1>
+          <div className='signup-form-title'>
+            Create an account
           </div>
           <div className='error2-lists'>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
           </div>
-          <div className='u-e-p-c-div'>
-            <div className='s-e-font'>
-              <label>EMAIL</label>
-            </div>
+
+          <div >
+            <span>
             <input
               type='text'
               name='email'
+              className='signup-form-input-bar-half'
+              placeholder='Email'
               onChange={updateEmail}
               value={email}
             ></input>
-          </div>
-          <div className='u-e-p-c-div'>
-            <div className='u-font'>
-              <label>USERNAME</label>
-            </div>
+            </span>
+
+            <span>
             <input
               type='text'
               name='username'
+              className='signup-form-input-bar-half'
+              placeholder='UserName'
               onChange={updateUsername}
               value={username}
             ></input>
+            </span>
           </div>
 
           <div className='u-e-p-c-div'>
-            <div className='s-p-font'>
-              <label>PASSWORD</label>
-            </div>
 
             <input
               type='password'
               name='password'
+              className='signup-form-input-bar'
+              placeholder='Password'
               onChange={updatePassword}
               value={password}
             ></input>
           </div>
           <div className='u-e-p-c-div'>
-            <div className='c-p-font'>
-              <label>CONFIRM  PASSWORD</label>
-            </div>
+
             <input
               type='password'
               name='repeat_password'
+              placeholder='Confirm Password'
+              className='signup-form-input-bar'
               onChange={updateRepeatPassword}
               value={repeatPassword}
             ></input>
           </div>
-          <div className='signup-button'>
-            <button type='submit'>Sign Up</button>
-          </div>
+
+            <button className='signup-button' type='submit'>Sign Up</button>
+
         </form>
         <div className='link-login'>
           <Link to={"/login"}>Already have an account?</Link>
         </div>
-        {/* <DemoUserLogin /> */}
+
       </div>
     </div>
 
