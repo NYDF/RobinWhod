@@ -30,8 +30,8 @@ def seed():
 
 
     seed_users()
-    seed_assets()
     seed_stocks()
+    seed_assets()
     seed_transactions()
     seed_watchlists()
     # Add other seed functions here
