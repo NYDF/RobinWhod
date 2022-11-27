@@ -9,4 +9,4 @@ watchlist_stock = db.Table(
         add_prefix_for_prod('stocks.id')), primary_key=True)
 )
 if environment == 'production':
-    server_member.schema = SCHEMA
+    watchlist_stock.schema = SCHEMA
