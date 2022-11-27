@@ -34,12 +34,18 @@ def seed_assets():
     db.session.add(demo_ibm)
     db.session.add(demo_aapl)
     db.session.add(demo_cash)
-    
+
 
     db.session.commit()
 
 
 
 def undo_assets():
-    db.session.execute('TRUNCATE assets RESTART IDENTITY CASCADE;')
+
+    if environment == "production":
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.assets RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute("DELETE FROM assets")
+
     db.session.commit()
