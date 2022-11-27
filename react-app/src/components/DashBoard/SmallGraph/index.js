@@ -22,7 +22,7 @@ const SmallGraph = ({ symbol }) => {
 
     fetchYahooData(symbol).then((
       function (data) {
-        // console.log('data------------------', data);
+        console.log('data------------------', data);
 
         const x = data.chart?.result[0].timestamp.map(x => new Date(x * 1000))
 
@@ -40,9 +40,9 @@ const SmallGraph = ({ symbol }) => {
   // console.log('stockChartYValues--------------------', stockChartYValues)
 
   return (
-    <div>
-      <>
+    <div className='asset-bar-second-small-c'>
       <Plot
+      className='small-plot'
         data={[
           {
             x: stockChartXValues,
@@ -51,9 +51,11 @@ const SmallGraph = ({ symbol }) => {
             marker: { color: 'green' },
           }
         ]}
-        config = {{
-          displayModeBar: false, }}
-        layout={{ width: 100, height: 60,
+        config={{
+          displayModeBar: false,
+        }}
+        layout={{
+          width: 65, height: 20,
           autosize: false,
           "xaxis": {
             "visible": false,
@@ -70,13 +72,15 @@ const SmallGraph = ({ symbol }) => {
             t: 0,
             pad: 0
           },
-          showlegend: false }}/>
-      </>
+          showlegend: false
+        }} />
 
-      <>
-        ${marketPrice}
-      </>
+      <div className='third-column'>
+        <span>${marketPrice}</span>
+      </div>
+
     </div>
+
   )
 
 };

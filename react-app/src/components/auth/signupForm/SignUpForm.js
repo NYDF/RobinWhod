@@ -85,7 +85,7 @@ const SignUpForm = () => {
               type='text'
               name='email'
               className='signup-form-input-bar-half'
-              placeholder='Email'
+              placeholder='  Email'
               onChange={updateEmail}
               value={email}
             ></input>
@@ -96,7 +96,7 @@ const SignUpForm = () => {
               type='text'
               name='username'
               className='signup-form-input-bar-half'
-              placeholder='UserName'
+              placeholder='  UserName'
               onChange={updateUsername}
               value={username}
             ></input>
@@ -109,7 +109,7 @@ const SignUpForm = () => {
               type='password'
               name='password'
               className='signup-form-input-bar'
-              placeholder='Password'
+              placeholder='  Password'
               onChange={updatePassword}
               value={password}
             ></input>
@@ -119,7 +119,7 @@ const SignUpForm = () => {
             <input
               type='password'
               name='repeat_password'
-              placeholder='Confirm Password'
+              placeholder='  Confirm Password'
               className='signup-form-input-bar'
               onChange={updateRepeatPassword}
               value={repeatPassword}

@@ -52,7 +52,7 @@ const AddWatchlist = () => {
         setValidationErrors([]);
         setErrors([]);
 
-        dispatch(thunkLoadAllWatchlist())
+        await dispatch(thunkLoadAllWatchlist())
 
       }
     }

@@ -22,28 +22,36 @@ const GetAllAsset = () => {
 
   return (
     <>
-      {allAssetArr.map((asset) => (
-        <NavLink
-          to={`/stocks/${asset.symbol}`}
-          key={asset.id}>
-          <div className="single-channel-in-server">
+      <div className='portfolio-bar-title'>
+        Stocks
+      </div>
+      <hr></hr>
+      <div className='portfolio-bar-asset'>
+        My Portfolio
+      </div>
+      <br></br>
+      <>
+        {allAssetArr.map((asset) => (
+          <NavLink
+            to={`/stocks/${asset.symbol}`}
+            key={asset.id}>
+            <div className="single-asset-container">
 
+              <div className="single-asset-first-column">
+                <span className="first-column-name">{asset.symbol}</span>
+                <br></br>
+                <span className="first-column-number">{asset.quantity} shares</span>
+              </div>
 
-            <div className="single-channel-in-server-name">
-              stock:{asset.symbol}
+              <SmallGraph symbol={asset.symbol} />
+
             </div>
 
-            <div className="single-channel-in-server-name">
-              how many you own : {asset.quantity}
-            </div>
 
-            <SmallGraph symbol={asset.symbol} />
 
-          </div>
-
-          <hr></hr>
-        </NavLink>
-      ))}
+          </NavLink>
+        ))}
+      </>
     </>
   );
 };
