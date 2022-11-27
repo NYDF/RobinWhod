@@ -26,6 +26,10 @@ def upgrade():
     sa.Column('symbol', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE stocks SET SCHEMA {SCHEMA};")
+
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
@@ -35,6 +39,10 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
     op.create_table('assets',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('symbol', sa.String(length=10), nullable=False),
@@ -45,6 +53,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE assets SET SCHEMA {SCHEMA};")
+
     op.create_table('transactions',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('symbol', sa.String(length=10), nullable=False),
@@ -56,6 +68,11 @@ def upgrade():
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE transactions SET SCHEMA {SCHEMA};")
+
     op.create_table('watchlists',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
@@ -64,6 +81,10 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE watchlists SET SCHEMA {SCHEMA};")
+
     op.create_table('watchlist_stock',
     sa.Column('watchlist_id', sa.Integer(), nullable=False),
     sa.Column('stocks_id', sa.Integer(), nullable=False),
@@ -71,6 +92,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['watchlist_id'], ['watchlists.id'], ),
     sa.PrimaryKeyConstraint('watchlist_id', 'stocks_id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE watchlist_stock SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
