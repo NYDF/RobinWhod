@@ -4,6 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../../store/session';
 import DemoUserLogin from '../DemoUser';
 import "./loginForm.css"
+import loginPic from '../../../img/login.jpg'
 
 
 const LoginForm = () => {
@@ -34,60 +35,71 @@ const LoginForm = () => {
   }
 
   return (
-    <div >
-      <div >
-        <form onSubmit={onLogin}>
-          <div >
-            <h2>Welcome to RobinWhod</h2>
-          </div>
-          <div >
-            <h3>We're so excited to see you!</h3>
-          </div>
-          <div className='error-lists'>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
-          <div >
-            <div >
-              <label htmlFor='email'>EMAIL</label>
+    <div className='login-page-container'>
+
+      <div className='login-page-left'>
+        <img id='loginPic' src={loginPic} />
+      </div>
+
+      <div className='login-page-right'>
+        <div className='login-page-right-container'>
+          <form className='login-form' onSubmit={onLogin}>
+
+            <div className='login-title'>
+              Log in to RobinWhod
             </div>
 
-            <input
-              name='email'
-              type='text'
-              value={email}
-              onChange={updateEmail}
-            />
-
-
-          </div>
-          <div >
-            <div >
-              <label htmlFor='password'>PASSWORD</label>
+            <div className='error-lists'>
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
             </div>
-            <div>
+
+            <div >
+              <div className='login-word'>
+                <label htmlFor='email'>Email</label>
+              </div>
+
               <input
-                name='password'
-                type='password'
-                value={password}
-                onChange={updatePassword}
+              className='login-input'
+                name='email'
+                type='text'
+                value={email}
+                onChange={updateEmail}
               />
             </div>
 
-            <div >
-              <button type='submit'>Log In</button>
-            </div>
-          </div>
-        </form>
-        <div className='Demo-button'>
-          <DemoUserLogin />
-        </div>
-        <div className='link-register'>
-          <span>Need an account?</span>
-          <span> <Link to={"/sign-up"}>Register</Link></span>
-        </div>
+            <br></br>
 
+            <div >
+              <div className='login-word'>
+                <label htmlFor='password'>Password</label>
+              </div>
+              <div>
+                <input
+                className='login-input'
+                  name='password'
+                  type='password'
+                  value={password}
+                  onChange={updatePassword}
+                />
+              </div>
+
+              <div >
+                <button className='login-button' type='submit'>Log In</button>
+              </div>
+
+            </div>
+          </form>
+          <div className='Demo-button'>
+            <DemoUserLogin />
+          </div>
+          <div className='link-register'>
+            <span >Not on Robinhood?</span>
+            <span className='login-word-button'> <Link to={"/sign-up"}>Create an account</Link></span>
+          </div>
+
+        </div>
       </div>
     </div>
   );

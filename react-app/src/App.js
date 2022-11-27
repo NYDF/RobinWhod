@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import MainPage from './components/DashBoard/MainPage';
 import SingleStock from './components/Market/SingleStock';
+import Splash from './components/SplashPage/Splash';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -57,7 +58,7 @@ function App() {
         </Route>
 
         <Route path='/' exact={true} >
-          <h1>This is the splash page</h1>
+          <Splash />
         </Route>
 
       </Switch>

@@ -1,0 +1,37 @@
+.Splash-page-container{
+    background-image: url(../../../img/splash.jpg);
+    background-size: 2560px 1400px;
+    background-position: center center;
+    align-items: center;
+    height: 1400px;
+
+}
+
+.splash-first-page-container{
+    margin-left: 60%;
+    padding-top: 18%;
+}
+
+.splash-first-page-word-1{
+    font-size:36px;
+    color:rgb(2,226,155);
+
+}
+
+.splash-first-page-word-2{
+    padding-top: -20%;
+    font-size:22px;
+    color:rgb(2,226,155);
+
+}
+
+.splash-login{
+    background-color: rgb(2,226,155);
+    width:150px;
+    height:40px;
+}
+
+.splash-login-button{
+    color: black;
+    font-size: 24px;
+}

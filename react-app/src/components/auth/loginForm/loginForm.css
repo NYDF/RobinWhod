@@ -1,0 +1,49 @@
+.login-page-container {
+    display: flex;
+}
+
+.login-page-left {
+    width: 50%;
+}
+
+#loginPic {
+    width: 100%;
+}
+
+.login-page-right {
+    display: flex;
+    align-items: center;
+    margin-left: 3%;
+}
+
+.login-title {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 10%;
+}
+
+.login-word {
+    margin-bottom: 3%;
+}
+
+.login-input {
+    width: 420px;
+    height: 36px;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+}
+
+.login-button {
+    margin-top: 4%;
+    background-color: black;
+    color: white;
+    width: 135px;
+    height: 45px;
+    border-radius: 20px;
+    margin-bottom: 4%;
+}
+
+.login-word-button {
+    font-weight: 600;
+    text-decoration: underline;
+}
