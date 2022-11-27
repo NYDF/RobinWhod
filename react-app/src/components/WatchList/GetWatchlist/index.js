@@ -26,8 +26,6 @@ const GetWatchlist = () => {
   // console.log('watchlist!!!!!!!!', watchlist)
   // console.log('watchlistArr!!!!!!!!', watchlistArr)
 
-  // if (!channelsArr) { return null }
-
   return (
     <>
       <>get all watch lists</>

@@ -23,7 +23,7 @@ const DeleteWatchList = ({ watchlistId }) => {
   return (
     <>
       <div className="c-delete-button">
-        <button type="submit" onClick={handleDelete}>Delete Channel</button>
+        <button type="submit" onClick={handleDelete}>Delete WatchList</button>
       </div>
     </>
   );

@@ -117,7 +117,7 @@ export const thunkAddAsset = (data) => async dispatch => {
         const newAsset = await response.json();
         // console.log(newAsset)
         dispatch(addAsset(newAsset))
-        // console.log('newChannel!!!!!!', newChannel)
+
         return newAsset
     }
 }
@@ -182,7 +182,6 @@ export const thunkDeleteOneAsset = (symbol) => async dispatch => {
     });
     // console.log('response!!!!!!!!!!', response)
     if (response.ok) {
-        // const channelToDelete = await response.json();
         dispatch(deleteOneAsset(symbol));
     }
 }

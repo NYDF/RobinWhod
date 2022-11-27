@@ -48,12 +48,12 @@ const AddWatchlist = () => {
     if (!validationErrors.length) {
       setHasSubmitted(true);
       if (createdWatchlist) {
-        // history.push(`/`)
+
         setValidationErrors([]);
         setErrors([]);
 
         dispatch(thunkLoadAllWatchlist())
-        // console.log(createdChannel)
+
       }
     }
   }

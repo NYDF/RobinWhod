@@ -50,7 +50,7 @@ export const thunkLoadAllWatchlist = () => async (dispatch) => {
     // console.log('response', response)
     if (response.ok) {
         const watchlists = await response.json();
-        // console.log("!!!!!!!!channel!!!!!!!!!!", channel)
+
         dispatch(loadAllWatchlist(watchlists))
         return watchlists
     }
@@ -63,7 +63,7 @@ export const thunkLoadOneWatchlist = (watchlistId) => async (dispatch) => {
     // console.log('response', response)
     if (response.ok) {
         const watchlist = await response.json();
-        // console.log("!!!!!!!!channel!!!!!!!!!!", channel)
+
         dispatch(loadOneWatchlist(watchlist))
         return watchlist
     }
@@ -85,7 +85,7 @@ export const thunkAddWatchlist = (data) => async dispatch => {
         const newWatchlist = await response.json();
         // console.log(newWatchlist)
         dispatch(addWatchlist(newWatchlist))
-        // console.log('newChannel!!!!!!', newChannel)
+
         return newWatchlist
     }
 }
@@ -98,7 +98,6 @@ export const thunkDeleteOneWatchlist = (watchlist_id) => async dispatch => {
     });
     // console.log('response!!!!!!!!!!', response)
     if (response.ok) {
-        // const channelToDelete = await response.json();
         dispatch(deleteOneWatchlist(watchlist_id));
     }
 }
