@@ -9,7 +9,7 @@ class Watchlist(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False, unique=True)
 
     owner_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod('users.id')), nullable=False)
@@ -23,7 +23,7 @@ class Watchlist(db.Model):
         cascade="all, delete"
     )
 
-    
+
     def to_dict(self):
         watchlist_dict = {
             "id": self.id,
