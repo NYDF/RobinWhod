@@ -4,6 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../../store/session';
 import "../signupForm/signupForm.css"
 import signupPic from "../../../img/signup.png"
+import logo from '../../../img/logo.png'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -45,7 +46,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/portfolio' />;
+    return <Redirect to='/portfolio'/>;
   }
 
   return (
@@ -53,18 +54,19 @@ const SignUpForm = () => {
 
       <div className='signup-page-left'>
         <div className='signup-page-left-top'>
-          <div >RobinWhod</div>
-          <>Invest with zero commission fees</>
-          <>Plus, request 24/7 live support right from the app.</>
+          <div className='signup-page-left-top-words'>
+            <span className='signup-page-title'>RobinWhod</span>
+            <img id='logo' src={logo} />
+          </div>
+          <div className='signup-page-left-top-words-big'>Invest with zero commission fees</div>
+          <div className='signup-page-left-top-words-small'>Plus, request 24/7 live support right from the app.</div>
         </div>
 
         <div className='signup-page-left-down'>
-          <div className='login-page-left'>
-            <img id='signupPic' src={signupPic} />
-          </div>
-          <>Stocks, options, and ETFs are offered through Robinhood Financial. Crypto is offered through Robinhood Crypto.</>
-        </div>
+          <img id='signupPic' src={signupPic} />
+          <div className='signup-page-left-down-word'>Stocks, options, and ETFs are offered through Robinhood Financial. Crypto is offered through Robinhood Crypto.</div>
 
+        </div>
       </div>
 
 
@@ -75,31 +77,31 @@ const SignUpForm = () => {
           </div>
           <div className='error2-lists'>
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div className='sign-up-errors' key={ind}>{error}</div>
             ))}
           </div>
 
           <div >
             <span>
-            <input
-              type='text'
-              name='email'
-              className='signup-form-input-bar-half'
-              placeholder='  Email'
-              onChange={updateEmail}
-              value={email}
-            ></input>
+              <input
+                type='text'
+                name='email'
+                className='signup-form-input-bar-half'
+                placeholder='  Email'
+                onChange={updateEmail}
+                value={email}
+              ></input>
             </span>
 
             <span>
-            <input
-              type='text'
-              name='username'
-              className='signup-form-input-bar-half'
-              placeholder='  UserName'
-              onChange={updateUsername}
-              value={username}
-            ></input>
+              <input
+                type='text'
+                name='username'
+                className='signup-form-input-bar-half'
+                placeholder='  UserName'
+                onChange={updateUsername}
+                value={username}
+              ></input>
             </span>
           </div>
 
@@ -126,7 +128,7 @@ const SignUpForm = () => {
             ></input>
           </div>
 
-            <button className='signup-button' type='submit'>Sign Up</button>
+          <button className='signup-button' type='submit'>Sign Up</button>
 
         </form>
         <div className='link-login'>

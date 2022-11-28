@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../../store/session';
@@ -30,6 +30,7 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+
   if (user) {
     return <Redirect to='/portfolio' />;
   }
@@ -49,10 +50,11 @@ const LoginForm = () => {
               Log in to RobinWhod
             </div>
 
-            <div className='error-lists'>
+            <div className='login-error-lists'>
               {errors.map((error, ind) => (
                 <div key={ind}>{error}</div>
               ))}
+
             </div>
 
             <div >
@@ -61,7 +63,7 @@ const LoginForm = () => {
               </div>
 
               <input
-              className='login-input'
+                className='login-input'
                 name='email'
                 type='text'
                 value={email}
@@ -77,7 +79,7 @@ const LoginForm = () => {
               </div>
               <div>
                 <input
-                className='login-input'
+                  className='login-input'
                   name='password'
                   type='password'
                   value={password}

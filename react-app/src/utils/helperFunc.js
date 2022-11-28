@@ -9,3 +9,13 @@ export function stockInWL(item, symbol) {
 		}
 		return false
 }
+
+
+export function calculatePortfolio(obj) {
+	let sum = 0
+	let arr = Object.values(obj)
+	for (let i=0; i<arr.length; i++){
+		sum += arr[i].quantity * arr[i]['purchased_price']
+	}
+	return sum
+}

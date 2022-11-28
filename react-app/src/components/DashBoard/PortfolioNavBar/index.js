@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import logo from '../../../img/logo.png'
 import { Modal } from '../../../context/Modal';
 import NavBarAccount from './NavBarAccount';
+import { NavLink } from 'react-router-dom';
 
 import './PortfolioNavBar.css'
 
@@ -16,10 +17,13 @@ function PortfolioNavBar() {
   return (
 
     <div className='Splash-nav-container'>
-      <div className='Splash-nav-left'>
-        <img id='logo' src={logo} />
 
-      </div>
+      <NavLink
+        to={(`/portfolio`)}>
+        <div className='Splash-nav-left'>
+          <img id='logo' src={logo} />
+        </div>
+      </NavLink>
 
       <div className='Portfolio-nav-right'>
 

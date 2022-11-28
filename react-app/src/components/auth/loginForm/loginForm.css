@@ -4,6 +4,7 @@
 
 .login-page-left {
     width: 50%;
+    height: 100vh;
 }
 
 #loginPic {
@@ -46,4 +47,15 @@
 .login-word-button {
     font-weight: 600;
     text-decoration: underline;
+}
+
+#loginPic{
+    height:100vh;
+    object-fit:cover
+}
+
+.login-error-lists{
+    color:rgb(2, 226, 155);
+    padding-bottom: 1%;
+
 }
