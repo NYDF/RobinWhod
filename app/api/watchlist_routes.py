@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user, login_user
-from app.models import User, Watchlist, db
-from app.forms import WatchlistForm
+from app.models import User, Watchlist, db, Stock
+from app.forms import WatchlistForm, AddtoWatchlistForm
 
 watchlist_routes = Blueprint('watchlists', __name__)
 
@@ -85,3 +85,29 @@ def delete_watchlist_by_id(watchlist_id):
         return {"messages": "Watchlist delete successfully"}, 200
     else:
         return {"errors": "Watchlist couldn't be found"}, 404
+
+
+@watchlist_routes.route('/add_item/<watchlist_name>', methods=['PUT'])
+@login_required
+def add_to_watchlist(watchlist_name):
+    # print("here-----")
+    watchlist = Watchlist.query.filter_by(name=watchlist_name).first()
+    # print('watchlist!!!!!!!!', watchlist)
+    if watchlist:
+        form = AddtoWatchlistForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        # print('form++++++', form.data)
+        if form.validate_on_submit:
+            data = form.data
+            print('form-------', form.data)
+            stock = Stock.query.filter_by(symbol=data['symbol']).first()
+            print('++++++++++++++++++++++++++', stock, watchlist)
+            if(stock):
+                watchlist.item_in_list.append(stock)
+
+                db.session.commit()
+                return watchlist.to_dict(), 200
+        else:
+            return form.errors
+    else:
+        return {"errors": "Cant add stock to watchlist"}, 406

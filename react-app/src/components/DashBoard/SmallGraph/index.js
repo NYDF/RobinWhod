@@ -22,7 +22,7 @@ const SmallGraph = ({ symbol }) => {
 
     fetchYahooData(symbol).then((
       function (data) {
-        console.log('data------------------', data);
+        // console.log('data------------------', data);
 
         const x = data.chart?.result[0].timestamp.map(x => new Date(x * 1000))
 

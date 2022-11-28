@@ -23,3 +23,6 @@ class Stock(db.Model):
             "symbol": self.symbol,
         }
         return stock_dict
+
+    def __repr__(self):
+        return f'<Stock, id={self.id}, symbol={self.symbol}>'

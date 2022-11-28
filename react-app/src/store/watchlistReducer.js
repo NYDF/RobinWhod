@@ -4,7 +4,7 @@ const LOAD_ONE_WATCHLIST = 'watchlist/loadOneWatchlist'
 const ADD_ONE_WATCHLIST = 'watchlist/addWatchlist'
 const EDIT_WATCHLIST = 'watchlist/editWatchlist'
 const DELETE_WATCHLIST = 'watchlist/deleteOneWatchlist'
-
+const ADD_TO_WATCHLIST = 'watchlist/addtoWatchlist'
 
 
 export const loadAllWatchlist = (watchlists) => {
@@ -39,6 +39,13 @@ export const deleteOneWatchlist = (id) => {
     return {
         type: DELETE_WATCHLIST,
         id
+    };
+};
+
+export const addToWatchlist = (watchlist) => {
+    return {
+        type: ADD_TO_WATCHLIST,
+        watchlist
     };
 };
 
@@ -106,8 +113,7 @@ export const thunkDeleteOneWatchlist = (watchlist_id) => async dispatch => {
 export const thunkEditWatchlist = (data) => async dispatch => {
     const { name, watchlistId } = data;
 
-
-    console.log('data!!!!!!!!!', name, watchlistId )
+    // console.log('data!!!!!!!!!', name, watchlistId )
     let watchlist_id = watchlistId
 
     const response = await fetch(`/api/watchlists/${watchlist_id}`, {
@@ -124,6 +130,30 @@ export const thunkEditWatchlist = (data) => async dispatch => {
         return editedWatchlist;
     }
 }
+
+
+export const thunkAddToWatchlist = (data) => async dispatch => {
+    const { watchlistName, symbol } = data;
+
+
+    console.log('data!!!!!!!!!', symbol, watchlistName )
+    let watchlist_name = watchlistName
+
+    const response = await fetch(`/api/watchlists/add_item/${watchlist_name}`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ symbol })
+    });
+    // console.log('response', response)
+
+    if (response.ok) {
+        const addStockToWatchlist = await response.json();
+        // console.log('addStockToWatchlist!!!!!!!!!!!!', addStockToWatchlist)
+        dispatch(addToWatchlist(addStockToWatchlist));
+        return addStockToWatchlist;
+    }
+}
+
 
 
 const watchlistReducer = (state = {}, action) => {
@@ -159,6 +189,9 @@ const watchlistReducer = (state = {}, action) => {
             delete newState[action.id]
             return newState
 
+        case ADD_TO_WATCHLIST:
+            // console.log('action!!!!!!!!!!!!', action.spot)
+            return { ...state, [action.watchlist.id]: { ...state[action.watchlist.id], ...action.watchlist } }
 
 
         default:

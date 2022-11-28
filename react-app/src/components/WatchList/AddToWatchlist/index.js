@@ -1,66 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import { thunkEditWatchlist, thunkLoadAllWatchlist } from '../../../store/watchlistReducer';
-
+import { Modal } from '../../../context/Modal';
+import AddToWatchlistForm from './AddToWatchlistForm';
 
 import "./AddToWatchlist.css"
 
 
-const AddToWatchlist = ({ watchlistId }) => {
+const AddToWatchlistModal = () => {
 
-  const dispatch = useDispatch();
-  const [name, setName] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
 
-  const [hasSubmitted, setHasSubmitted] = useState("");
-  const [validationErrors, setValidationErrors] = useState([]);
-  const [errors, setErrors] = useState([]);
-  const history = useHistory();
-  // console.log('!!!!!id', id)
-
-  useEffect(() => {
-    const errors = [];
-    if (!name.length) {
-      errors.push("Name is required ")
-    }
-    if (name.length > 50) {
-      errors.push("Name should be less than 50 characters")
-    }
-    if (name.length < 2) {
-      errors.push("Name should be more than 2 characters")
-    }
-    setValidationErrors(errors);
-  }, [name])
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setHasSubmitted(true);
-
-    if (validationErrors.length) { return }
-
-    const editedWatchlistPayload = { name }
-    editedWatchlistPayload.watchlistId = watchlistId
-
-    let editedWatchlist = await dispatch(thunkEditWatchlist(editedWatchlistPayload))
-
-    if (editedWatchlist) { dispatch(thunkLoadAllWatchlist()) }
-  }
-
+  const { symbol } = useParams();
+  if (!sessionUser) {
+    return null;
+}
 
   return (
     <>
-      <form onSubmit={handleSubmit} >
-
-        <div className="editedChannel-button">
-          <button className="e-c-button"
-            onClick={handleSubmit}
-            type="submit">Add to watchlist</button>
+    <div className='add-to-watchlist-modal' >
+        <div className='add to watchlist-div'onClick={() => setShowModal(true)}>
+            <button id="show-modal-button"> Add to watchlist </button>
         </div>
-
-      </form>
-    </>
+        {showModal && (
+            <Modal onClose={() => setShowModal(false)}>
+                <AddToWatchlistForm setShowModal={setShowModal} symbol={symbol} />
+            </Modal>
+        )}
+    </div>
+</>
   );
 };
 
-export default AddToWatchlist;
+export default AddToWatchlistModal;

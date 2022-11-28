@@ -1,23 +1,19 @@
 
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import DeleteAsset from '../../Asset/DeleteAsset';
+
 import LoadCash from '../../Asset/LoadCash';
 import LoadOneAsset from '../../Asset/LoadOneAsset';
-import SellAsset from '../../Asset/SellAsset';
-import AddToWatchlist from '../../WatchList/AddToWatchlist';
+import AddToWatchlistModal from '../../WatchList/AddToWatchlist';
 import SingleStockGraph from '../SingleStockGraph';
 
-
 import './SingleStock.css'
-
 
 function SingleStock() {
 
   const [marketPrice, setMarketPrice] = useState();
   const [isBuy, setIsBuy] = useState(true);
   const { symbol } = useParams();
-
 
   return (
     <div className='Single-Stock-page-container'>
@@ -51,7 +47,7 @@ function SingleStock() {
           </>
         )}
         <>
-          <AddToWatchlist />
+          <AddToWatchlistModal />
         </>
       </div>
     </div>

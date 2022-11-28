@@ -23,7 +23,6 @@ class Watchlist(db.Model):
         cascade="all, delete"
     )
 
-
     def to_dict(self):
         watchlist_dict = {
             "id": self.id,
@@ -31,3 +30,6 @@ class Watchlist(db.Model):
             "item_in_list": [item.to_dict() for item in self.item_in_list]
         }
         return watchlist_dict
+
+    def __repr__(self):
+        return f'<Watchlist, id={self.id}, name={self.name}, owner_id={self.owner_id}>'

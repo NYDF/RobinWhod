@@ -3,3 +3,4 @@ from .signup_form import SignUpForm
 from .asset_form import AssetForm
 from .transaction_form import TransactionForm
 from .watchlist_form import WatchlistForm
+from .add_to_watchlist_form import AddtoWatchlistForm
