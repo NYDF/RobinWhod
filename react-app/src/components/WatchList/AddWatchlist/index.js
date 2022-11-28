@@ -49,11 +49,9 @@ const AddWatchlist = () => {
       setHasSubmitted(true);
       if (createdWatchlist) {
 
+        await dispatch(thunkLoadAllWatchlist())
         setValidationErrors([]);
         setErrors([]);
-
-        await dispatch(thunkLoadAllWatchlist())
-
       }
     }
   }

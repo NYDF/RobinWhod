@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import LoadCash from '../../Asset/LoadCash';
 import LoadOneAsset from '../../Asset/LoadOneAsset';
+import PortfolioNavBar from '../../DashBoard/PortfolioNavBar';
 import AddToWatchlistModal from '../../WatchList/AddToWatchlist';
 import SingleStockGraph from '../SingleStockGraph';
 
@@ -16,6 +17,10 @@ function SingleStock() {
   const { symbol } = useParams();
 
   return (
+<>
+<>
+<PortfolioNavBar />
+</>
     <div className='Single-Stock-page-container'>
       <div className='Single-Stock-page-left'>
         <SingleStockGraph marketPrice={marketPrice} setMarketPrice={setMarketPrice} />
@@ -51,6 +56,7 @@ function SingleStock() {
         </>
       </div>
     </div>
+    </>
   );
 }
 

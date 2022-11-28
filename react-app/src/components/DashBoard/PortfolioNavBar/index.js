@@ -1,13 +1,17 @@
 
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import logo from '../../../img/logo.png'
-import { NavLink } from 'react-router-dom';
-
+import { Modal } from '../../../context/Modal';
+import NavBarAccount from './NavBarAccount';
 
 import './PortfolioNavBar.css'
 
 
 function PortfolioNavBar() {
+
+  const [showModal, setShowModal] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
 
   return (
 
@@ -18,13 +22,16 @@ function PortfolioNavBar() {
       </div>
 
       <div className='Portfolio-nav-right'>
-        <span >Cash Card</span>
-        <span >Learn</span>
-        <span >Snacks</span>
-        <span >Support</span>
-        <span><button>
-          Account
-        </button></span>
+
+        <span className='add to watchlist-div' onClick={() => setShowModal(true)}>
+          <button id="show-modal-button"> Account </button>
+        </span>
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            <NavBarAccount />
+          </Modal>
+        )}
+
 
       </div>
 
