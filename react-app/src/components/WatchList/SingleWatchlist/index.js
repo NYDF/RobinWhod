@@ -18,7 +18,7 @@ const SingleWatchlist = ({ watchlist }) => {
     <div className='watchlist-container'>
 
 
-      <div className='watchlist-name'>watchlistName: {watchlist?.name}</div>
+      <div className='watchlist-name'>{watchlist?.name}</div>
       {watchlist?.item_in_list?.map((item) => {
         <div></div>
         return (

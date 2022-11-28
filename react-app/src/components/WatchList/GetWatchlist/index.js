@@ -28,9 +28,6 @@ const GetWatchlist = () => {
 
   return (
     <>
-      <>get all watch lists</>
-
-      <>map each watch list then edit and delete </>
       <div className="single-watchlist-container">
         <div className="single-watchlist">
           {watchlistArr.map((watchlist) => {
