@@ -7,7 +7,7 @@ import "./PortfolioNavBar.css"
 
 import { signUp } from '../../../store/session';
 
-const NavBarAccount = () => {
+const NavBarAccount = ({setShowModal}) => {
   const sessionUser = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assetReducer);
   const portfolio = calculatePortfolio(assets)
@@ -18,7 +18,7 @@ const NavBarAccount = () => {
 
   if (sessionUser) {
     return (
-      <>
+      <div className='nav-account'>
         <>{sessionUser?.username}</>
         <br></br>
         <>${portfolio}</>
@@ -30,7 +30,7 @@ const NavBarAccount = () => {
         <>Buying Power</>
         <br></br>
         <LogoutButton />
-      </>
+      </div>
     );
   } else {
     return (

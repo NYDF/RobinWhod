@@ -15,8 +15,6 @@ const AddWatchlist = () => {
   const [validationErrors, setValidationErrors] = useState([]);
   const [errors, setErrors] = useState([]);
 
-
-
   useEffect(() => {
     const errors = [];
     if (!name.length) {
@@ -39,12 +37,19 @@ const AddWatchlist = () => {
 
     if (validationErrors.length) { return }
 
+
+
     const watchlistPayload = { name }
 
     // console.log("!!!!!frontend", watchlistPayload)
-    let createdWatchlist = dispatch(thunkAddWatchlist(watchlistPayload))
+    let createdWatchlist = dispatch(thunkAddWatchlist(watchlistPayload)).catch(async (res) => {
+      const data = await res.json();
+      console.log(data)
+      if (data && data.errors) setErrors(data.errors)
+    });
 
-    setErrors(validationErrors)
+
+
     if (!validationErrors.length) {
       setHasSubmitted(true);
       if (createdWatchlist) {

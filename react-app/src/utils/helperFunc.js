@@ -19,3 +19,16 @@ export function calculatePortfolio(obj) {
 	}
 	return sum
 }
+
+
+export function sameName(obj, newWLname) {
+
+	let arr = Object.values(obj)
+
+	for (let i=0; i<arr.length; i++){
+		if (arr[i].name == newWLname) {
+			return true
+		}
+	}
+	return false
+}

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
 import UpdateWatchList from '../UpdateWatchList';
 
 import { thunkLoadAllWatchlist } from '../../../store/watchlistReducer';
@@ -27,12 +26,12 @@ const GetWatchlist = () => {
   // console.log('watchlistArr!!!!!!!!', watchlistArr)
 
   return (
-    <>
+
       <div className="single-watchlist-container">
         <div className="single-watchlist">
           {watchlistArr.map((watchlist) => {
             return (
-              <>
+              <div className='single-watchlist' key={watchlist.id}>
               <div>
               <SingleWatchlist watchlist={watchlist} key={watchlist?.id} />
               </div>
@@ -42,7 +41,7 @@ const GetWatchlist = () => {
               <>
               <DeleteWatchList watchlistId={watchlist.id} key={watchlist?.id} />
               </>
-              </>
+              </div>
             )
 
           })}
@@ -50,7 +49,7 @@ const GetWatchlist = () => {
 
 
       </div>
-    </>
+
   );
 };
 

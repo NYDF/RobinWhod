@@ -14,7 +14,7 @@ const AddToWatchlistForm = ({ setShowModal, symbol }) => {
   const watchlistArr = Object.values(watchlists)
   // console.log('watchlistArr============', watchlistArr)
 
-  const [watchlistName, setWatchlistName] = useState('');
+  const [watchlistId, setWatchlistId] = useState('');
 
   const [hasSubmitted, setHasSubmitted] = useState("");
 
@@ -30,7 +30,7 @@ const AddToWatchlistForm = ({ setShowModal, symbol }) => {
     e.preventDefault();
     setHasSubmitted(true);
 
-    const stockAddToWatchlistPayload = { watchlistName, symbol }
+    const stockAddToWatchlistPayload = { watchlistId, symbol }
 
     let addedWatchList = await dispatch(thunkAddToWatchlist(stockAddToWatchlistPayload))
 
@@ -50,8 +50,8 @@ const AddToWatchlistForm = ({ setShowModal, symbol }) => {
             <div key={item.id} >
               <input type="radio" name="align"
                 disabled={stockInWL(item, symbol)? true : false}
-                onChange={() => setWatchlistName(item.name)}
-                value={item.name} />
+                onChange={() => setWatchlistId(item.id)}
+                value={item.id} />
               <div>{item.name}</div>
             </div>
           )

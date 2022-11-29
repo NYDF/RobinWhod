@@ -12,7 +12,6 @@ import './PortfolioNavBar.css'
 function PortfolioNavBar() {
 
   const [showModal, setShowModal] = useState(false);
-  const sessionUser = useSelector((state) => state.session.user);
 
   return (
 
@@ -32,7 +31,7 @@ function PortfolioNavBar() {
         </span>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
-            <NavBarAccount />
+            <NavBarAccount setShowModal={setShowModal}/>
           </Modal>
         )}
 

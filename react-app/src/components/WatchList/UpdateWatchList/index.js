@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { thunkEditWatchlist, thunkLoadAllWatchlist } from '../../../store/watchlistReducer';
-
+import { sameName } from '../../../utils/helperFunc';
 
 import "./UpdateWatchList.css"
 
@@ -17,7 +17,8 @@ const UpdateWatchList = ({ watchlistId }) => {
   const [validationErrors, setValidationErrors] = useState([]);
   const [errors, setErrors] = useState([]);
   const history = useHistory();
-  // console.log('!!!!!id', id)
+  const watchlist = useSelector(state => state.watchlistReducer)
+  // console.log('!!!!!watchlist', watchlist)
 
   useEffect(() => {
     const errors = [];
@@ -30,6 +31,7 @@ const UpdateWatchList = ({ watchlistId }) => {
     if (name.length < 2) {
       errors.push("Name should be more than 2 characters")
     }
+
     setValidationErrors(errors);
   }, [name])
 

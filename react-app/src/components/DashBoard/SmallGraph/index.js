@@ -33,7 +33,9 @@ const SmallGraph = ({ symbol }) => {
 
         setMarketPrice(data.chart?.result[0].meta.regularMarketPrice.toFixed(2))
       }
-    )).catch(e => { alert(e) })
+    ))
+    return () => fetchYahooData.abort()
+
   }, [dispatch])
 
   // console.log('stockChartXValues--------------------', stockChartXValues)
@@ -42,7 +44,7 @@ const SmallGraph = ({ symbol }) => {
   return (
     <div className='asset-bar-second-small-c'>
       <Plot
-      className='small-plot'
+        className='small-plot'
         data={[
           {
             x: stockChartXValues,

@@ -133,13 +133,13 @@ export const thunkEditWatchlist = (data) => async dispatch => {
 
 
 export const thunkAddToWatchlist = (data) => async dispatch => {
-    const { watchlistName, symbol } = data;
+    const { watchlistId, symbol } = data;
 
 
-    console.log('data!!!!!!!!!', symbol, watchlistName )
-    let watchlist_name = watchlistName
+    // console.log('data!!!!!!!!!', symbol, watchlistName )
+    let watchlist_id = watchlistId
 
-    const response = await fetch(`/api/watchlists/add_item/${watchlist_name}`, {
+    const response = await fetch(`/api/watchlists/add_item/${watchlist_id}`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ symbol })
