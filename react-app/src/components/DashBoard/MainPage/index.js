@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 
@@ -9,13 +9,29 @@ import AddWatchlist from '../../WatchList/AddWatchlist';
 import GetWatchlist from '../../WatchList/GetWatchlist';
 import PortfolioGraph from '../PortfolioGraph';
 import PortfolioNavBar from '../PortfolioNavBar';
+
+import { thunkLoadAllAsset } from '../../../store/assetReducer';
+import { calculatePortfolio } from '../../../utils/helperFunc';
+
 import './MainPage.css'
 
 
 function MainPage() {
 
+  const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
+  let allAsset = useSelector(state => state.assetReducer)
+  // console.log('allAsset!!!!!!!!!!!!!!', allAsset)
+  let allAssetArr = Object.values(allAsset)
+  // console.log('allAsset!!!!!!!!!!!!!!', allAssetArr)
+  const portfolio = calculatePortfolio(allAsset)
+
+  const cash = sessionUser?.assets.filter(x => x.symbol == '$')[0]?.quantity
 
 
+  useEffect(() => {
+    dispatch(thunkLoadAllAsset())
+  }, [dispatch]);
 
 
 
@@ -25,7 +41,7 @@ function MainPage() {
       <div className='Main-page-container'>
 
         <div className='Main-page-left'>
-          <PortfolioGraph />
+          <PortfolioGraph allAssetArr={allAssetArr} cash={cash} portfolio={portfolio} />
         </div>
 
         <div className='Main-page-right'>

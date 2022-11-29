@@ -64,10 +64,10 @@ export const thunkLoadAllAsset = () => async (dispatch) => {
 
     const response = await fetch(`/api/assets/current`)
     // console.log('herre')
-    // console.log('response', response)
+    // console.log('response', response.json())
     if (response.ok) {
         const assets = await response.json();
-
+        // console.log('assets', assets.assets)
         dispatch(loadAllAsset(assets))
         return assets
     }

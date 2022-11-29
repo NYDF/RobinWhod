@@ -1,60 +1,168 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import Plot from 'react-plotly.js';
 
+
+import { thunkLoadAllAsset } from '../../../store/assetReducer';
 import "./PortfolioGraph.css"
+import { getEachStockCurrentPrice } from '../../../utils/helperFunc';
 
 
-const PortfolioGraph = () => {
+async function fetchYahooData(symbol) {
+  const response = await fetch(
+    `https://yahoo-finance-api.vercel.app/${symbol}`
+  );
+  return response.json();
+}
+
+const PortfolioGraph = ({ cash, portfolio }) => {
+  const dispatch = useDispatch();
+  const [chartXValues, setChartXValues] = useState([]);
+  const [chartYValues, setChartYValues] = useState([]);
+  const [quantityValues, setQuantityValues] = useState([]);
+
+  const [marketPrice, setMarketPrice] = useState([]);
+
+  let allAsset = useSelector(state => state.assetReducer)
+  let allAssetArr = Object.values(allAsset)
+
+  // console.log('allAssetArr', allAssetArr)
+
+  // console.log('allAssetArr', allAssetArr )
+
+  // console.log('stockOwned', stockOwned )
+  useEffect(() => {
+    dispatch(thunkLoadAllAsset()).then( res => {
+      let assetArrr = res.assets
+
+      const stockOwned = {}
+      assetArrr.forEach(
+        (stock) => (stockOwned[stock.symbol] = stock.quantity)
+      );
+        // console.log('stockOwned', stockOwned )
+
+        getEachStockCurrentPrice(stockOwned).then((
+        function (data) {
+          // console.log('data------------------', data);
+          let x = data
+          let y = Object.keys(stockOwned)
+          let z = Object.values(stockOwned)
+          // console.log('x!!!!!!!!!!!!!!!',x )
+          setChartXValues(x)
+          setChartYValues(y)
+          setQuantityValues(z)
+        }
+      ))
+    }
+
+    )
+  }, [dispatch]);
+
+  // console.log('stockOwned', stockOwned )
+
+
+  // useEffect(() => {
+
+  //   const stockOwned = {}
+  //   allAssetArr.forEach(
+  //     (stock) => (stockOwned[stock.symbol] = stock.quantity)
+  //   );
+  //     // console.log('stockOwned', stockOwned )
+
+  //     getEachStockCurrentPrice(stockOwned).then((
+  //     function (data) {
+  //       // console.log('data------------------', data);
+  //       let x = data
+  //       let y = Object.keys(stockOwned)
+  //       let z = Object.values(stockOwned)
+  //       // console.log('x!!!!!!!!!!!!!!!',x )
+  //       setChartXValues(x)
+  //       setChartYValues(y)
+  //       setQuantityValues(z)
+  //     }
+  //   ))
+
+  // }, [dispatch])
+
+  if(!allAsset){return null}
 
 
   return (
-   <>
-   <>if I can do the graph!</>
-   </>
+    <div className='asset-c'>
+      {portfolio} {cash}
+      <>
+      <Plot
+        className='big-plot'
+        data={[
+          {
+            values: chartXValues,
+            labels: chartYValues,
+            type: "pie",
+          }
+        ]}
+        config={{
+          displayModeBar: false,
+        }}
+        layout={{
+          width: 650, height: 200,
+          autosize: false,
+          "xaxis": {
+            "visible": false,
+            fixedrange: true
+          },
+          "yaxis": {
+            "visible": false,
+            fixedrange: true
+          },
+          margin: {
+            l: 0,
+            r: 0,
+            b: 0,
+            t: 0,
+            pad: 0
+          },
+          showlegend: false
+        }}
+        />
+</>
+<>
+<Plot
+        className='big-plot'
+        data={[
+          {
+            values: quantityValues,
+            labels: chartYValues,
+            type: "pie",
+          }
+        ]}
+        config={{
+          displayModeBar: false,
+        }}
+        layout={{
+          width: 650, height: 200,
+          autosize: false,
+          "xaxis": {
+            "visible": false,
+            fixedrange: true
+          },
+          "yaxis": {
+            "visible": false,
+            fixedrange: true
+          },
+          margin: {
+            l: 0,
+            r: 0,
+            b: 0,
+            t: 0,
+            pad: 0
+          },
+          showlegend: false
+        }} />
+
+</>
+
+    </div>
   );
 };
 
 export default PortfolioGraph;
-
-
-
-// async function getStonk(ticker) {
-// 	const response = await fetch(
-// 		`https://yahoo-finance-api.vercel.app/${ticker}`
-// 	);
-// 	return response.json();
-// }
-
-// export async function getPortfolioPerformancedifference(portfolio) {
-// 	const ownedStock = Object.keys(portfolio);
-
-// 	const ownedStockData = await Promise.all(
-// 		ownedStock.map(async (ticker) => await getStonk(ticker))
-// 	);
-
-// 	const dataLength = ownedStockData[0].chart.result[0].timestamp;
-// 	const TradingPeriodStartTime =
-// 		ownedStockData[0].chart.result[0].meta.tradingPeriods[0][0].start;
-// 	const TradingPeriodEndTime =
-// 		ownedStockData[0].chart.result[0].meta.tradingPeriods[0][0].end;
-// 	const portfolioArr = [];
-// 	for (let i = 0; i <= dataLength.length - 1; i++) {
-// 		let PortfolioTotal = null;
-// 		ownedStockData.forEach((stock) => {
-// 			const key = stock.chart.result[0].meta.symbol;
-// 			const price =
-// 				stock.chart.result[0].indicators.quote[0].open[i] * portfolio[key];
-// 			if (price == 0 || isNaN(price)) {
-// 				PortfolioTotal = 0;
-// 			} else if (PortfolioTotal != 0) PortfolioTotal += price;
-// 		});
-// 		portfolioArr[i] = PortfolioTotal;
-// 	}
-// 	return {
-// 		portfolioArr,
-// 		dataLength,
-// 		TradingPeriodStartTime,
-// 		TradingPeriodEndTime
-// 	};
-// }
