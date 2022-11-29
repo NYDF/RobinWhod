@@ -1,19 +1,21 @@
 .Single-Stock-page-container{
     display:grid;
     grid-template-columns: 2.5fr 1fr;
-    margin-left: 23%;
-    margin-right: 23%;
+    padding-left: 23%;
+    padding-right: 23%;
 }
 
 .Single-Stock-page-right{
-    background-color: aquamarine;
-    padding: 3%;
+    border: 1px solid lightgray;
+    padding: 5%;
+    border-radius: 5px;
+    height: 40%;
 }
 
 .buy-sell-btn{
     background-color: white;
     border:none;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     cursor: pointer;
     margin-right: 2%;

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import {  useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from "react-router";
 import { useHistory } from 'react-router-dom';
 
-import { thunkEditAsset } from '../../../store/assetReducer';
+import { thunkEditAsset, thunkLoadCash } from '../../../store/assetReducer';
 
 import "./BuyAsset.css"
 
 
-const BuyAsset = ({marketPrice, buyingPower}) => {
+const BuyAsset = ({ marketPrice, buyingPower }) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState('');
 
@@ -26,7 +26,7 @@ const BuyAsset = ({marketPrice, buyingPower}) => {
     }
     if (quantity * marketPrice > buyingPower) {
       errors.push("Sorry You dont have so much buyingpower")
-  }
+    }
     setValidationErrors(errors);
   }, [quantity])
 
@@ -48,6 +48,7 @@ const BuyAsset = ({marketPrice, buyingPower}) => {
         // history.push(`/`)
         setValidationErrors([]);
         setErrors([]);
+        dispatch(thunkLoadCash())
       }
     }
   }
@@ -57,27 +58,38 @@ const BuyAsset = ({marketPrice, buyingPower}) => {
     <>
       <form onSubmit={handleSubmit} className="channel-edit-form">
 
-                    {hasSubmitted && !!validationErrors.length && (
-                        <div className='error3-lists'>
-                            <ul className='error-list'>
-                                {validationErrors.map((error) => <li id='errors' key={error}>{error}</li>)}
-                            </ul>
-                        </div>
-                    )}
+        {hasSubmitted && !!validationErrors.length && (
+          <div className='error3-lists'>
+            <div className='error-list'>
+              {validationErrors.map((error) => <div id='errors' key={error}>{error}</div>)}
+            </div>
+          </div>
+        )}
 
-                    <div className="input-content-1">
-                        <input type="text"
-                            value={quantity}
-                            onChange={(e) => setQuantity(e.target.value)}
-                        />
-                    </div>
+        <div className="sell-input-container">
+          <span>Shares</span>
+          <span>
+            <input type="text"
+              className="sell-input"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            /></span>
+        </div>
 
-                    <div className="editedChannel-button">
-                        <button className="e-c-button"
-                            onClick={handleSubmit}
-                            type="submit">buy asset</button>
-                    </div>
-                </form>
+        <div className="sell-input-container">
+          <span>Market Price</span>
+          <span>${marketPrice}</span>
+        </div>
+
+        <hr></hr>
+
+        <div className="sell-button-div">
+          <button className="sell-button"
+            onClick={handleSubmit}
+            type="submit">buy asset</button>
+        </div>
+      </form>
+      <hr></hr>
     </>
   );
 };

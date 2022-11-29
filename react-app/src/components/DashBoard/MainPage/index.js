@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 
@@ -18,6 +18,10 @@ import './MainPage.css'
 
 function MainPage() {
 
+  const [showModal, setShowModal] = useState(false);
+  const closetable = () => {
+    (showModal) ? setShowModal(false) : setShowModal(true)
+  }
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   let allAsset = useSelector(state => state.assetReducer)
@@ -29,22 +33,20 @@ function MainPage() {
   const cash = sessionUser?.assets.filter(x => x.symbol == '$')[0]?.quantity
 
 
-  useEffect(() => {
-    dispatch(thunkLoadAllAsset())
-  }, [dispatch]);
+  useEffect(() => { dispatch(thunkLoadAllAsset()) }, [dispatch]);
 
 
 
   return (
     <>
-      <PortfolioNavBar />
-      <div className='Main-page-container'>
+      <PortfolioNavBar showModal={showModal} setShowModal={setShowModal} closetable={closetable} />
+      <div className='Main-page-container' onClick={() => setShowModal(false)}>
 
-        <div className='Main-page-left'>
+        <div className='Main-page-left' >
           <PortfolioGraph allAssetArr={allAssetArr} cash={cash} portfolio={portfolio} />
         </div>
 
-        <div className='Main-page-right'>
+        <div className='Main-page-right' >
           <GetAllAsset />
 
           <AddWatchlist />

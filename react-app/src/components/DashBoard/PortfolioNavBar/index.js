@@ -9,13 +9,9 @@ import { NavLink } from 'react-router-dom';
 import './PortfolioNavBar.css'
 
 
-function PortfolioNavBar() {
+function PortfolioNavBar({showModal, setShowModal, closetable}) {
 
-  const [showModal, setShowModal] = useState(false);
-  const closetable = ()=>{
-    (showModal)? setShowModal(false) :setShowModal(true)
 
-  }
 
   return (
 
@@ -28,7 +24,7 @@ function PortfolioNavBar() {
         </div>
       </NavLink>
 
-      <div className='Portfolio-nav-right'>
+      <div className='Portfolio-nav-right' >
 
         <span className='Portfolio-nav-right-acc-btn' onClick={closetable} >
           <button id="show-acc-btn" > Account </button>

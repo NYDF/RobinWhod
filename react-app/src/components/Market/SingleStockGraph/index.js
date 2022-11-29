@@ -37,6 +37,9 @@ const SingleStockGraph = ({ marketPrice, setMarketPrice }) => {
   const [industry, setIndustry] = useState();
   const [yearhigh, setYearhigh] = useState();
   const [yearlow, setYearlow] = useState();
+  const [priceDifference, setPriceDifference] = useState();
+  const [percentDifference, setPercentDifference] = useState();
+
 
   // console.log('symbol', symbol)
   // console.log(typeof symbol)
@@ -72,7 +75,7 @@ const SingleStockGraph = ({ marketPrice, setMarketPrice }) => {
         setYearhigh(data['52WeekHigh'])
         setYearlow(data['52WeekLow'])
       }
-    )).catch(e => { alert(e) })
+    ))
   }, [])
 
   useEffect(() => {
@@ -85,9 +88,15 @@ const SingleStockGraph = ({ marketPrice, setMarketPrice }) => {
 
         const y = data.chart.result[0].indicators.quote[0].open
 
+        const difference = (data.chart.result[0].meta.regularMarketPrice - data.chart.result[0].meta.chartPreviousClose).toFixed(2)
+
+        const percent = (difference / (data.chart.result[0].meta.regularMarketPrice) * 100).toFixed(2)
+
         setStockChartXValues(x);
         setStockChartYValues(y);
 
+        setPriceDifference(difference)
+        setPercentDifference(percent)
         setMarketPrice(data.chart.result[0].meta.regularMarketPrice.toFixed(2))
       }
     )).catch(e => { alert(e) })
@@ -97,10 +106,10 @@ const SingleStockGraph = ({ marketPrice, setMarketPrice }) => {
   // console.log('stockChartYValues--------------------', stockChartYValues)
 
   return (
-    <div>
-      <h1>{name}</h1>
-      <>${marketPrice}</>
-      <br></br>
+    <div className='single-stock-left-container'>
+      <div className='single-stock-left-name'>{name}</div>
+      <div className='single-stock-left-number'>${marketPrice}</div>
+      <div className='single-stock-left-number-small'>${priceDifference} ({percentDifference}%)</div>
       <Plot
         data={[
           {
@@ -111,25 +120,41 @@ const SingleStockGraph = ({ marketPrice, setMarketPrice }) => {
             marker: { color: 'green' },
           }
         ]}
-        layout={{ width: 720, height: 440,
-          "xaxis": {
-          "visible": false
-        }
-       }}
-        config = {{displayModeBar: false, }}
+        layout={{
+          width: 800, height: 400,
+          margin: {
+            l: 0,
+            r: 0,
+            b: 0,
+            t: 0,
+          },
+
+          "yaxis": {
+            "visible": false
+          }
+        }}
+        config={{ displayModeBar: false, }}
       />
-      <br></br>
-      <>About</>
-      <br></br>
-      <>{description}</>
-      <br></br>
-      <>{industry}</>
-      <br></br>
-      <>52weekhigh</>
-      <>{yearhigh}</>
-      <br></br>
-      <>52weeklow</>
-      <>{yearlow}</>
+
+      <div className='single-stock-left-company-title'>About</div>
+
+      <div className='single-stock-left-company-description'>{description}</div>
+
+      <div className='single-stock-left-company-title'>Key statistics</div>
+
+      <div className='single-stock-stat-container'>
+        <div className='single-stock-stat-small-container'>
+          <div className='single-stock-stat-up'>52 week high</div>
+
+          <div className='single-stock-stat-down'>{yearhigh}</div>
+        </div>
+
+        <div className='single-stock-stat-small-container'>
+          <div className='single-stock-stat-up'>52 week low</div>
+
+          <div className='single-stock-stat-down'>{yearlow}</div>
+        </div>
+      </div>
     </div>
   )
 

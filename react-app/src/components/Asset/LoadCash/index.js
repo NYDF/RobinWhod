@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { thunkLoadCash, thunkGetOneAsset } from '../../../store/assetReducer';
-import BuyOrCreateAsset from '../BuyOrCreateAsset';
 
 import BuyAsset from '../BuyAsset';
 
@@ -21,7 +20,7 @@ const LoadCash = ({ marketPrice }) => {
   // console.log('currentCash!!!!!!!!!!!!!!', currentCash)
   let currentAsset = useSelector(state => state.assetReducer)
 
-  let currentAssetValue = Object.values(currentAsset).filter(x=>x.symbol==symbol)[0]
+  let currentAssetValue = Object.values(currentAsset).filter(x => x.symbol == symbol)[0]
   // console.log('currentAssetValue!!!!!!!!!!!!!!', currentAssetValue)
 
   const buyingPower = currentCash?.quantity?.toFixed(2)
@@ -32,12 +31,12 @@ const LoadCash = ({ marketPrice }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if(currentAssetValue==undefined){setIsNew(true)}else{setIsNew(false)}
+    if (currentAssetValue == undefined) { setIsNew(true) } else { setIsNew(false) }
   }, [dispatch, currentAsset]);
 
   // console.log('isNew++++++++++++',isNew)
 
-  if(currentAsset.length){setIsNew(false)}
+  if (currentAsset.length) { setIsNew(false) }
 
   if (!currentCash) { return null }
 
@@ -45,27 +44,27 @@ const LoadCash = ({ marketPrice }) => {
 
   return (
     <>
-      <div>
+      <div className='sell-word'>
         <span>Order Type</span>
         <span>Market Order</span>
       </div>
 
+      <div className='sell-quantity-container'>
+        <span>Sell In</span>
+        <span >Shares</span>
+      </div>
 
-      {(!isNew &&<>
-        <BuyAsset marketPrice={marketPrice} buyingPower={buyingPower}/>
-      </>)}
 
-     {( isNew &&<>
-        <AddAsset marketPrice={marketPrice} buyingPower={buyingPower}/>
-      </>)}
+      {(!isNew && <div>
+        <BuyAsset marketPrice={marketPrice} buyingPower={buyingPower} />
+      </div>)}
 
-      <>
+      {(isNew && <div>
+        <AddAsset marketPrice={marketPrice} buyingPower={buyingPower} />
+      </div>)}
 
-      </>
+      <div className='sell-btn-down'>$ {currentCash?.quantity?.toFixed(2)} buying power available</div>
 
-      <br></br>
-      <>Your cash buyingpower:$ {currentCash?.quantity?.toFixed(2)}</>
-      <hr></hr>
     </>
   );
 };

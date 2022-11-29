@@ -9,7 +9,7 @@ import { thunkAddAsset } from '../../../store/assetReducer';
 import "./AddAsset.css"
 
 
-const AddAsset = ({marketPrice, buyingPower}) => {
+const AddAsset = ({ marketPrice, buyingPower }) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState('');
 
@@ -25,8 +25,8 @@ const AddAsset = ({marketPrice, buyingPower}) => {
       errors.push("Please input valid numbers")
     }
     if (quantity * marketPrice > buyingPower) {
-      errors.push("Sorry You dont have so much buyingpower")
-  }
+      errors.push("Not enough buyingpower")
+    }
     setValidationErrors(errors);
   }, [quantity])
 
@@ -59,31 +59,45 @@ const AddAsset = ({marketPrice, buyingPower}) => {
   }
 
   return (
-    <><form className="create-channel-form" onSubmit={handleSubmit}>
-
-
-      <div className="c-name-div">
+    <>
+      <form className="create-channel-form" onSubmit={handleSubmit}>
 
         {hasSubmitted && !!validationErrors.length && (
           <div className='error3-lists'>
-            <ul className='error-list'>
-              {validationErrors.map((error) => <li id='errors' key={error}>{error}</li>)}
-            </ul>
+            <div className='error-list'>
+              {validationErrors.map((error) => <div id='errors' key={error}>{error}</div>)}
+            </div>
           </div>
         )}
-        <div className="c-name-input">
 
-          <input type="text"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-            placeholder="how much you want buy"
-          />
+
+
+        <div className="sell-input-container">
+          <span>Shares</span>
+          <span>
+            <input type="text"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              className="sell-input"
+            /></span>
         </div>
-        <div className="c-create-button">
-          <button type="submit" onClick={handleSubmit}>buy new</button>
+
+        <div className="sell-input-container">
+          <span>Market Price</span>
+          <span>${marketPrice}</span>
         </div>
-      </div>
-    </form></>
+
+        <hr></hr>
+
+        <div className="sell-button-div">
+          <button type="submit"
+            className="sell-button"
+            onClick={handleSubmit}>buy new</button>
+        </div>
+
+      </form>
+      <hr></hr>
+    </>
   );
 };
 

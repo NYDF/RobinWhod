@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import LogoutButton from '../../auth/LogoutButton';
 import { calculatePortfolio } from '../../../utils/helperFunc';
 import "./PortfolioNavBar.css"
+import { BiExit } from "react-icons/bi"
 
 import { signUp } from '../../../store/session';
 
@@ -19,17 +20,26 @@ const NavBarAccount = ({setShowModal}) => {
   if (sessionUser) {
     return (
       <div id='nav-account'>
-        <>{sessionUser?.username}</>
-        <br></br>
-        <>${portfolio}</>
-        <br></br>
-        <>Portfolio Value</>
-        <br></br>
-        <>${cash}</>
-        <br></br>
-        <>Buying Power</>
-        <br></br>
-        <LogoutButton />
+        <div className='acc-word-name' >{sessionUser?.username}</div>
+
+      <div className='acc-word-container'>
+        <div className='acc-word-left'>
+        <div className='acc-word-number'>${portfolio}</div>
+
+        <div className='acc-word-word'>Portfolio Value</div>
+        </div>
+
+        <div className='acc-word-right'>
+        <div className='acc-word-number'>${cash}</div>
+
+        <div className='acc-word-word'>Buying Power</div>
+        </div>
+
+        </div>
+        <div className='add-logout-container'>
+        <span className='logout-icon'><BiExit /></span>
+        <span className='logout-button'><LogoutButton /></span>
+        </div>
       </div>
     );
   } else {

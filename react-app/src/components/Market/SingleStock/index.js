@@ -16,48 +16,49 @@ function SingleStock() {
   const [isBuy, setIsBuy] = useState(true);
   const { symbol } = useParams();
 
+  const [showModal, setShowModal] = useState(false);
+  const closetable = () => {
+    (showModal) ? setShowModal(false) : setShowModal(true)
+  }
+
   return (
     <>
 
-      <PortfolioNavBar />
+      <PortfolioNavBar showModal={showModal} setShowModal={setShowModal} closetable={closetable} />
 
-      <div className='Single-Stock-page-container'>
+
+      <div className='Single-Stock-page-container' onClick={() => setShowModal(false)}>
 
         <div className='Single-Stock-page-left'>
           <SingleStockGraph marketPrice={marketPrice} setMarketPrice={setMarketPrice} />
         </div>
 
-        <div className='Single-Stock-page-right'>
+        <div className='Single-Stock-page-right-big'>
+          <div className='Single-Stock-page-right'>
 
-          <span>
-            <button className='buy-sell-btn' onClick={(e) => setIsBuy(true)}>Buy {symbol}</button>
-          </span>
+            <span>
+              <button className='buy-sell-btn' onClick={(e) => setIsBuy(true)}>Buy {symbol}</button>
+            </span>
 
-          <span>
-            <button className='buy-sell-btn' onClick={(e) => setIsBuy(false)}>Sell {symbol}</button>
-          </span>
+            <span>
+              <button className='buy-sell-btn' onClick={(e) => setIsBuy(false)}>Sell {symbol}</button>
+            </span>
 
-          <hr></hr>
+            <hr></hr>
 
-          {!isBuy && (
-            <>
-              <>
-                <LoadOneAsset marketPrice={marketPrice} />
-              </>
-            </>
-          )}
+            {!isBuy && (
+              <LoadOneAsset marketPrice={marketPrice} />
+            )}
 
-          {isBuy && (
-            <>
-              <>
-                <LoadCash marketPrice={marketPrice} />
-              </>
-            </>
-          )}
-          <>
-            <AddToWatchlistModal />
-          </>
+            {isBuy && (
+              <LoadCash marketPrice={marketPrice} />
+            )}
+          </div>
+
+          <AddToWatchlistModal />
+          
         </div>
+
       </div>
     </>
   );

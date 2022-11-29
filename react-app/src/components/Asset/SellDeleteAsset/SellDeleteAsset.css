@@ -1,0 +1,30 @@
+.sell-input-container{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.sell-input{
+    width: 70%;
+    border:none;
+    background-color: lightgray;
+    height:30px
+}
+
+.sell-button-div{
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.sell-button{
+    width: 100%;
+    background-color: rgb(255,84,4);
+    border:none;
+    height: 40px;
+    font-size: 22px;
+    color:white;
+    border-radius: 20px;
+    cursor: pointer;
+}

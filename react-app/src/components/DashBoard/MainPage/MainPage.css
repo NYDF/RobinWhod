@@ -1,6 +1,6 @@
 .Main-page-container{
-    margin-left: 23%;
-    margin-right: 23%;
+    padding-left: 23%;
+    padding-right: 23%;
     display:grid;
     grid-template-columns: 3fr 1fr;
     grid-gap: 1%;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from "react-router";
 
 import { thunkDeleteOneAsset, thunkSellAsset, thunkGetOneAsset } from '../../../store/assetReducer';
@@ -25,7 +25,7 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
     if (quantity > numShares) {
       errors.push("Sorry you don't have so many shares")
     }
-    if (quantity  == numShares) {
+    if (quantity == numShares) {
       setIsDelete(true)
     }
     setValidationErrors(errors);
@@ -34,14 +34,15 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
   let handleSubmit
 
 
-  if(!!isDelete){
+  if (!!isDelete) {
     handleSubmit = async () => {
 
-    await dispatch(thunkDeleteOneAsset(symbol));
-    setIsDelete(false)
-      await  dispatch(thunkGetOneAsset(symbol))
+      await dispatch(thunkDeleteOneAsset(symbol));
+      setIsDelete(false)
+      await dispatch(thunkGetOneAsset(symbol))
 
-  }} else {
+    }
+  } else {
     handleSubmit = async (e) => {
       e.preventDefault();
       setHasSubmitted(true);
@@ -58,7 +59,7 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
         setHasSubmitted(true);
         if (editedAsset) {
           // history.push(`/`)
-          await  dispatch(thunkGetOneAsset(symbol))
+          await dispatch(thunkGetOneAsset(symbol))
           setValidationErrors([]);
           setErrors([]);
         }
@@ -68,36 +69,43 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
 
 
   return (
-   <>
-      <form onSubmit={handleSubmit} className="channel-edit-form">
+    <div className="sell-form-container">
+      <form onSubmit={handleSubmit} className="sell-form">
 
-                    {hasSubmitted && !!validationErrors.length && (
-                        <div className='error3-lists'>
-                            <ul className='error-list'>
-                                {validationErrors.map((error) => <li id='errors' key={error}>{error}</li>)}
-                            </ul>
-                        </div>
-                    )}
+        {hasSubmitted && !!validationErrors.length && (
+          <div className='error3-lists'>
+            <ul className='error-list'>
+              {validationErrors.map((error) => <li id='errors' key={error}>{error}</li>)}
+            </ul>
+          </div>
+        )}
 
-                    <div className="input-content-1">
-                        <input type="text"
-                            value={quantity}
-                            onChange={(e) => setQuantity(e.target.value)}
-                        />
-                    </div>
 
-                    <div>
-                      <span>Market Price</span>
-                      <span>${marketPrice}</span>
-                    </div>
+        <div className="sell-input-container">
+          <span>Shares</span>
+          <span>
+            <input type="text"
+            className="sell-input"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          /></span>
+        </div>
 
-                    <div className="editedChannel-button">
-                        <button className="e-c-button"
-                            onClick={handleSubmit}
-                            type="submit">sell asset</button>
-                    </div>
-                </form>
-    </>
+        <div className="sell-input-container">
+          <span>Market Price</span>
+          <span>${marketPrice}</span>
+        </div>
+
+        <hr></hr>
+
+        <div className="sell-button-div">
+          <button className="sell-button"
+            onClick={handleSubmit}
+            type="submit">sell asset</button>
+        </div>
+      </form>
+      <hr></hr>
+    </div>
   );
 };
 

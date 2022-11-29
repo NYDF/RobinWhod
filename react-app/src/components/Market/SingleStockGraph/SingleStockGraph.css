@@ -1,0 +1,52 @@
+
+
+.single-stock-left-container{
+    padding-top: 3%;
+    padding-right: 4%;
+}
+
+.single-stock-left-name{
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.single-stock-left-number{
+    padding-top: 2%;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.single-stock-left-number-small{
+    font-weight: 400;
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+Plot{
+    padding: 30%;
+}
+
+.single-stock-left-company-title{
+    font-size: 30px;
+    font-weight: 400;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 2%;
+}
+
+.single-stock-left-company-description{
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.single-stock-stat-container{
+    display: flex;
+    gap:5%;
+    padding-top: 2%;
+}
+
+.single-stock-stat-up{
+    margin-bottom: 0.5%;
+    font-weight: 500;
+}
