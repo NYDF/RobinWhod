@@ -35,10 +35,14 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
 
 
   if (!!isDelete) {
-    handleSubmit = async () => {
+    handleSubmit = async (e) => {
+      e.preventDefault();
+      setHasSubmitted(true);
+      if (validationErrors.length) { return }
 
       await dispatch(thunkDeleteOneAsset(symbol));
       setIsDelete(false)
+      setHasSubmitted(false);
       await dispatch(thunkGetOneAsset(symbol))
 
     }
