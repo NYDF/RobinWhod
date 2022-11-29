@@ -1,4 +1,4 @@
-.watchlist-name{
-    margin-top: 5%;
-    margin-bottom: 5%;
+.watchlist-title-icon-container{
+    display: flex;
+    justify-content:space-between;
 }

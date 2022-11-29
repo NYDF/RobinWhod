@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import UpdateWatchList from '../UpdateWatchList';
 
@@ -12,6 +12,7 @@ import DeleteWatchList from '../DeleteWatchList';
 
 const GetWatchlist = () => {
   const dispatch = useDispatch();
+  const [showEditWatchlist, setShowEditWatchlist] = useState(false);
 
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -27,28 +28,36 @@ const GetWatchlist = () => {
 
   return (
 
-      <div className="single-watchlist-container">
-        <div className="single-watchlist">
-          {watchlistArr.map((watchlist) => {
-            return (
-              <div className='single-watchlist' key={watchlist.id}>
+    <div className="single-watchlist-container">
+      <div className="single-watchlist">
+        {watchlistArr.map((watchlist) => {
+          return (
+            <div className='single-watchlist' key={watchlist.id}>
               <div>
-              <SingleWatchlist watchlist={watchlist} key={watchlist?.id} />
+                <SingleWatchlist watchlist={watchlist} key={watchlist?.id}
+                showEditWatchlist={showEditWatchlist} setShowEditWatchlist={setShowEditWatchlist}/>
               </div>
+
+
               <>
-              <UpdateWatchList watchlistId={watchlist.id} key={watchlist?.id} />
+                <UpdateWatchList watchlistId={watchlist.id} key={watchlist?.id}
+                  showEditWatchlist={showEditWatchlist} setShowEditWatchlist={setShowEditWatchlist}
+                />
               </>
+
               <>
-              <DeleteWatchList watchlistId={watchlist.id} key={watchlist?.id} />
+                <DeleteWatchList watchlistId={watchlist.id} key={watchlist?.id}
+                  showEditWatchlist={showEditWatchlist} setShowEditWatchlist={setShowEditWatchlist} />
               </>
-              </div>
-            )
 
-          })}
-        </div>
+            </div>
+          )
 
-
+        })}
       </div>
+
+
+    </div>
 
   );
 };

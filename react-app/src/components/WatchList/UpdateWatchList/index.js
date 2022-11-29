@@ -8,7 +8,7 @@ import { sameName } from '../../../utils/helperFunc';
 import "./UpdateWatchList.css"
 
 
-const UpdateWatchList = ({ watchlistId }) => {
+const UpdateWatchList = ({ watchlistId, showEditWatchlist, setShowEditWatchlist }) => {
 
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -52,7 +52,7 @@ const UpdateWatchList = ({ watchlistId }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} >
+    {showEditWatchlist && ( <form onSubmit={handleSubmit} >
 
                     {hasSubmitted && !!validationErrors.length && (
                         <div className='error3-lists'>
@@ -75,7 +75,7 @@ const UpdateWatchList = ({ watchlistId }) => {
                             type="submit">Save Changes</button>
                     </div>
 
-                </form>
+                </form>)}
     </>
   );
 };

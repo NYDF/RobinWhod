@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import SmallGraph from '../../DashBoard/SmallGraph';
 
@@ -9,7 +9,8 @@ import SmallGraph from '../../DashBoard/SmallGraph';
 import "./SingleWatchlist.css"
 
 
-const SingleWatchlist = ({ watchlist }) => {
+const SingleWatchlist = ({ watchlist, showEditWatchlist, setShowEditWatchlist }) => {
+  const [showWatchlistitems, setShowWatchlistitems] = useState(false);
 
 
   if (!watchlist) { return null }
@@ -17,24 +18,45 @@ const SingleWatchlist = ({ watchlist }) => {
   return (
     <div className='watchlist-container'>
 
+      <div className='watchlist-title-icon-container' >
+        <span className='watchlist-name'>{watchlist?.name}</span>
 
-      <div className='watchlist-name'>{watchlist?.name}</div>
-      {watchlist?.item_in_list?.map((item) => {
-        <div></div>
-        return (
-          <NavLink
-            to={`/stocks/${item.symbol}`}
-            key={item.id}>
-            <div className="single-asset-container">
-              <div className="single-asset-first-column">{item.symbol}</div>
+        <span>
+          <button
+            className="Edit-watchlist-modal"
+            onClick={() => {
+              showEditWatchlist == false ? setShowEditWatchlist(true) : setShowEditWatchlist(false);
+            }}>
+            •••</button>
 
-              <SmallGraph symbol={item.symbol} />
-            </div>
-          </NavLink>
-        )
+          <button
+            className="Expand-watchlist-button"
+            onClick={() => {
+              showWatchlistitems == false ? setShowWatchlistitems(true) : setShowWatchlistitems(false);
+            }}>
+            {showWatchlistitems == false ? (<>+</>) : (<>-</>)}</button>
+        </span>
+      </div>
 
-      })}
+      <div>
+        {showWatchlistitems && (<>
+          {watchlist?.item_in_list?.map((item) => {
 
+            return (
+              <NavLink
+                to={`/stocks/${item.symbol}`}
+                key={item.id}>
+                <div className="single-asset-container">
+                  <div className="single-asset-first-column">{item.symbol}</div>
+
+                  <SmallGraph symbol={item.symbol} />
+                </div>
+              </NavLink>
+            )
+
+          })}
+        </>)}
+      </div>
     </div>
   )
 };

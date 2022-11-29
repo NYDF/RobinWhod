@@ -2,11 +2,14 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.5%;
+    margin-top: 0.5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
 }
 
-#logo {
-    width: 30px;
-    height: 30px;
+#logo-P{
+    width: 40px;
+    height: 50px;
 }
 
 .Splash-nav-title {
@@ -51,7 +54,7 @@
     font-weight: 500;
 }
 
-.splash-nav-signup-button {
+/* .splash-nav-signup-button {
     background-color: black;
     color: white;
     font-size: 20px;
@@ -63,8 +66,25 @@
     width: 120px;
     height: 40px;
 
+} */
+
+
+#show-acc-btn{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
 }
 
+.Nav-acc-container{
+    background-color: aquamarine;
+}
+
+
+.nav-account{
+    background-color: lightsalmon;
+}
 
 
 

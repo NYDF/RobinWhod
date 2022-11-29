@@ -10,6 +10,7 @@ import "./AddWatchlist.css"
 const AddWatchlist = () => {
 
   const dispatch = useDispatch();
+  const [showAddWatchlist, setShowAddWatchlist] = useState(false);
   const [name, setName] = useState('');
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [validationErrors, setValidationErrors] = useState([]);
@@ -63,33 +64,37 @@ const AddWatchlist = () => {
 
   return (
     <>
-      <>add new watch list here</>
-      <form className="create-channel-form" onSubmit={handleSubmit}>
+      <div className='add-watchlist-title-div'>
+        <span>Lists</span>
+        <button
+          className="add-watchlist-button"
+          onClick={() => {
+            showAddWatchlist == false ? setShowAddWatchlist(true) : setShowAddWatchlist(false);
+          }}>
+          +</button>
+      </div>
 
-          {hasSubmitted && !!validationErrors.length && (
-            <div className='error3-lists'>
-              <ul className='error-list'>
-                {validationErrors.map((error) => <li id='errors' key={error}>{error}</li>)}
-              </ul>
-            </div>
-          )}
-          <div className="c-name-input">
-            <span className="small-logo">
-              <i className="fa-light fa-hashtag"> </i>
-            </span>
-            <input type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="new-channel"
-            />
+      {showAddWatchlist && (<form className="create-channel-form" onSubmit={handleSubmit}>
+
+        {hasSubmitted && !!validationErrors.length && (
+
+            <div className='error-list'>
+              {validationErrors.map((error) => <div id='errors' key={error}>{error}</div>)}
+
           </div>
+        )}
 
-          <div className="c-create-button">
-            <button type="submit" onClick={handleSubmit}>Create Channel</button>
-          </div>
+        <input type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="new-channel"
+        />
 
+        <div className="c-create-button">
+          <button type="submit" onClick={handleSubmit}>Create Channel</button>
+        </div>
 
-      </form>
+      </form>)}
     </>
   );
 };

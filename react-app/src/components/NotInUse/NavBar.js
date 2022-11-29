@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <nav>
       <ul>
-        <li>
+        {/* <li>
           <NavLink to='/' exact={true} activeClassName='active'>
             Home
           </NavLink>
@@ -29,7 +29,7 @@ const NavBar = () => {
         </li>
         <li>
           <LogoutButton />
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

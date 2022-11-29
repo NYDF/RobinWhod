@@ -20,21 +20,23 @@ function PortfolioNavBar() {
       <NavLink
         to={(`/portfolio`)}>
         <div className='Splash-nav-left'>
-          <img id='logo' src={logo} />
+          <img id='logo-P' src={logo} />
         </div>
       </NavLink>
 
       <div className='Portfolio-nav-right'>
 
-        <span className='add to watchlist-div' onClick={() => setShowModal(true)}>
-          <button id="show-modal-button"> Account </button>
+        <span className='Portfolio-nav-right-acc-btn' onClick={() => setShowModal(true)}>
+          <button id="show-acc-btn"> Account </button>
         </span>
+
+        <div className="Nav-acc-container">
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
             <NavBarAccount setShowModal={setShowModal}/>
           </Modal>
         )}
-
+        </div>
 
       </div>
 

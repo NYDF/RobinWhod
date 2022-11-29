@@ -17,45 +17,48 @@ function SingleStock() {
   const { symbol } = useParams();
 
   return (
-<>
-<>
-<PortfolioNavBar />
-</>
-    <div className='Single-Stock-page-container'>
-      <div className='Single-Stock-page-left'>
-        <SingleStockGraph marketPrice={marketPrice} setMarketPrice={setMarketPrice} />
-      </div>
+    <>
 
-      <div className='Single-Stock-page-right'>
+      <PortfolioNavBar />
 
-        <span>
-          <button onClick={(e) => setIsBuy(true)}>Buy {symbol}</button>
-        </span>
+      <div className='Single-Stock-page-container'>
 
-        <span>
-          <button onClick={(e) => setIsBuy(false)}>Sell {symbol}</button>
-        </span>
+        <div className='Single-Stock-page-left'>
+          <SingleStockGraph marketPrice={marketPrice} setMarketPrice={setMarketPrice} />
+        </div>
 
-        {!isBuy && (
-          <>
+        <div className='Single-Stock-page-right'>
+
+          <span>
+            <button className='buy-sell-btn' onClick={(e) => setIsBuy(true)}>Buy {symbol}</button>
+          </span>
+
+          <span>
+            <button className='buy-sell-btn' onClick={(e) => setIsBuy(false)}>Sell {symbol}</button>
+          </span>
+
+          <hr></hr>
+
+          {!isBuy && (
             <>
-              <LoadOneAsset marketPrice={marketPrice} />
+              <>
+                <LoadOneAsset marketPrice={marketPrice} />
+              </>
             </>
-          </>
-        )}
+          )}
 
-        {isBuy && (
-          <>
+          {isBuy && (
             <>
-              <LoadCash marketPrice={marketPrice} />
+              <>
+                <LoadCash marketPrice={marketPrice} />
+              </>
             </>
+          )}
+          <>
+            <AddToWatchlistModal />
           </>
-        )}
-        <>
-          <AddToWatchlistModal />
-        </>
+        </div>
       </div>
-    </div>
     </>
   );
 }

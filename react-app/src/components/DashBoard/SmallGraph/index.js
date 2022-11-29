@@ -34,7 +34,7 @@ const SmallGraph = ({ symbol }) => {
         setMarketPrice(data.chart?.result[0].meta.regularMarketPrice.toFixed(2))
       }
     ))
-    return () => fetchYahooData.abort()
+    // return () => fetchYahooData.abort()
 
   }, [dispatch])
 

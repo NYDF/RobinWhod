@@ -7,7 +7,7 @@ import { thunkDeleteOneWatchlist, thunkLoadAllWatchlist } from '../../../store/w
 import "./DeleteWatchList.css"
 
 
-const DeleteWatchList = ({ watchlistId }) => {
+const DeleteWatchList = ({ watchlistId, showEditWatchlist, setShowEditWatchlist }) => {
   const dispatch = useDispatch();
   let watchlist_id = watchlistId
   // console.log('watchlist_id', watchlist_id)
@@ -22,9 +22,9 @@ const DeleteWatchList = ({ watchlistId }) => {
 
   return (
     <>
-      <div className="c-delete-button">
+      {showEditWatchlist && (<div className="c-delete-button">
         <button type="submit" onClick={handleDelete}>Delete WatchList</button>
-      </div>
+      </div>)}
     </>
   );
 };
