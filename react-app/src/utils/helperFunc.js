@@ -21,14 +21,16 @@ export function calculatePortfolio(obj) {
 }
 
 
-export function sameName(obj, newWLname) {
+// export async function getPortfolioPerformancedifference(portfolio) {
+// 	const ownedStock = Object.keys(portfolio);
 
-	let arr = Object.values(obj)
 
-	for (let i=0; i<arr.length; i++){
-		if (arr[i].name == newWLname) {
-			return true
-		}
-	}
-	return false
-}
+
+
+
+
+
+
+
+
+
