@@ -12,6 +12,10 @@ import './PortfolioNavBar.css'
 function PortfolioNavBar() {
 
   const [showModal, setShowModal] = useState(false);
+  const closetable = ()=>{
+    (showModal)? setShowModal(false) :setShowModal(true)
+
+  }
 
   return (
 
@@ -26,15 +30,15 @@ function PortfolioNavBar() {
 
       <div className='Portfolio-nav-right'>
 
-        <span className='Portfolio-nav-right-acc-btn' onClick={() => setShowModal(true)}>
-          <button id="show-acc-btn"> Account </button>
+        <span className='Portfolio-nav-right-acc-btn' onClick={closetable} >
+          <button id="show-acc-btn" > Account </button>
         </span>
 
         <div className="Nav-acc-container">
         {showModal && (
-          <Modal onClose={() => setShowModal(false)}>
+
             <NavBarAccount setShowModal={setShowModal}/>
-          </Modal>
+
         )}
         </div>
 

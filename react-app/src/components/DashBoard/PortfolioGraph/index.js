@@ -15,42 +15,43 @@ async function fetchYahooData(symbol) {
   return response.json();
 }
 
-const PortfolioGraph = ({ cash, portfolio }) => {
+const PortfolioGraph = ({ cash }) => {
   const dispatch = useDispatch();
   const [chartXValues, setChartXValues] = useState([]);
   const [chartYValues, setChartYValues] = useState([]);
   const [quantityValues, setQuantityValues] = useState([]);
 
-  const [marketPrice, setMarketPrice] = useState([]);
+  const [totalAssetCash, setTotalAssetCash] = useState([]);
 
   let allAsset = useSelector(state => state.assetReducer)
   let allAssetArr = Object.values(allAsset)
 
   // console.log('allAssetArr', allAssetArr)
 
-  // console.log('allAssetArr', allAssetArr )
-
   // console.log('stockOwned', stockOwned )
+
   useEffect(() => {
-    dispatch(thunkLoadAllAsset()).then( res => {
+    dispatch(thunkLoadAllAsset()).then(res => {
       let assetArrr = res.assets
 
       const stockOwned = {}
       assetArrr.forEach(
         (stock) => (stockOwned[stock.symbol] = stock.quantity)
       );
-        // console.log('stockOwned', stockOwned )
+      // console.log('stockOwned', stockOwned )
 
-        getEachStockCurrentPrice(stockOwned).then((
+      getEachStockCurrentPrice(stockOwned).then((
         function (data) {
           // console.log('data------------------', data);
           let x = data
           let y = Object.keys(stockOwned)
           let z = Object.values(stockOwned)
           // console.log('x!!!!!!!!!!!!!!!',x )
+          const sum = x.reduce((a, e) => a+e)
           setChartXValues(x)
           setChartYValues(y)
           setQuantityValues(z)
+          setTotalAssetCash(sum)
         }
       ))
     }
@@ -84,82 +85,82 @@ const PortfolioGraph = ({ cash, portfolio }) => {
 
   // }, [dispatch])
 
-  if(!allAsset){return null}
+  if (!allAsset) { return null }
 
 
   return (
     <div className='asset-c'>
-      {portfolio} {cash}
+       {totalAssetCash}
       <>
-      <Plot
-        className='big-plot'
-        data={[
-          {
-            values: chartXValues,
-            labels: chartYValues,
-            type: "pie",
-          }
-        ]}
-        config={{
-          displayModeBar: false,
-        }}
-        layout={{
-          width: 650, height: 200,
-          autosize: false,
-          "xaxis": {
-            "visible": false,
-            fixedrange: true
-          },
-          "yaxis": {
-            "visible": false,
-            fixedrange: true
-          },
-          margin: {
-            l: 0,
-            r: 0,
-            b: 0,
-            t: 0,
-            pad: 0
-          },
-          showlegend: false
-        }}
+        <Plot
+          className='big-plot'
+          data={[
+            {
+              values: chartXValues,
+              labels: chartYValues,
+              type: "pie",
+            }
+          ]}
+          config={{
+            displayModeBar: false,
+          }}
+          layout={{
+            width: 650, height: 200,
+            autosize: false,
+            "xaxis": {
+              "visible": false,
+              fixedrange: true
+            },
+            "yaxis": {
+              "visible": false,
+              fixedrange: true
+            },
+            margin: {
+              l: 0,
+              r: 0,
+              b: 0,
+              t: 0,
+              pad: 0
+            },
+            showlegend: false
+          }}
         />
-</>
-<>
-<Plot
-        className='big-plot'
-        data={[
-          {
-            values: quantityValues,
-            labels: chartYValues,
-            type: "pie",
-          }
-        ]}
-        config={{
-          displayModeBar: false,
-        }}
-        layout={{
-          width: 650, height: 200,
-          autosize: false,
-          "xaxis": {
-            "visible": false,
-            fixedrange: true
-          },
-          "yaxis": {
-            "visible": false,
-            fixedrange: true
-          },
-          margin: {
-            l: 0,
-            r: 0,
-            b: 0,
-            t: 0,
-            pad: 0
-          },
-          showlegend: false
-        }} />
+      </>
+      <>
+        <Plot
+          className='big-plot'
+          data={[
+            {
+              values: quantityValues,
+              labels: chartYValues,
+              type: "pie",
+            }
+          ]}
+          config={{
+            displayModeBar: false,
+          }}
+          layout={{
+            width: 650, height: 200,
+            autosize: false,
+            "xaxis": {
+              "visible": false,
+              fixedrange: true
+            },
+            "yaxis": {
+              "visible": false,
+              fixedrange: true
+            },
+            margin: {
+              l: 0,
+              r: 0,
+              b: 0,
+              t: 0,
+              pad: 0
+            },
+            showlegend: false
+          }} />
 
-</>
+      </>
 
     </div>
   );

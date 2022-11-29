@@ -18,7 +18,7 @@ const NavBarAccount = ({setShowModal}) => {
 
   if (sessionUser) {
     return (
-      <div className='nav-account'>
+      <div id='nav-account'>
         <>{sessionUser?.username}</>
         <br></br>
         <>${portfolio}</>
