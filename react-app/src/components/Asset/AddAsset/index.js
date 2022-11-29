@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Redirect, Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router";
 
 import { thunkAddAsset } from '../../../store/assetReducer';
 
-
 import "./AddAsset.css"
-
 
 const AddAsset = ({ marketPrice, buyingPower }) => {
   const dispatch = useDispatch();
@@ -49,10 +47,10 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
     if (!validationErrors.length) {
       setHasSubmitted(true);
       if (createdAsset) {
-        // history.push(`/`)
+
         setValidationErrors([]);
         setErrors([]);
-
+        history.push(`/portfolio`)
         // console.log(createdChannel)
       }
     }

@@ -35,14 +35,10 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
 
 
   if (!!isDelete) {
-    handleSubmit = async (e) => {
-      e.preventDefault();
-      setHasSubmitted(true);
-      if (validationErrors.length) { return }
+    handleSubmit = async () => {
 
       await dispatch(thunkDeleteOneAsset(symbol));
       setIsDelete(false)
-      setHasSubmitted(false);
       await dispatch(thunkGetOneAsset(symbol))
 
     }
@@ -87,9 +83,8 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
 
         <div className="sell-input-container">
           <span>Shares</span>
-          <span>
-            <input type="text"
-            className="sell-input"
+          <span><input type="text"
+          className="sell-input"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           /></span>

@@ -45,7 +45,7 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
     if (!validationErrors.length) {
       setHasSubmitted(true);
       if (editedAsset) {
-        // history.push(`/`)
+        history.push(`/portfolio`)
         setValidationErrors([]);
         setErrors([]);
         dispatch(thunkLoadCash())
