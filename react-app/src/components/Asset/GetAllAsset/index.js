@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 import { thunkLoadAllAsset } from '../../../store/assetReducer';
 import SmallGraph from '../../DashBoard/SmallGraph';
 
+import bulbimg from '../../../img/bulb.png'
+
 import "./GetAllAsset.css"
 
 
@@ -23,14 +25,17 @@ const GetAllAsset = () => {
   return (
     <>
       <div className='portfolio-bar-title'>
+        <img id='bulb-img' src={bulbimg} />
         Stocks
       </div>
+
       <hr></hr>
+
       <div className='portfolio-bar-asset'>
         My Portfolio
       </div>
-      <br></br>
-      <>
+
+      <div className='single-asset-container-big'>
         {allAssetArr.map((asset) => (
           <NavLink
             to={`/stocks/${asset.symbol}`}
@@ -40,18 +45,16 @@ const GetAllAsset = () => {
               <div className="single-asset-first-column">
                 <span className="first-column-name">{asset.symbol}</span>
                 <br></br>
-                <span className="first-column-number">{asset.quantity} shares</span>
+                <span className="first-column-number">{asset.quantity}shares</span>
               </div>
 
               <SmallGraph symbol={asset.symbol} />
 
             </div>
 
-
-
           </NavLink>
         ))}
-      </>
+      </div>
     </>
   );
 };

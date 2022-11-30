@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-
+import lightning from '../../../img/lightning.png'
 import { thunkAddWatchlist, thunkLoadAllWatchlist } from '../../../store/watchlistReducer';
 
 import "./AddWatchlist.css"
@@ -63,9 +63,10 @@ const AddWatchlist = () => {
   }
 
   return (
-    <>
+    <div className='add-watchlist-container'>
+
       <div className='add-watchlist-title-div'>
-        <span>Lists</span>
+        <span><img id='lightning-img' src={lightning} />Lists</span>
         <button
           className="add-watchlist-button"
           onClick={() => {
@@ -78,24 +79,28 @@ const AddWatchlist = () => {
 
         {hasSubmitted && !!validationErrors.length && (
 
-            <div className='error-list'>
-              {validationErrors.map((error) => <div id='errors' key={error}>{error}</div>)}
+          <div className='error-list'>
+            {validationErrors.map((error) => <div id='errors' key={error}>{error}</div>)}
 
           </div>
         )}
 
+        <div>
         <input type="text"
           value={name}
+          className='add-list-input'
           onChange={(e) => setName(e.target.value)}
-          placeholder="new-channel"
+          placeholder="  List Name"
         />
 
-        <div className="c-create-button">
-          <button type="submit" onClick={handleSubmit}>Create Channel</button>
+        <div className="create-watchlist-button-container">
+          <button type="submit" className="create-watchlist-button" onClick={handleSubmit}>Create Channel</button>
+        </div>
+
         </div>
 
       </form>)}
-    </>
+    </div>
   );
 };
 

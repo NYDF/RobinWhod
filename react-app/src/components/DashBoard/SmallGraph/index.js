@@ -44,42 +44,45 @@ const SmallGraph = ({ symbol }) => {
 
   return (
     <div className='asset-bar-second-small-c'>
-      <Plot
-        className='small-plot'
-        data={[
-          {
-            x: stockChartXValues,
-            y: stockChartYValues,
-            mode: 'lines',
-            marker: { color: 'green' },
-          }
-        ]}
-        config={{
-          displayModeBar: false,
-        }}
-        layout={{
-          width: 65, height: 20,
-          autosize: false,
-          "xaxis": {
-            "visible": false,
-            fixedrange: true
-          },
-          "yaxis": {
-            "visible": false,
-            fixedrange: true
-          },
-          margin: {
-            l: 0,
-            r: 0,
-            b: 0,
-            t: 0,
-            pad: 0
-          },
-          showlegend: false
-        }} />
+
+      <div className='small-plot'>
+        <Plot
+
+          data={[
+            {
+              x: stockChartXValues,
+              y: stockChartYValues,
+              mode: 'lines',
+              marker: { color: 'green' },
+            }
+          ]}
+          config={{
+            displayModeBar: false,
+          }}
+          layout={{
+            width: 65, height: 20,
+            autosize: false,
+            "xaxis": {
+              "visible": false,
+              fixedrange: true
+            },
+            "yaxis": {
+              "visible": false,
+              fixedrange: true
+            },
+            margin: {
+              l: 0,
+              r: 0,
+              b: 0,
+              t: 0,
+              pad: 0
+            },
+            showlegend: false
+          }} />
+      </div>
 
       <div className='third-column'>
-        <span>${marketPrice}</span>
+        ${marketPrice}
       </div>
 
     </div>

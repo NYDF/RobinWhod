@@ -48,9 +48,9 @@ function MainPage() {
 
         <div className='Main-page-right' >
           <GetAllAsset />
-
+          <hr></hr>
           <AddWatchlist />
-
+          <hr></hr>
           <GetWatchlist />
 
         </div>

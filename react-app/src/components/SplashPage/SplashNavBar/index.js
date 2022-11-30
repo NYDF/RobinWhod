@@ -15,12 +15,7 @@ function SplashNavBar() {
       <div className='Splash-nav-left'>
       <span className='Splash-nav-title'>RobinWhod</span>
       <img id='logo' src={logo} />
-      <span className='Splash-nav-word-1'>Invest</span>
-      <span className='Splash-nav-word'>Crypto</span>
-      <span className='Splash-nav-word'>Cash Card</span>
-      <span className='Splash-nav-word'>Learn</span>
-      <span className='Splash-nav-word'>Snacks</span>
-      <span className='Splash-nav-word'>Support</span>
+
       </div>
 
       <div className='Splash-nav-right'>

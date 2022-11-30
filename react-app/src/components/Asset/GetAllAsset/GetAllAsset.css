@@ -1,22 +1,45 @@
 .single-asset-container{
     display: flex;
-    padding-left: 3%;
-    padding-right: 3%;
-    gap: 15%;
-    margin-bottom: 5%;
+
 }
 
+
+
+.single-asset-container-big{
+    padding-left: 4%;
+    padding-right: 4%;
+}
 
 .first-column-name{
     font-weight: 600;
     font-size: 16px;
+    background-color: brown;
 }
 
 .first-column-number{
     font-size: 12px;
+    background-color: blueviolet;
 }
 
 .third-column{
     text-align: center;
     font: 12px;
+    background-color: azure;
+}
+
+.portfolio-bar-title{
+    height: 40px;
+    align-items: center;
+    padding-left: 2%;
+}
+
+.portfolio-bar-asset{
+    height: 40px;
+    text-justify: center;
+    padding-left: 4%;
+}
+
+#bulb-img{
+    height:25px;
+    width: 25px;
 }

@@ -23,7 +23,7 @@ const SingleWatchlist = ({ watchlist, showEditWatchlist, setShowEditWatchlist })
 
         <span>
           <button
-            className="Edit-watchlist-modal"
+            className="Edit-watchlist-modal-btn"
             onClick={() => {
               showEditWatchlist == false ? setShowEditWatchlist(true) : setShowEditWatchlist(false);
             }}>
@@ -34,7 +34,7 @@ const SingleWatchlist = ({ watchlist, showEditWatchlist, setShowEditWatchlist })
             onClick={() => {
               showWatchlistitems == false ? setShowWatchlistitems(true) : setShowWatchlistitems(false);
             }}>
-            {showWatchlistitems == false ? (<>+</>) : (<>-</>)}</button>
+            {showWatchlistitems == false ? (<div className='add-watchlist-button'>+</div>) : (<div className='add-watchlist-button'>-</div>)}</button>
         </span>
       </div>
 
@@ -46,10 +46,11 @@ const SingleWatchlist = ({ watchlist, showEditWatchlist, setShowEditWatchlist })
               <NavLink
                 to={`/stocks/${item.symbol}`}
                 key={item.id}>
+
                 <div className="single-asset-container">
                   <div className="single-asset-first-column">{item.symbol}</div>
 
-                  <SmallGraph symbol={item.symbol} />
+                  <><SmallGraph symbol={item.symbol} /></>
                 </div>
               </NavLink>
             )

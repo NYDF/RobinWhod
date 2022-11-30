@@ -2,3 +2,45 @@
     display: flex;
     justify-content:space-between;
 }
+
+.add-watchlist-container{
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.add-watchlist-title-div{
+    height:40px;
+    align-items: center;
+}
+
+.add-watchlist-button{
+    background-color: white;
+    border: none;
+    font-size: 30px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#lightning-img{
+    height:25px;
+    width:25px;
+}
+
+.add-list-input{
+    width: 60%;
+    height: 30px;
+}
+
+.create-watchlist-button{
+    background-color: rgb(0,200,5);
+    border: none;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+
+}
+
+.create-watchlist-button-container{
+    padding-top: 3%;
+    
+}

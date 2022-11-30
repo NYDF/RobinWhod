@@ -1,0 +1,17 @@
+.watchlist-container{
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.watchlist-title-icon-container{
+    height:40px;
+    align-items: center;
+}
+
+.Edit-watchlist-modal-btn{
+    background-color: white;
+    border:none;
+    font-size: 20px;
+    font-weight: 400;
+
+}
