@@ -23,19 +23,16 @@ function MainPage() {
     (showModal) ? setShowModal(false) : setShowModal(true)
   }
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
-  let allAsset = useSelector(state => state.assetReducer)
+  // const sessionUser = useSelector((state) => state.session.user);
+  // let allAsset = useSelector(state => state.assetReducer)
   // console.log('allAsset!!!!!!!!!!!!!!', allAsset)
-  let allAssetArr = Object.values(allAsset)
+  // let allAssetArr = Object.values(allAsset)
   // console.log('allAsset!!!!!!!!!!!!!!', allAssetArr)
-  const portfolio = calculatePortfolio(allAsset)
+  // const portfolio = calculatePortfolio(allAsset)
 
-  const cash = sessionUser?.assets.filter(x => x.symbol == '$')[0]?.quantity
-
+  // const cash = sessionUser?.assets.filter(x => x.symbol == '$')[0]?.quantity
 
   useEffect(() => { dispatch(thunkLoadAllAsset()) }, [dispatch]);
-
-
 
   return (
     <>
@@ -43,7 +40,7 @@ function MainPage() {
       <div className='Main-page-container' onClick={() => setShowModal(false)}>
 
         <div className='Main-page-left' >
-          <PortfolioGraph allAssetArr={allAssetArr} cash={cash} portfolio={portfolio} />
+          <PortfolioGraph />
         </div>
 
         <div className='Main-page-right' >

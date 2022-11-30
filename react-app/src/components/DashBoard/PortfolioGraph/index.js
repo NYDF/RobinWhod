@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Plot from 'react-plotly.js';
 
 
-import { thunkLoadAllAsset } from '../../../store/assetReducer';
+import { loadCash, thunkLoadAllAsset } from '../../../store/assetReducer';
 import "./PortfolioGraph.css"
 import { getEachStockCurrentPrice } from '../../../utils/helperFunc';
 
@@ -15,7 +15,7 @@ async function fetchYahooData(symbol) {
   return response.json();
 }
 
-const PortfolioGraph = ({ cash }) => {
+const PortfolioGraph = () => {
   const dispatch = useDispatch();
   const [chartXValues, setChartXValues] = useState([]);
   const [chartYValues, setChartYValues] = useState([]);
@@ -23,14 +23,17 @@ const PortfolioGraph = ({ cash }) => {
 
   const [totalAssetCash, setTotalAssetCash] = useState([]);
 
+  const sessionUser = useSelector((state) => state.session.user);
   let allAsset = useSelector(state => state.assetReducer)
-  let allAssetArr = Object.values(allAsset)
+  // let allAssetArr = Object.values(allAsset)
 
   // console.log('allAssetArr', allAssetArr)
 
   // console.log('stockOwned', stockOwned )
+  const cash = sessionUser?.assets.filter(x => x.symbol == '$')[0]?.quantity
 
   useEffect(() => {
+    dispatch(loadCash())
     dispatch(thunkLoadAllAsset()).then(res => {
       let assetArrr = res.assets
 
@@ -52,7 +55,7 @@ const PortfolioGraph = ({ cash }) => {
 
 
           const sum = Number(x.reduce((a, e) => Number(a) + Number(e)))
-          console.log('sum!!!!!!!!!!!!!!!', sum)
+          // console.log('sum!!!!!!!!!!!!!!!', sum)
           setChartXValues(x)
           setChartYValues(y)
           setQuantityValues(z)
@@ -111,7 +114,8 @@ const PortfolioGraph = ({ cash }) => {
               displayModeBar: false,
             }}
             layout={{
-              width: 300, height: 300,
+              title: "Portfolio Propotion",
+              width: 300, height: 400,
               autosize: false,
               "xaxis": {
                 "visible": false,
@@ -125,7 +129,7 @@ const PortfolioGraph = ({ cash }) => {
                 l: 0,
                 r: 0,
                 b: 0,
-                t: 0,
+                t: 25,
 
               },
               showlegend: false
@@ -147,7 +151,8 @@ const PortfolioGraph = ({ cash }) => {
               displayModeBar: false,
             }}
             layout={{
-              width: 300, height: 300,
+              title: "Quantity Propotion",
+              width: 300, height: 400,
               autosize: false,
               "xaxis": {
                 "visible": false,
@@ -161,7 +166,7 @@ const PortfolioGraph = ({ cash }) => {
                 l: 0,
                 r: 0,
                 b: 0,
-                t: 0,
+                t: 25,
 
               },
               showlegend: false

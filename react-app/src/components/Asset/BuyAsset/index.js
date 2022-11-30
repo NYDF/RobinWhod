@@ -45,10 +45,11 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
     if (!validationErrors.length) {
       setHasSubmitted(true);
       if (editedAsset) {
+        dispatch(thunkLoadCash())
+        window.alert(`Successfully bought ${quantity} shares of ${symbol}`)
         history.push(`/portfolio`)
         setValidationErrors([]);
         setErrors([]);
-        dispatch(thunkLoadCash())
       }
     }
   }

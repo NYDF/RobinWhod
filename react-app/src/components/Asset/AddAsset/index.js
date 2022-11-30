@@ -51,6 +51,7 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
         setValidationErrors([]);
         setErrors([]);
         history.push(`/portfolio`)
+        window.alert(`Successfully bought ${quantity} shares of ${symbol}`)
         // console.log(createdChannel)
       }
     }
