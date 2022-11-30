@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Plot from 'react-plotly.js';
 
 
-import { loadCash, thunkLoadAllAsset } from '../../../store/assetReducer';
+import { thunkLoadCash, thunkLoadAllAsset } from '../../../store/assetReducer';
 import "./PortfolioGraph.css"
 import { getEachStockCurrentPrice } from '../../../utils/helperFunc';
 
@@ -27,25 +27,24 @@ const PortfolioGraph = () => {
   const [chartXValues, setChartXValues] = useState([]);
   const [chartYValues, setChartYValues] = useState([]);
   const [quantityValues, setQuantityValues] = useState([]);
-
   const [totalAssetCash, setTotalAssetCash] = useState([]);
 
   const sessionUser = useSelector((state) => state.session.user);
   let allAsset = useSelector(state => state.assetReducer)
-  // let allAssetArr = Object.values(allAsset)
-
-  // console.log('allAssetArr', allAssetArr)
-
-  // console.log('stockOwned', stockOwned )
-  const cash = sessionUser?.assets.filter(x => x.symbol == '$')[0]?.quantity
+  let allAssetArr = Object.values(allAsset)
+  const cash = allAssetArr?.filter(x => x.symbol == '$')[0]?.quantity.toFixed(2)
 
   useEffect(() => {
-    dispatch(loadCash())
+    dispatch(thunkLoadCash())
+  }, [dispatch])
+
+
+  useEffect(() => {
     dispatch(thunkLoadAllAsset()).then(res => {
       let assetArrr = res.assets
 
       const stockOwned = {}
-      assetArrr.forEach(
+      assetArrr?.forEach(
         (stock) => (stockOwned[stock.symbol] = stock.quantity)
       );
       // console.log('stockOwned', stockOwned )
@@ -60,17 +59,19 @@ const PortfolioGraph = () => {
           // console.log('y!!!!!!!!!!!!!!!', y)
           // console.log('z!!!!!!!!!!!!!!!', z)
 
+
+
           let sum
-          if(x.length){
-          sum = Number(x.reduce((a, e) => Number(a) + Number(e)))}
-          else{sum = 0}
+          if (x.length) {
+            sum = Number(x.reduce((a, e) => Number(a) + Number(e)))
+          }
+          else { sum = 0 }
           // console.log('sum!!!!!!!!!!!!!!!', sum)
-          // console.log('cash!!!!!!!!!!!!!!!', cash)
 
           setChartXValues(x)
           setChartYValues(y)
           setQuantityValues(z)
-          setTotalAssetCash((sum + cash).toFixed(2))
+          setTotalAssetCash((sum).toFixed(2))
         }
       ))
     }
@@ -80,37 +81,19 @@ const PortfolioGraph = () => {
 
   // console.log('stockOwned', stockOwned )
 
+  // console.log('cash!!!!!!!!!!!!!!!', cash)
 
-  // useEffect(() => {
-
-  //   const stockOwned = {}
-  //   allAssetArr.forEach(
-  //     (stock) => (stockOwned[stock.symbol] = stock.quantity)
-  //   );
-  //     // console.log('stockOwned', stockOwned )
-
-  //     getEachStockCurrentPrice(stockOwned).then((
-  //     function (data) {
-  //       // console.log('data------------------', data);
-  //       let x = data
-  //       let y = Object.keys(stockOwned)
-  //       let z = Object.values(stockOwned)
-  //       // console.log('x!!!!!!!!!!!!!!!',x )
-  //       setChartXValues(x)
-  //       setChartYValues(y)
-  //       setQuantityValues(z)
-  //     }
-  //   ))
-
-  // }, [dispatch])
 
   if (!allAsset) { return null }
-
+  if (!cash) {
+    return null
+  }
 
   return (
     <div className='main-page-left-container'>
-      <div className='main-page-number'>${totalAssetCash}
-      <hr></hr>
+      <div className='main-page-number'>Portfolio:  $ {totalAssetCash}</div>
+      <div className='main-page-number'>BuyingPower:  $ {cash}
+        <hr></hr>
       </div>
 
       <div className='pei-chart-container'>

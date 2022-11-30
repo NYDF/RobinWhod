@@ -38,8 +38,6 @@ const AddWatchlist = () => {
 
     if (validationErrors.length) { return }
 
-
-
     const watchlistPayload = { name }
 
     // console.log("!!!!!frontend", watchlistPayload)
@@ -49,13 +47,10 @@ const AddWatchlist = () => {
       if (data && data.errors) setErrors(data.errors)
     });
 
-
-
     if (!validationErrors.length) {
       setHasSubmitted(true);
       if (createdWatchlist) {
 
-        await dispatch(thunkLoadAllWatchlist())
         setValidationErrors([]);
         setErrors([]);
       }

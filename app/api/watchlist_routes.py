@@ -42,7 +42,7 @@ def add_watchlist():
         )
         db.session.add(new_watchlist)
         db.session.commit()
-        return {"messages": "Watchlist created successfully"}, 200
+        return new_watchlist.to_dict(), 200
     else:
         return form.errors
 
@@ -62,7 +62,7 @@ def edit_watchlist_by_id(watchlist_id):
 
             data = form.data
             print('form-------', form.data)
-            
+
             watchlist.name = data["name"]
             watchlist.owner_id = current_user.id
 

@@ -226,7 +226,7 @@ export const thunkAddCash = (data) => async dispatch => {
 const assetReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_ALL_ASSET:
-            const newAssetState = {};
+            const newAssetState = {...state};
             // console.log("action!!!!!!!!", action)
             action.assets.assets.forEach(asset => {
                 newAssetState[asset.id] = asset
@@ -238,8 +238,8 @@ const assetReducer = (state = {}, action) => {
             return { ...state, [action.asset.id]: { ...action.asset } }
 
         case LOAD_CASH_ASSET:
-            // console.log("action!!!!!!!!", action)
-            return { ...state, ...action.cash }
+            console.log("action!!!!!!!!", action)
+            return { ...state,  [action.cash.id]: { ...action.cash }  }
 
 
         case ADD_NEW_ASSET:

@@ -14,7 +14,8 @@ const GetAllAsset = () => {
   const dispatch = useDispatch();
   let allAsset = useSelector(state => state.assetReducer)
   // console.log('allAsset!!!!!!!!!!!!!!', allAsset)
-  let allAssetArr = Object.values(allAsset)
+  let allAssetArr = Object.values(allAsset)?.filter(x => x.is_cash == false)
+    // console.log('allAsset!!!!!!!!!!!!!!', allAsset)
 
   useEffect(() => {
     dispatch(thunkLoadAllAsset())
