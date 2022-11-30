@@ -1,45 +1,48 @@
-.single-asset-container{
+.single-asset-container {
     display: flex;
+    margin-bottom: 4%;
 
 }
 
 
 
-.single-asset-container-big{
+.single-asset-container-big {
     padding-left: 4%;
     padding-right: 4%;
+
 }
 
-.first-column-name{
+.first-column-name {
     font-weight: 600;
     font-size: 16px;
 
 }
 
-.first-column-number{
+.first-column-number {
     font-size: 12px;
 
 }
 
-.third-column{
+.third-column {
     text-align: center;
     font: 12px;
-
+    background-color: aqua;
+    padding-left: 40px;
 }
 
-.portfolio-bar-title{
+.portfolio-bar-title {
     height: 40px;
     align-items: center;
     padding-left: 2%;
 }
 
-.portfolio-bar-asset{
+.portfolio-bar-asset {
     height: 40px;
     text-justify: center;
     padding-left: 4%;
 }
 
-#bulb-img{
-    height:25px;
+#bulb-img {
+    height: 25px;
     width: 25px;
 }

@@ -15,6 +15,13 @@ async function fetchYahooData(symbol) {
   return response.json();
 }
 
+var ultimateColors = [
+  ['rgb(56, 75, 126)', 'rgb(18, 36, 37)', 'rgb(34, 53, 101)', 'rgb(36, 55, 57)', 'rgb(6, 4, 4)'],
+  ['rgb(177, 127, 38)', 'rgb(205, 152, 36)', 'rgb(99, 79, 37)', 'rgb(129, 180, 179)', 'rgb(124, 103, 37)'],
+  ['rgb(33, 75, 99)', 'rgb(79, 129, 102)', 'rgb(151, 179, 100)', 'rgb(175, 49, 35)', 'rgb(36, 73, 147)'],
+  ['rgb(146, 123, 21)', 'rgb(177, 180, 34)', 'rgb(206, 206, 40)', 'rgb(175, 51, 21)', 'rgb(35, 36, 21)']
+];
+
 const PortfolioGraph = () => {
   const dispatch = useDispatch();
   const [chartXValues, setChartXValues] = useState([]);
@@ -98,7 +105,9 @@ const PortfolioGraph = () => {
 
   return (
     <div className='main-page-left-container'>
-      <div className='main-page-number'>${totalAssetCash}</div>
+      <div className='main-page-number'>${totalAssetCash}
+      <hr></hr>
+      </div>
 
       <div className='pei-chart-container'>
         <span className='pie-chart-2'>
@@ -108,6 +117,7 @@ const PortfolioGraph = () => {
                 values: chartXValues,
                 labels: chartYValues,
                 type: "pie",
+                textinfo: "label+percent",
               }
             ]}
             config={{
@@ -115,7 +125,7 @@ const PortfolioGraph = () => {
             }}
             layout={{
               title: "Portfolio Propotion",
-              width: 300, height: 400,
+              width: 320, height: 400,
               autosize: false,
               "xaxis": {
                 "visible": false,
@@ -126,7 +136,7 @@ const PortfolioGraph = () => {
                 fixedrange: true
               },
               margin: {
-                l: 0,
+                l: 20,
                 r: 0,
                 b: 0,
                 t: 25,
@@ -145,6 +155,10 @@ const PortfolioGraph = () => {
                 values: quantityValues,
                 labels: chartYValues,
                 type: "pie",
+                textinfo: "label+percent",
+                marker: {
+                  colors: ultimateColors[1]
+                },
               }
             ]}
             config={{
@@ -152,7 +166,7 @@ const PortfolioGraph = () => {
             }}
             layout={{
               title: "Quantity Propotion",
-              width: 300, height: 400,
+              width: 320, height: 400,
               autosize: false,
               "xaxis": {
                 "visible": false,
@@ -163,7 +177,7 @@ const PortfolioGraph = () => {
                 fixedrange: true
               },
               margin: {
-                l: 0,
+                l: 20,
                 r: 0,
                 b: 0,
                 t: 25,
