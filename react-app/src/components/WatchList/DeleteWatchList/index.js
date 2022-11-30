@@ -11,7 +11,7 @@ const DeleteWatchList = ({ watchlistId }) => {
   const dispatch = useDispatch();
   let watchlist_id = watchlistId
   const history = useHistory();
-  console.log('watchlist_id', watchlist_id)
+  // console.log('watchlist_id', watchlist_id)
 
   const handleDelete = async () => {
 
@@ -25,8 +25,10 @@ const DeleteWatchList = ({ watchlistId }) => {
 
   return (
     <>
-      <div className="c-delete-button">
-        <button type="submit" onClick={handleDelete}>Delete WatchList</button>
+      <div className="w-delete-button-div">
+        <button type="submit"
+        className='w-delete-button'
+        onClick={handleDelete}>Delete WatchList</button>
       </div>
     </>
   );

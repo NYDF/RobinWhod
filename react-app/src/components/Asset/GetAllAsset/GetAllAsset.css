@@ -26,14 +26,14 @@
 .third-column {
     text-align: center;
     font: 12px;
-    background-color: aqua;
-    padding-left: 40px;
+    padding-left: 70px;
 }
 
 .portfolio-bar-title {
     height: 40px;
     align-items: center;
     padding-left: 2%;
+    padding-top: 3.5%;
 }
 
 .portfolio-bar-asset {
