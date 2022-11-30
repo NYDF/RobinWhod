@@ -209,7 +209,7 @@ def delete_asset(symbol):
         symbol=symbol,
         owner_id=current_user.id
     ).first()
-    print('asset_to_delete------------------', asset_to_delete)
+    # print('asset_to_delete------------------', asset_to_delete)
     if (asset_to_delete):
         db.session.delete(asset_to_delete)
         db.session.commit()

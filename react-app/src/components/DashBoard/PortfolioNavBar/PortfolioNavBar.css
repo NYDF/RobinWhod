@@ -114,6 +114,9 @@
 
 .add-logout-container{
     padding-top: 4%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
 .logout-icon{

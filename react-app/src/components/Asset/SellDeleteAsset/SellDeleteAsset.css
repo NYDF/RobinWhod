@@ -3,19 +3,22 @@
     justify-content: space-between;
     padding-top: 2%;
     padding-bottom: 2%;
+
 }
 
 .sell-input{
     width: 70%;
     border:none;
     background-color: lightgray;
-    height:30px
+    height:30px;
+    margin-left: 68px;
 }
 
 .sell-button-div{
     width: 100%;
     padding-top: 2%;
     padding-bottom: 2%;
+
 }
 
 .sell-button{

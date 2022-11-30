@@ -1,0 +1,16 @@
+.pei-chart-container{
+    padding: 3%;
+    display: flex;
+    flex-direction: row;
+    width: 700px;
+    height: 350px;
+    justify-content: space-between;
+
+}
+
+.main-page-number{
+    font-size: 38px;
+    font-weight: 500;
+}
+
+

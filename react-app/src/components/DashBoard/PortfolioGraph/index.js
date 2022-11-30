@@ -46,12 +46,17 @@ const PortfolioGraph = ({ cash }) => {
           let x = data
           let y = Object.keys(stockOwned)
           let z = Object.values(stockOwned)
-          // console.log('x!!!!!!!!!!!!!!!',x )
-          const sum = x.reduce((a, e) => a+e)
+          console.log('x!!!!!!!!!!!!!!!', x)
+          console.log('y!!!!!!!!!!!!!!!', y)
+          console.log('z!!!!!!!!!!!!!!!', z)
+
+
+          const sum = x.reduce((a, e) => Number(a) + Number(e))
+          console.log('sum!!!!!!!!!!!!!!!', sum)
           setChartXValues(x)
           setChartYValues(y)
           setQuantityValues(z)
-          setTotalAssetCash(sum)
+          setTotalAssetCash((sum + cash).toFixed(2))
         }
       ))
     }
@@ -89,78 +94,80 @@ const PortfolioGraph = ({ cash }) => {
 
 
   return (
-    <div className='asset-c'>
-       {totalAssetCash}
-      <>
-        <Plot
-          className='big-plot'
-          data={[
-            {
-              values: chartXValues,
-              labels: chartYValues,
-              type: "pie",
-            }
-          ]}
-          config={{
-            displayModeBar: false,
-          }}
-          layout={{
-            width: 650, height: 200,
-            autosize: false,
-            "xaxis": {
-              "visible": false,
-              fixedrange: true
-            },
-            "yaxis": {
-              "visible": false,
-              fixedrange: true
-            },
-            margin: {
-              l: 0,
-              r: 0,
-              b: 0,
-              t: 0,
-              pad: 0
-            },
-            showlegend: false
-          }}
-        />
-      </>
-      <>
-        <Plot
-          className='big-plot'
-          data={[
-            {
-              values: quantityValues,
-              labels: chartYValues,
-              type: "pie",
-            }
-          ]}
-          config={{
-            displayModeBar: false,
-          }}
-          layout={{
-            width: 650, height: 200,
-            autosize: false,
-            "xaxis": {
-              "visible": false,
-              fixedrange: true
-            },
-            "yaxis": {
-              "visible": false,
-              fixedrange: true
-            },
-            margin: {
-              l: 0,
-              r: 0,
-              b: 0,
-              t: 0,
-              pad: 0
-            },
-            showlegend: false
-          }} />
+    <div className='main-page-left-container'>
+      <div className='main-page-number'>${totalAssetCash}</div>
 
-      </>
+      <div className='pei-chart-container'>
+        <span className='pie-chart-2'>
+          <Plot
+            data={[
+              {
+                values: chartXValues,
+                labels: chartYValues,
+                type: "pie",
+              }
+            ]}
+            config={{
+              displayModeBar: false,
+            }}
+            layout={{
+              width: 300, height: 300,
+              autosize: false,
+              "xaxis": {
+                "visible": false,
+                fixedrange: true
+              },
+              "yaxis": {
+                "visible": false,
+                fixedrange: true
+              },
+              margin: {
+                l: 0,
+                r: 0,
+                b: 0,
+                t: 0,
+
+              },
+              showlegend: false
+            }}
+          />
+        </span>
+
+        <span className='pie-chart-2'>
+          <Plot
+
+            data={[
+              {
+                values: quantityValues,
+                labels: chartYValues,
+                type: "pie",
+              }
+            ]}
+            config={{
+              displayModeBar: false,
+            }}
+            layout={{
+              width: 300, height: 300,
+              autosize: false,
+              "xaxis": {
+                "visible": false,
+                fixedrange: true
+              },
+              "yaxis": {
+                "visible": false,
+                fixedrange: true
+              },
+              margin: {
+                l: 0,
+                r: 0,
+                b: 0,
+                t: 0,
+
+              },
+              showlegend: false
+            }} />
+        </span>
+      </div>
 
     </div>
   );
