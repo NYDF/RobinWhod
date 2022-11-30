@@ -40,7 +40,6 @@ def this_asset(symbol):
         return thisAsset.to_dict()
 
 
-
 @asset_routes.route('/cash')
 @login_required
 def user_cash():
@@ -87,7 +86,8 @@ def add_new_asset():
         ).first()
 
         pre_buyingPower_amount = buyingPower.quantity
-        buyingPower.quantity = float(pre_buyingPower_amount) - (float(form.data['purchased_price']))*(float(form.data['quantity']))
+        buyingPower.quantity = float(pre_buyingPower_amount) - (
+            float(form.data['purchased_price']))*(float(form.data['quantity']))
 
         db.session.commit()
         return new_add_stock.to_dict()
@@ -149,7 +149,8 @@ def buy_one_asset(symbol):
             ).first()
 
             pre_buyingPower_amount = buyingPower.quantity
-            buyingPower.quantity = float(pre_buyingPower_amount) - (float(form.data['purchased_price']))*(float(form.data['quantity']))
+            buyingPower.quantity = float(pre_buyingPower_amount) - (
+                float(form.data['purchased_price']))*(float(form.data['quantity']))
 
         db.session.commit()
         return preAsset.to_dict(), 200
@@ -193,7 +194,8 @@ def sell_one_asset(symbol):
             ).first()
 
             pre_buyingPower_amount = buyingPower.quantity
-            buyingPower.quantity = float(pre_buyingPower_amount) + (float(form.data['purchased_price']))*(float(form.data['quantity']))
+            buyingPower.quantity = float(pre_buyingPower_amount) + (
+                float(form.data['purchased_price']))*(float(form.data['quantity']))
 
         db.session.commit()
         return preAsset.to_dict(), 200
@@ -204,15 +206,37 @@ def sell_one_asset(symbol):
 @asset_routes.route('/sellall/<symbol>', methods=["DELETE"])
 @login_required
 def delete_asset(symbol):
-    print('asset_to_delete------------------')
+    """
+    Query to sell all current asset
+    """
+    # print('asset_to_delete------------------')
+
     asset_to_delete = Asset.query.filter_by(
         symbol=symbol,
         owner_id=current_user.id
     ).first()
+
+    form = AssetForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
     # print('asset_to_delete------------------', asset_to_delete)
-    if (asset_to_delete):
-        db.session.delete(asset_to_delete)
-        db.session.commit()
-        return dict(message=f"Sold all ${symbol} shares")
+
+    if form.validate_on_submit():
+        data = form.data
+
+        if (float(form.data['quantity'] > 0)):
+
+            buyingPower = Asset.query.filter_by(
+                owner_id=current_user.id,
+                is_cash=True
+            ).first()
+
+            pre_buyingPower_amount = buyingPower.quantity
+            buyingPower.quantity = float(pre_buyingPower_amount) + (
+                float(form.data['purchased_price']))*(float(form.data['quantity']))
+
+            db.session.delete(asset_to_delete)
+            db.session.commit()
+            return dict(message=f"Sold all ${symbol} shares")
     else:
-        return {"errors": "Asset not found"}, 406
+        return {"errors": "some data in form missing"}, 406

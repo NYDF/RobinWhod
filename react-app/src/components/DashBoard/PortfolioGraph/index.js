@@ -51,7 +51,7 @@ const PortfolioGraph = ({ cash }) => {
           console.log('z!!!!!!!!!!!!!!!', z)
 
 
-          const sum = x.reduce((a, e) => Number(a) + Number(e))
+          const sum = Number(x.reduce((a, e) => Number(a) + Number(e)))
           console.log('sum!!!!!!!!!!!!!!!', sum)
           setChartXValues(x)
           setChartYValues(y)

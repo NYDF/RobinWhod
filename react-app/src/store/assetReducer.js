@@ -173,12 +173,18 @@ export const thunkEditAsset = (data) => async dispatch => {
     }
 }
 
-
-export const thunkDeleteOneAsset = (symbol) => async dispatch => {
+// sell all asset
+export const thunkDeleteOneAsset = (data) => async dispatch => {
     // console.log("here=============", symbol)
+    const { quantity, symbol, purchased_price } = data;
+    let is_cash = false
+
     const response = await fetch(`/api/assets/sellall/${symbol}`, {
         method: 'DELETE',
-        // headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            symbol, quantity, purchased_price, is_cash
+        })
     });
     // console.log('response!!!!!!!!!!', response)
     if (response.ok) {

@@ -8,7 +8,7 @@ import { BiExit } from "react-icons/bi"
 
 import { signUp } from '../../../store/session';
 
-const NavBarAccount = ({setShowModal}) => {
+const NavBarAccount = ({ setShowModal }) => {
   const sessionUser = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assetReducer);
   const portfolio = calculatePortfolio(assets)
@@ -22,23 +22,24 @@ const NavBarAccount = ({setShowModal}) => {
       <div id='nav-account'>
         <div className='acc-word-name' >{sessionUser?.username}</div>
 
-      <div className='acc-word-container'>
-        <div className='acc-word-left'>
-        <div className='acc-word-number'>${portfolio}</div>
+        {/* <div className='acc-word-container'>
+          <div className='acc-word-left'>
+            <div className='acc-word-number'>${portfolio}</div>
 
-        <div className='acc-word-word'>Portfolio Value</div>
-        </div>
+            <div className='acc-word-word'>Portfolio Value</div>
+          </div>
 
-        <div className='acc-word-right'>
-        <div className='acc-word-number'>${cash}</div>
+          <div className='acc-word-right'>
+            <div className='acc-word-number'>${cash}</div>
 
-        <div className='acc-word-word'>Buying Power</div>
-        </div>
+            <div className='acc-word-word'>Buying Power</div>
+          </div>
 
-        </div>
+        </div> */}
+        <hr></hr>
         <div className='add-logout-container'>
-        <span className='logout-icon'><BiExit /></span>
-        <span className='logout-button'><LogoutButton /></span>
+          <span className='logout-icon'><BiExit /></span>
+          <span className='logout-button'><LogoutButton /></span>
         </div>
       </div>
     );

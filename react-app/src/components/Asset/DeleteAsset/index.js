@@ -16,7 +16,6 @@ const DeleteAsset = () => {
 
     dispatch(thunkDeleteOneAsset(symbol));
     // await dispatch(thunkLoadAllWatchlist())
-
   }
 
 

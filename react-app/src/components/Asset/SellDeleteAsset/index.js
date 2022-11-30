@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from "react-router";
+import { useHistory } from 'react-router-dom';
 
-import { thunkDeleteOneAsset, thunkSellAsset, thunkGetOneAsset } from '../../../store/assetReducer';
+import { thunkDeleteOneAsset, thunkSellAsset, thunkGetOneAsset, thunkLoadAllAsset } from '../../../store/assetReducer';
 
 import "./SellDeleteAsset.css"
-
 
 const SellDeleteAsset = ({ marketPrice, numShares }) => {
   const dispatch = useDispatch();
@@ -14,15 +14,17 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [validationErrors, setValidationErrors] = useState([]);
   const [errors, setErrors] = useState([]);
+  const history = useHistory();
 
   const { symbol } = useParams();
 
   useEffect(() => {
     const errors = [];
+
     if (quantity <= 0) {
       errors.push("Please input valid numbers")
     }
-    if (quantity > numShares) {
+    if (quantity > numShares || numShares==undefined ) {
       errors.push("Sorry you don't have so many shares")
     }
     if (quantity == numShares) {
@@ -33,13 +35,32 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
 
   let handleSubmit
 
+  // console.log('numShares--------------', numShares)
+  // console.log(validationErrors)
 
   if (!!isDelete) {
-    handleSubmit = async () => {
+    handleSubmit = async (e) => {
 
-      await dispatch(thunkDeleteOneAsset(symbol));
-      setIsDelete(false)
-      await dispatch(thunkGetOneAsset(symbol))
+      e.preventDefault();
+      setHasSubmitted(true);
+
+      if (validationErrors.length) { return }
+
+      const deletedAssetPayload = { quantity, symbol }
+      deletedAssetPayload.purchased_price = marketPrice
+      // console.log('editedAssetPayload!!!!!!!!!!!!', editedAssetPayload)
+
+      let deletedAsset = await dispatch(thunkDeleteOneAsset(deletedAssetPayload))
+
+        setHasSubmitted(true);
+        if (deletedAsset) {
+          // dispatch(thunkGetOneAsset(symbol))
+          // dispatch(thunkLoadAllAsset())
+          // setValidationErrors([]);
+          // setErrors([]);
+          setIsDelete(false)
+          history.push(`/portfolio`)
+      }
 
     }
   } else {
@@ -84,7 +105,7 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
         <div className="sell-input-container">
           <span>Shares</span>
           <span><input type="text"
-          className="sell-input"
+            className="sell-input"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           /></span>
