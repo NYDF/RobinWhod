@@ -94,7 +94,7 @@ const AddWatchlist = () => {
         />
 
         <div className="create-watchlist-button-container">
-          <button type="submit" className="create-watchlist-button" onClick={handleSubmit}>Create Channel</button>
+          <button type="submit" className="create-watchlist-button" onClick={handleSubmit}>Create New Watchlist</button>
         </div>
 
         </div>

@@ -6,7 +6,7 @@ const ADD_NEW_ASSET = 'asset/addAsset'
 const BUY_SELL_ASSET = 'asset/editAsset'
 const SELL_ASSET = 'asset/sellAsset'
 const SOLD_ALL_ASSET = 'asset/deleteOneAsset'
-
+const ADD_CASH = 'asset/addCash'
 
 
 export const loadAllAsset = (assets) => {
@@ -58,7 +58,12 @@ export const deleteOneAsset = (symbol) => {
     };
 };
 
-
+export const addCash = (asset) => {
+    return {
+        type: ADD_CASH,
+        asset
+    };
+};
 
 export const thunkLoadAllAsset = () => async (dispatch) => {
 
@@ -181,7 +186,7 @@ export const thunkDeleteOneAsset = (data) => async dispatch => {
 
     const response = await fetch(`/api/assets/sellall/${symbol}`, {
         method: 'DELETE',
-        headers: { 'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             symbol, quantity, purchased_price, is_cash
         })
@@ -191,6 +196,31 @@ export const thunkDeleteOneAsset = (data) => async dispatch => {
         dispatch(deleteOneAsset(symbol));
     }
 }
+
+
+export const thunkAddCash = (data) => async dispatch => {
+    const { symbol, quantity, purchased_price } = data
+    let is_cash = false
+
+    // console.log('thunk!!!!', symbol, quantity, purchased_price, is_cash)
+
+    const response = await fetch(`/api/assets/addfunds/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ symbol, quantity, purchased_price, is_cash }),
+    })
+    // console.log('!!!!!!response', response)
+    if (response.ok) {
+        // console.log('!!!!!!response', response)
+        const newCash = await response.json();
+        // console.log(newAsset)
+        dispatch(addCash(newCash))
+
+        return newCash
+    }
+}
+
+
 
 
 const assetReducer = (state = {}, action) => {
@@ -226,6 +256,11 @@ const assetReducer = (state = {}, action) => {
             // console.log('here')
             delete newState[action.id]
             return newState
+
+        case ADD_CASH:
+            // console.log('!!!action', action.asset)
+            return { ...state, [action.asset.id]: { ...action.asset } };
+
 
         default:
             return state;

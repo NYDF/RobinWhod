@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import UpdateWatchList from '../UpdateWatchList';
+
 
 import { thunkLoadAllWatchlist } from '../../../store/watchlistReducer';
 
 
 import SingleWatchlist from '../SingleWatchlist';
 import "./GetWatchlist.css"
-import DeleteWatchList from '../DeleteWatchList';
+
 
 
 const GetWatchlist = () => {
@@ -35,10 +35,10 @@ const GetWatchlist = () => {
             <div className='single-watchlist' key={watchlist.id}>
               <div>
                 <SingleWatchlist watchlist={watchlist} key={watchlist?.id}
-                showEditWatchlist={showEditWatchlist} setShowEditWatchlist={setShowEditWatchlist}/>
+                  showEditWatchlist={showEditWatchlist} setShowEditWatchlist={setShowEditWatchlist} />
               </div>
 
-
+              {/*
               <>
                 <UpdateWatchList watchlistId={watchlist.id} key={watchlist?.id}
                   showEditWatchlist={showEditWatchlist} setShowEditWatchlist={setShowEditWatchlist}
@@ -48,7 +48,7 @@ const GetWatchlist = () => {
               <>
                 <DeleteWatchList watchlistId={watchlist.id} key={watchlist?.id}
                   showEditWatchlist={showEditWatchlist} setShowEditWatchlist={setShowEditWatchlist} />
-              </>
+              </> */}
 
             </div>
           )

@@ -61,7 +61,7 @@ def user_cash():
 @asset_routes.route('/new/', methods=["POST"])
 @login_required
 def add_new_asset():
-    print('here!!in !! route')
+    # print('here!!in !! route')
     """
     Query to buy a new asset
     """
@@ -95,21 +95,34 @@ def add_new_asset():
         return {"errors": "Can't buy new asset"}, 406
 
 
-# @asset_routes.route('/addfunds', methods=['POST'])
-# @login_required
-# def add_funds_to_account():
-#     form = AssetForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
 
-#     if form.validate_on_submit():
-#         buying_power = Asset.query.filter(
-#                                     Asset.owner_id == current_user.id,
-#                                     Asset.is_cash == True).first()
-#         buying_power.add_to_existing_asset(form.data['quantity'])
-#         db.session.commit()
-#         return {'message' : { buying_power.ticker_name: buying_power.to_dict() }}, 200
-#     else:
-#         return { 'errors': validation_errors_to_error_messages(form.errors) }, 400
+@asset_routes.route('/addfunds', methods=['POST'])
+@login_required
+def add_funds_to_account():
+
+    """
+    Query to add cash to current user
+    """
+
+    form = AssetForm()
+    # print('here!!in !! route')
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
+        new_add_cash = Asset(
+            symbol='$',
+            owner_id=current_user.id,
+            quantity=data["quantity"],
+            purchased_price= 1,
+            is_cash=True
+        )
+        db.session.add(new_add_cash)
+
+        db.session.commit()
+        return new_add_stock.to_dict()
+    else:
+        return {"errors": "Can't buy new asset"}, 406
+
 
 
 @asset_routes.route('/<symbol>', methods=["PUT"])

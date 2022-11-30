@@ -56,9 +56,9 @@ const PortfolioGraph = () => {
           let x = data
           let y = Object.keys(stockOwned)
           let z = Object.values(stockOwned)
-          console.log('x!!!!!!!!!!!!!!!', x)
-          console.log('y!!!!!!!!!!!!!!!', y)
-          console.log('z!!!!!!!!!!!!!!!', z)
+          // console.log('x!!!!!!!!!!!!!!!', x)
+          // console.log('y!!!!!!!!!!!!!!!', y)
+          // console.log('z!!!!!!!!!!!!!!!', z)
 
 
           const sum = Number(x.reduce((a, e) => Number(a) + Number(e)))

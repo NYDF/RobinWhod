@@ -1,30 +1,33 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-
-import { thunkDeleteOneWatchlist, thunkLoadAllWatchlist } from '../../../store/watchlistReducer';
+import { thunkDeleteOneWatchlist } from '../../../store/watchlistReducer';
 
 import "./DeleteWatchList.css"
 
 
-const DeleteWatchList = ({ watchlistId, showEditWatchlist, setShowEditWatchlist }) => {
+const DeleteWatchList = ({ watchlistId }) => {
   const dispatch = useDispatch();
   let watchlist_id = watchlistId
-  // console.log('watchlist_id', watchlist_id)
+  const history = useHistory();
+  console.log('watchlist_id', watchlist_id)
 
   const handleDelete = async () => {
 
-    dispatch(thunkDeleteOneWatchlist(watchlist_id));
-    // await dispatch(thunkLoadAllWatchlist())
+    let deletedWatchlistPayload = {watchlist_id}
 
+    dispatch(thunkDeleteOneWatchlist(deletedWatchlistPayload));
+    // await dispatch(thunkLoadAllWatchlist())
+    history.push(`/portfolio`)
   }
 
 
   return (
     <>
-      {showEditWatchlist && (<div className="c-delete-button">
+      <div className="c-delete-button">
         <button type="submit" onClick={handleDelete}>Delete WatchList</button>
-      </div>)}
+      </div>
     </>
   );
 };

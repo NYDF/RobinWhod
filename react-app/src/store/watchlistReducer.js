@@ -98,12 +98,13 @@ export const thunkAddWatchlist = (data) => async dispatch => {
 }
 
 
-export const thunkDeleteOneWatchlist = (watchlist_id) => async dispatch => {
+export const thunkDeleteOneWatchlist = ({watchlist_id}) => async dispatch => {
+    console.log('watchlist_id!!!!!!!!!!', watchlist_id)
     const response = await fetch(`/api/watchlists/${watchlist_id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
     });
-    // console.log('response!!!!!!!!!!', response)
+    console.log('watchlist_id!!!!!!!!!!', watchlist_id)
     if (response.ok) {
         dispatch(deleteOneWatchlist(watchlist_id));
     }
@@ -114,12 +115,12 @@ export const thunkEditWatchlist = (data) => async dispatch => {
     const { name, watchlistId } = data;
 
     // console.log('data!!!!!!!!!', name, watchlistId )
-    let watchlist_id = watchlistId
+    let watchlist_id = Number(watchlistId)
 
     const response = await fetch(`/api/watchlists/${watchlist_id}`, {
-        method: "POST",
+        method: "PUT",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, watchlist_id }),
+        body: JSON.stringify({ name }),
     });
     // console.log('response', response)
 

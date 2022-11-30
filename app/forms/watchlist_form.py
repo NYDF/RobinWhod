@@ -13,6 +13,6 @@ from app.models import Watchlist
 
 
 class WatchlistForm(FlaskForm):
-    owner_id = StringField('OWNERID')
-    name= IntegerField("WATCHLISTNAME", validators=[DataRequired()])
+    owner_id = IntegerField('OWNERID')
+    name= StringField("WATCHLISTNAME", validators=[DataRequired()])
     submit = SubmitField('Create')

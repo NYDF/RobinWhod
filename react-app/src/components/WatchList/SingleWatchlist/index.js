@@ -22,12 +22,12 @@ const SingleWatchlist = ({ watchlist, showEditWatchlist, setShowEditWatchlist })
         <span className='watchlist-name'>{watchlist?.name}</span>
 
         <span>
+        <NavLink to={`/watchlist/${watchlist.id}/edit`}>
           <button
             className="Edit-watchlist-modal-btn"
-            onClick={() => {
-              showEditWatchlist == false ? setShowEditWatchlist(true) : setShowEditWatchlist(false);
-            }}>
+           >
             •••</button>
+            </NavLink>
 
           <button
             className="Expand-watchlist-button"

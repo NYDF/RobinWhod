@@ -37,10 +37,10 @@
     border-radius: 20px;
     height: 30px;
     width: 150px;
-
+    cursor: pointer;
 }
 
 .create-watchlist-button-container{
     padding-top: 3%;
-    
+
 }

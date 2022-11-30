@@ -46,7 +46,7 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
 
       if (validationErrors.length) { return }
 
-      const deletedAssetPayload = { quantity, symbol }
+      let deletedAssetPayload = { quantity, symbol }
       deletedAssetPayload.purchased_price = marketPrice
       // console.log('editedAssetPayload!!!!!!!!!!!!', editedAssetPayload)
 
