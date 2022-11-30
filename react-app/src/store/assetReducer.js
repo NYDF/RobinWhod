@@ -193,7 +193,12 @@ export const thunkDeleteOneAsset = (data) => async dispatch => {
     });
     // console.log('response!!!!!!!!!!', response)
     if (response.ok) {
-        dispatch(deleteOneAsset(symbol));
+        const deletedAsset = await response.json();
+        let id = deletedAsset.message
+        console.log("here=============", id)
+        dispatch(deleteOneAsset(id));
+        // console.log("here=============", deletedAsset)
+        return deletedAsset
     }
 }
 
@@ -238,7 +243,7 @@ const assetReducer = (state = {}, action) => {
             return { ...state, [action.asset.id]: { ...action.asset } }
 
         case LOAD_CASH_ASSET:
-            console.log("action!!!!!!!!", action)
+            // console.log("action!!!!!!!!", action)
             return { ...state,  [action.cash.id]: { ...action.cash }  }
 
 
@@ -247,14 +252,15 @@ const assetReducer = (state = {}, action) => {
             return { ...state, [action.asset.id]: { ...action.asset } };
 
         case BUY_SELL_ASSET:
-            console.log('action!!!!!!!!!!!!', action)
+            // console.log('action!!!!!!!!!!!!', action)
             return { ...state, [action.asset.id]: { ...state[action.asset.id], ...action.asset } }
 
         case SOLD_ALL_ASSET:
             let newState = { ...state }
-            // console.log('!!!action', action)
+            console.log('!!!!-------------------action', action)
+            console.log('!!!!-------------------action', newState)
             // console.log('here')
-            delete newState[action.id]
+            delete newState[action.symbol]
             return newState
 
         case ADD_CASH:

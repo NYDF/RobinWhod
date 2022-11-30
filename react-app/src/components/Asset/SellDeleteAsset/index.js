@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { useHistory } from 'react-router-dom';
 
 import { thunkDeleteOneAsset, thunkSellAsset, thunkGetOneAsset, thunkLoadAllAsset } from '../../../store/assetReducer';
+import { thunkLoadAllWatchlist } from '../../../store/watchlistReducer';
 
 import "./SellDeleteAsset.css"
 
@@ -50,18 +51,19 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
       deletedAssetPayload.purchased_price = marketPrice
       // console.log('editedAssetPayload!!!!!!!!!!!!', editedAssetPayload)
 
-      await dispatch(thunkDeleteOneAsset(deletedAssetPayload))
+      dispatch(thunkDeleteOneAsset(deletedAssetPayload))
 
       setHasSubmitted(true);
-
-      dispatch(thunkGetOneAsset(symbol))
-      dispatch(thunkLoadAllAsset())
-      // setValidationErrors([]);
-      // setErrors([]);
-      window.alert(`Successfully sold ${quantity} shares of ${symbol}`)
       setIsDelete(false)
-      history.push(`/portfolio`)
 
+      setValidationErrors([]);
+      setErrors([]);
+
+      window.alert(`Successfully sold ${quantity} shares of ${symbol}`)
+
+      dispatch(thunkLoadAllAsset())
+
+      history.push(`/portfolio`)
 
     }
   } else {

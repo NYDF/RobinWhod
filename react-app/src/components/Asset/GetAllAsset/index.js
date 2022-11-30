@@ -19,7 +19,7 @@ const GetAllAsset = () => {
 
   useEffect(() => {
     dispatch(thunkLoadAllAsset())
-  }, [dispatch]);
+  }, [dispatch, allAssetArr.length]);
 
 
 

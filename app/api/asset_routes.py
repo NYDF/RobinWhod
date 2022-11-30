@@ -231,6 +231,7 @@ def delete_asset(symbol):
 
     form = AssetForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    id = asset_to_delete.id
 
     # print('asset_to_delete------------------', asset_to_delete)
 
@@ -250,6 +251,6 @@ def delete_asset(symbol):
 
             db.session.delete(asset_to_delete)
             db.session.commit()
-            return dict(message=f"Sold all ${symbol} shares")
+            return dict(message=f"{id}")
     else:
         return {"errors": "some data in form missing"}, 406
