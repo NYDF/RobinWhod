@@ -54,8 +54,8 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
 
       setHasSubmitted(true);
 
-      // dispatch(thunkGetOneAsset(symbol))
-      // dispatch(thunkLoadAllAsset())
+      dispatch(thunkGetOneAsset(symbol))
+      dispatch(thunkLoadAllAsset())
       // setValidationErrors([]);
       // setErrors([]);
       window.alert(`Successfully sold ${quantity} shares of ${symbol}`)
@@ -79,7 +79,9 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
 
       setHasSubmitted(true);
       window.alert(`Successfully sold ${quantity} shares of ${symbol}`)
-      await dispatch(thunkGetOneAsset(symbol))
+      dispatch(thunkGetOneAsset(symbol))
+
+      dispatch(thunkLoadAllAsset())
       history.push(`/portfolio`)
 
       setValidationErrors([]);

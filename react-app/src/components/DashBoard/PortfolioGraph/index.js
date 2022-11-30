@@ -60,9 +60,13 @@ const PortfolioGraph = () => {
           // console.log('y!!!!!!!!!!!!!!!', y)
           // console.log('z!!!!!!!!!!!!!!!', z)
 
-
-          const sum = Number(x.reduce((a, e) => Number(a) + Number(e)))
+          let sum
+          if(x.length){
+          sum = Number(x.reduce((a, e) => Number(a) + Number(e)))}
+          else{sum = 0}
           // console.log('sum!!!!!!!!!!!!!!!', sum)
+          // console.log('cash!!!!!!!!!!!!!!!', cash)
+
           setChartXValues(x)
           setChartYValues(y)
           setQuantityValues(z)

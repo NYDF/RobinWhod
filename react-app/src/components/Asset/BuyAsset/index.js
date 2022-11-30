@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from "react-router";
 import { useHistory } from 'react-router-dom';
 
-import { thunkEditAsset, thunkLoadCash } from '../../../store/assetReducer';
+import { thunkEditAsset, thunkLoadCash, thunkGetOneAsset, thunkLoadAllAsset } from '../../../store/assetReducer';
 
 import "./BuyAsset.css"
 
@@ -47,6 +47,8 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
       if (editedAsset) {
         dispatch(thunkLoadCash())
         window.alert(`Successfully bought ${quantity} shares of ${symbol}`)
+        dispatch(thunkGetOneAsset(symbol))
+        dispatch(thunkLoadAllAsset())
         history.push(`/portfolio`)
         setValidationErrors([]);
         setErrors([]);

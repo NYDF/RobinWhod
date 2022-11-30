@@ -25,7 +25,7 @@ const AddToWatchlistModal = () => {
       <button id="add-to-watchlist-button" onClick={closetable} > Add to watchlist </button>
 
       {showModal && (
-        <div onClick={closetable}>
+        <div >
           <AddToWatchlistForm setShowModal={setShowModal} symbol={symbol} />
         </div>
       )}

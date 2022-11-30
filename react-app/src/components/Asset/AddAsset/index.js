@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router";
 
-import { thunkAddAsset } from '../../../store/assetReducer';
+import { thunkAddAsset, thunkLoadAllAsset, thunkGetOneAsset } from '../../../store/assetReducer';
 
 import "./AddAsset.css"
 
@@ -50,8 +50,13 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
 
         setValidationErrors([]);
         setErrors([]);
-        history.push(`/portfolio`)
+
         window.alert(`Successfully bought ${quantity} shares of ${symbol}`)
+
+        dispatch(thunkGetOneAsset(symbol))
+        dispatch(thunkLoadAllAsset())
+
+        history.push(`/portfolio`)
         // console.log(createdChannel)
       }
     }

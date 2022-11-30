@@ -12,6 +12,8 @@ const AddToWatchlistForm = ({ setShowModal, symbol }) => {
   const dispatch = useDispatch();
   const watchlists = useSelector(state => state.watchlistReducer)
   const watchlistArr = Object.values(watchlists)
+  const [showDiv, setShowDiv] = useState(false);
+
   // console.log('watchlistArr============', watchlistArr)
 
   const [watchlistId, setWatchlistId] = useState('');
@@ -24,9 +26,15 @@ const AddToWatchlistForm = ({ setShowModal, symbol }) => {
     dispatch(thunkLoadAllWatchlist())
   }, [dispatch]);
 
-
+  console.log('watchlistArr.length***********', watchlistArr.length)
+  console.log(showDiv)
 
   const handleSubmit = async (e) => {
+
+    if (!watchlistArr.length) {
+      setShowDiv(true)
+    }
+
     e.preventDefault();
     setHasSubmitted(true);
 
@@ -40,32 +48,42 @@ const AddToWatchlistForm = ({ setShowModal, symbol }) => {
     }
   }
 
+  if (watchlistArr?.length) {
+    return (
+      <div className='watchlist-add-to-container'>
 
-  return (
-    <>
-      <form onSubmit={handleSubmit} >
-        {watchlistArr.map((item) => {
-          <div></div>
-          return (
-            <div key={item.id} >
-              <input type="radio" name="align"
-                disabled={stockInWL(item, symbol)? true : false}
-                onChange={() => setWatchlistId(item.id)}
-                value={item.id} />
-              <div>{item.name}</div>
-            </div>
-          )
-        })}
+        <form onSubmit={handleSubmit} >
+          {watchlistArr.map((item) => {
 
-        <div className="editedChannel-button">
-          <button className="e-c-button"
-            onClick={handleSubmit}
-            type="submit">Add to watchlist</button>
-        </div>
+            return (
+              <div key={item.id} >
+                <span className='add-to-wl-input'></span><input type="radio" name="align"
+                  disabled={stockInWL(item, symbol) ? true : false}
+                  onChange={() => setWatchlistId(item.id)}
+                  value={item.id} />
+                <span className='add-to-wl-name'>
+                  
+                  {item.name}</span>
 
-      </form>
-    </>
-  );
-};
+              </div>
+            )
+          })}
+
+
+            <button className="add-wl-button"
+              onClick={handleSubmit}
+              type="submit">Choose watchlist</button>
+
+
+
+        </form>
+      </div>
+    );
+  } else {
+    return (
+      <div className='no-watchlist-word'>You haven't create watchlist yet</div>
+    )
+  }
+}
 
 export default AddToWatchlistForm;
