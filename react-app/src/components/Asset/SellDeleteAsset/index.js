@@ -24,7 +24,7 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
     if (quantity <= 0) {
       errors.push("Please input valid numbers")
     }
-    if (quantity > numShares || numShares==undefined ) {
+    if (quantity > numShares || numShares == undefined) {
       errors.push("Sorry you don't have so many shares")
     }
     if (quantity == numShares) {
@@ -50,18 +50,18 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
       deletedAssetPayload.purchased_price = marketPrice
       // console.log('editedAssetPayload!!!!!!!!!!!!', editedAssetPayload)
 
-      let deletedAsset = await dispatch(thunkDeleteOneAsset(deletedAssetPayload))
+      await dispatch(thunkDeleteOneAsset(deletedAssetPayload))
 
-        setHasSubmitted(true);
-        if (deletedAsset) {
-          // dispatch(thunkGetOneAsset(symbol))
-          // dispatch(thunkLoadAllAsset())
-          // setValidationErrors([]);
-          // setErrors([]);
-          window.alert(`Successfully sold ${quantity} shares of ${symbol}`)
-          setIsDelete(false)
-          history.push(`/portfolio`)
-      }
+      setHasSubmitted(true);
+
+      // dispatch(thunkGetOneAsset(symbol))
+      // dispatch(thunkLoadAllAsset())
+      // setValidationErrors([]);
+      // setErrors([]);
+      window.alert(`Successfully sold ${quantity} shares of ${symbol}`)
+      setIsDelete(false)
+      history.push(`/portfolio`)
+
 
     }
   } else {
@@ -75,18 +75,16 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
       editedAssetPayload.purchased_price = marketPrice
       // console.log('editedAssetPayload!!!!!!!!!!!!', editedAssetPayload)
 
-      let editedAsset = await dispatch(thunkSellAsset(editedAssetPayload))
+      await dispatch(thunkSellAsset(editedAssetPayload))
 
-      if (!validationErrors.length) {
-        setHasSubmitted(true);
-        if (editedAsset) {
-          history.push(`/portfolio`)
-          await dispatch(thunkGetOneAsset(symbol))
-          window.alert(`Successfully sold ${quantity} shares of ${symbol}`)
-          setValidationErrors([]);
-          setErrors([]);
-        }
-      }
+      setHasSubmitted(true);
+      window.alert(`Successfully sold ${quantity} shares of ${symbol}`)
+      await dispatch(thunkGetOneAsset(symbol))
+      history.push(`/portfolio`)
+
+      setValidationErrors([]);
+      setErrors([]);
+
     }
   }
 
