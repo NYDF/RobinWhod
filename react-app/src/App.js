@@ -12,6 +12,7 @@ import SingleStock from './components/Market/SingleStock';
 import Splash from './components/SplashPage/Splash';
 import UpdateWatchList from './components/WatchList/UpdateWatchList';
 import GetAllStocks from './components/Market/GetAllStocks';
+import FourOhFourPage from './components/404Page';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -66,6 +67,11 @@ function App() {
 
         <Route path='/' exact={true} >
           <Splash />
+        </Route>
+
+        <Route>
+          {/* <h1>THIS IS A 404</h1> */}
+          <FourOhFourPage />
         </Route>
 
       </Switch>
