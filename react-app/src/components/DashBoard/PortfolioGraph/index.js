@@ -125,7 +125,7 @@ const PortfolioGraph = () => {
               margin: {
                 l: 20,
                 r: 0,
-                b: 0,
+                b: 20,
                 t: 25,
 
               },
@@ -166,7 +166,7 @@ const PortfolioGraph = () => {
               margin: {
                 l: 20,
                 r: 0,
-                b: 0,
+                b: 20,
                 t: 25,
 
               },

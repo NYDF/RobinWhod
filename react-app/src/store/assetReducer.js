@@ -195,7 +195,7 @@ export const thunkDeleteOneAsset = (data) => async dispatch => {
     if (response.ok) {
         const deletedAsset = await response.json();
         let id = deletedAsset.message
-        console.log("here=============", id)
+        // console.log("here=============", id)
         dispatch(deleteOneAsset(id));
         // console.log("here=============", deletedAsset)
         return deletedAsset
@@ -257,8 +257,8 @@ const assetReducer = (state = {}, action) => {
 
         case SOLD_ALL_ASSET:
             let newState = { ...state }
-            console.log('!!!!-------------------action', action)
-            console.log('!!!!-------------------action', newState)
+            // console.log('!!!!-------------------action', action)
+            // console.log('!!!!-------------------action', newState)
             // console.log('here')
             delete newState[action.symbol]
             return newState

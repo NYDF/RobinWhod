@@ -26,8 +26,8 @@ const AddToWatchlistForm = ({ setShowModal, symbol }) => {
     dispatch(thunkLoadAllWatchlist())
   }, [dispatch]);
 
-  console.log('watchlistArr.length***********', watchlistArr.length)
-  console.log(showDiv)
+  // console.log('watchlistArr.length***********', watchlistArr.length)
+  // console.log(showDiv)
 
   const handleSubmit = async (e) => {
 
@@ -62,7 +62,7 @@ const AddToWatchlistForm = ({ setShowModal, symbol }) => {
                   onChange={() => setWatchlistId(item.id)}
                   value={item.id} />
                 <span className='add-to-wl-name'>
-                  
+
                   {item.name}</span>
 
               </div>
