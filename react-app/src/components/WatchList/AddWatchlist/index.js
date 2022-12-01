@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import lightning from '../../../img/lightning.png'
-import { thunkAddWatchlist, thunkLoadAllWatchlist } from '../../../store/watchlistReducer';
+import { thunkAddWatchlist } from '../../../store/watchlistReducer';
 
 import "./AddWatchlist.css"
 

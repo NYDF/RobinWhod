@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -11,7 +11,7 @@ import PortfolioGraph from '../PortfolioGraph';
 import PortfolioNavBar from '../PortfolioNavBar';
 
 import { thunkLoadAllAsset } from '../../../store/assetReducer';
-import { calculatePortfolio } from '../../../utils/helperFunc';
+
 
 import './MainPage.css'
 

@@ -1,13 +1,10 @@
 
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import logo from '../../../img/logo.png'
-import { Modal } from '../../../context/Modal';
 import NavBarAccount from './NavBarAccount';
 import { NavLink } from 'react-router-dom';
 
 import './PortfolioNavBar.css'
-
 
 function PortfolioNavBar({showModal, setShowModal, closetable}) {
 

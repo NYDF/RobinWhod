@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { useHistory } from 'react-router-dom';
 
 import { thunkDeleteOneAsset, thunkSellAsset, thunkGetOneAsset, thunkLoadAllAsset } from '../../../store/assetReducer';
-import { thunkLoadAllWatchlist } from '../../../store/watchlistReducer';
+
 
 import "./SellDeleteAsset.css"
 

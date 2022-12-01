@@ -267,7 +267,6 @@ const assetReducer = (state = {}, action) => {
             // console.log('!!!action', action.asset)
             return { ...state, [action.asset.id]: { ...action.asset } };
 
-
         default:
             return state;
     }
