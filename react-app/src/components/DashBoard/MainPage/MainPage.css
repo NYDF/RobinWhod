@@ -14,22 +14,22 @@
 
 @media screen and (max-width: 2200px) and (min-width: 1901px){
     .Main-page-container {
-        padding-left: 12%;
-        padding-right: 12%;
+        padding-left: 18%;
+        padding-right: 18%;
     }
 
 }
 
 @media screen and (max-width: 1900px) and (min-width: 1601px){
     .Main-page-container {
-        padding-left: 3%;
-        padding-right: 3%;
+        padding-left: 8%;
+        padding-right: 8%;
     }
 }
 
 @media screen and (max-width: 1600px) {
     .Main-page-container {
-        padding-left: 0;
-        padding-right: 0;
+        padding-left: 3%;
+        padding-right: 3%;
     }
 }
