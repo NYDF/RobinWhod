@@ -1,6 +1,7 @@
 .watchlist-title-icon-container{
     display: flex;
     justify-content:space-between;
+    padding-bottom: 3%;
 }
 
 .Expand-watchlist-button{

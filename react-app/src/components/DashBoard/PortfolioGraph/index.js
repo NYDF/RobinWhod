@@ -142,6 +142,7 @@ const PortfolioGraph = () => {
                 values: quantityValues,
                 labels: chartYValues,
                 type: "pie",
+                hole: .3,
                 textinfo: "label+percent",
                 marker: {
                   colors: ultimateColors[1]

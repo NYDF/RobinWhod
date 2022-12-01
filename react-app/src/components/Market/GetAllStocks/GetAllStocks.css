@@ -1,0 +1,32 @@
+.all-stock-container{
+    padding-left: 23%;
+    padding-right: 23%;
+}
+
+.all-stock-title{
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 3%;
+}
+
+.all-stock-name {
+    height: 40px;
+    width: 100px;
+    padding:4%;
+    font-size: 22px;
+    font-weight: 500;
+    border: 1px solid rgb(0,200,5);
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+.all-stock-div-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 10%;
+    padding-left: 10%;
+    padding-top: 3%;
+}
+
+

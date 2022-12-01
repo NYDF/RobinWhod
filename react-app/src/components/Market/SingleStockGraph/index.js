@@ -40,29 +40,6 @@ const SingleStockGraph = ({ marketPrice, setMarketPrice }) => {
   const [priceDifference, setPriceDifference] = useState();
   const [percentDifference, setPercentDifference] = useState();
 
-
-  // console.log('symbol', symbol)
-  // console.log(typeof symbol)
-
-  // useEffect(() => {
-  //   const x = [];
-  //   const y = [];
-
-  //   fetchAlphavantageData(symbol).then((
-  //     function (data) {
-  //       // console.log('data------------------', data);
-
-  //       for (let key in data['Time Series (Daily)']) {
-  //         x.push(key);
-  //         y.push(data['Time Series (Daily)'][key]['1. open']);
-  //       }
-
-  //       setStockChartXValues(x);
-  //       setStockChartYValues(y);
-  //     }
-  //   )).catch(e => { alert(e) })
-  // }, [])
-
   useEffect(() => {
 
     fetchCompanyData(symbol).then((
@@ -117,7 +94,7 @@ const SingleStockGraph = ({ marketPrice, setMarketPrice }) => {
             y: stockChartYValues,
             // type: 'scatter',
             mode: 'lines',
-            marker: { color: 'green' },
+            marker: { color: '#C3F53C' },
           }
         ]}
         layout={{

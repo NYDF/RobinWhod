@@ -11,6 +11,7 @@ import MainPage from './components/DashBoard/MainPage';
 import SingleStock from './components/Market/SingleStock';
 import Splash from './components/SplashPage/Splash';
 import UpdateWatchList from './components/WatchList/UpdateWatchList';
+import GetAllStocks from './components/Market/GetAllStocks';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,6 +34,10 @@ function App() {
       <Switch>
         <Route path='/stocks/:symbol' exact={true}>
           <SingleStock />
+        </Route>
+
+        <Route path='/stocks' exact={true}>
+          <GetAllStocks />
         </Route>
 
         <Route path='/watchlist/:watchlistId/edit' exact={true}>

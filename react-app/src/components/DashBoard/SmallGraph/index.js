@@ -53,7 +53,7 @@ const SmallGraph = ({ symbol }) => {
               x: stockChartXValues,
               y: stockChartYValues,
               mode: 'lines',
-              marker: { color: 'green' },
+              marker: { color: '#C3F53C' },
             }
           ]}
           config={{

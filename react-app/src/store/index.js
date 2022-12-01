@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import watchlistReducer from './watchlistReducer'
 import assetReducer from './assetReducer';
+import stockReducer from './stockReducer';
 
 const rootReducer = combineReducers({
   session,
   watchlistReducer,
-  assetReducer
+  assetReducer,
+  stockReducer
 });
 
 
