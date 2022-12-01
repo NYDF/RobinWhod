@@ -5,12 +5,23 @@ import watchlistReducer from './watchlistReducer'
 import assetReducer from './assetReducer';
 import stockReducer from './stockReducer';
 
-const rootReducer = combineReducers({
+
+const appReducer = combineReducers({
   session,
   watchlistReducer,
   assetReducer,
   stockReducer
-});
+})
+
+const rootReducer = (state, action) => {
+  if (action.type === 'session/REMOVE_USER') {
+    return appReducer(undefined, action)
+  }
+
+  return appReducer(state, action)
+}
+
+
 
 
 let enhancer;
