@@ -49,3 +49,21 @@ export async function getEachStockCurrentPrice(portfolio) {
 	}
 	return portfolioArr;
 }
+
+
+
+export function symbolInWl(arr, symbol){
+    let resultArr = []
+    for(let i=0; i<arr.length; i++){
+        resultArr = resultArr.concat(arr[i].item_in_list)
+    }
+    let sum = 0
+    for(let j=0; j<resultArr.length; j++){
+
+        if(resultArr[j].symbol == symbol){
+            sum+=1
+        }
+    }
+
+    return sum
+}

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { thunkAddToWatchlist, thunkLoadAllWatchlist } from '../../../store/watchlistReducer';
-import { stockInWL } from '../../../utils/helperFunc';
+import { stockInWL, symbolInWl } from '../../../utils/helperFunc';
 
+import bulbimg from '../../../img/bulb.png'
 import "./AddToWatchlist.css"
 
 
@@ -48,7 +49,36 @@ const AddToWatchlistForm = ({ setShowModal, symbol }) => {
     }
   }
 
-  if (watchlistArr?.length) {
+  if (watchlistArr?.length && symbolInWl(watchlistArr, symbol) == watchlistArr.length) {
+    return (
+      <div className='watchlist-add-to-container'>
+        
+        <form onSubmit={handleSubmit} >
+          {watchlistArr.map((item) => {
+
+            return (
+              <div key={item.id} >
+                <span className='add-to-wl-input'></span><input type="radio" name="align"
+                  disabled={stockInWL(item, symbol) ? true : false}
+                  onChange={() => setWatchlistId(item.id)}
+                  value={item.id} />
+                <span className='add-to-wl-name'>
+                  <img id='bulb-img' src={bulbimg} />
+                  {item.name}</span>
+
+              </div>
+            )
+          })}
+
+          <button className="add-wl-button-disabled"
+            onClick={handleSubmit}
+            disabled
+            type="submit">Choose watchlist</button>
+
+        </form>
+      </div>
+    );
+  } else if (watchlistArr?.length && symbolInWl(watchlistArr, symbol) !== watchlistArr.length) {
     return (
       <div className='watchlist-add-to-container'>
 
@@ -62,24 +92,23 @@ const AddToWatchlistForm = ({ setShowModal, symbol }) => {
                   onChange={() => setWatchlistId(item.id)}
                   value={item.id} />
                 <span className='add-to-wl-name'>
-
+                  <img id='bulb-img' src={bulbimg} />
                   {item.name}</span>
 
               </div>
             )
           })}
 
-
-            <button className="add-wl-button"
-              onClick={handleSubmit}
-              type="submit">Choose watchlist</button>
-
-
+          <button className="add-wl-button"
+            onClick={handleSubmit}
+            type="submit">Choose watchlist</button>
 
         </form>
       </div>
-    );
-  } else {
+    )
+  }
+
+  else {
     return (
       <div className='no-watchlist-word'>You haven't create watchlist yet</div>
     )

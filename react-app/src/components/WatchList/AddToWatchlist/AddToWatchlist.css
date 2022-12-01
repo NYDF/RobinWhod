@@ -32,19 +32,43 @@
 .watchlist-add-to-container{
 
   padding-top: 4%;
-  padding-left: 30%;
+  padding-left: 100px;
 }
 
 .add-wl-button{
-  margin-top: 4%;
+  margin-top: 5%;
   width: 160px;
-  height: 30px;
+  height: 35px;
   border: 1px solid rgb(255,84,4);
   border-radius: 20px;
   background-color: white;
   cursor: pointer;
+  color: rgb(255,84,4);
+  font-weight: 500;
+}
+
+.add-wl-button-disabled{
+  margin-top: 5%;
+  width: 160px;
+  height: 35px;
+  border: 1px solid rgb(255,84,4);
+  border-radius: 20px;
+  background-color: white;
+  color: rgb(255,84,4);
+  font-weight: 500;
+  cursor: not-allowed;
+  pointer-events: all !important;
 }
 
 .add-to-wl-name{
-  padding-left: 44%;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+#bulb-img{
+  height:18px;
+  margin-right: 3%;
+  margin-left: 3%;
+  border: 1px solid lightgray;
+  width: 18px;
 }
