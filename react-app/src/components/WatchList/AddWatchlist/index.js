@@ -53,6 +53,8 @@ const AddWatchlist = () => {
 
         setValidationErrors([]);
         setErrors([]);
+        setName('')
+        setHasSubmitted(false);
       }
     }
   }
