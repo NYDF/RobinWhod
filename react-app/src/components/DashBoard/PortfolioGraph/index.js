@@ -6,6 +6,7 @@ import Plot from 'react-plotly.js';
 import { thunkLoadCash, thunkLoadAllAsset } from '../../../store/assetReducer';
 import "./PortfolioGraph.css"
 import { getEachStockCurrentPrice } from '../../../utils/helperFunc';
+import CompanyNewsMol from '../../Market/CompanyNewsMol';
 
 
 async function fetchYahooData(symbol) {
@@ -35,7 +36,7 @@ const PortfolioGraph = () => {
   const cash = allAssetArr?.filter(x => x.symbol == '$')[0]?.quantity.toFixed(2)
   const ownedStock = allAssetArr?.filter(x => x.symbol !== '$')[0]?.quantity.toFixed(2)
 
-  console.log('+++++++++++++++++++++++',ownedStock)
+  console.log('+++++++++++++++++++++++', ownedStock)
 
   useEffect(() => {
     dispatch(thunkLoadCash())
@@ -92,185 +93,192 @@ const PortfolioGraph = () => {
     return null
   }
 
-  if(!ownedStock){return(
-<div className='main-page-left-container'>
-      <div className='main-page-number'>Portfolio:  $ {totalAssetCash}</div>
-      <div className='main-page-number'>BuyingPower:  $ {cash}
-        <hr></hr>
-      </div>
-      <div className='main-page-only-cash-word'>You haven't buy any stocks yet</div>
-      <div className='pei-chart-container'>
-        <span className='pie-chart-2'>
-          <Plot
-            data={[
-              {
-                values: [cash],
-                labels: 'cash',
-                type: "pie",
-                textinfo: "label+percent",
-              }
-            ]}
-            config={{
-              displayModeBar: false,
-            }}
-            layout={{
-              title: "Portfolio Propotion",
-              width: 320, height: 400,
-              autosize: false,
-              "xaxis": {
-                "visible": false,
-                fixedrange: true
-              },
-              "yaxis": {
-                "visible": false,
-                fixedrange: true
-              },
-              margin: {
-                l: 20,
-                r: 0,
-                b: 20,
-                t: 25,
-
-              },
-              showlegend: false
-            }}
-          />
-        </span>
-
-        <span className='pie-chart-2'>
-          <Plot
-
-            data={[
-              {
-                values: [cash],
-                labels: 'cash',
-                type: "pie",
-                hole: .3,
-                textinfo: "label+percent",
-                marker: {
-                  colors: ultimateColors[1]
+  if (!ownedStock) {
+    return (
+      <div className='main-page-left-container'>
+        <div className='main-page-number'>Portfolio:  $ {totalAssetCash}</div>
+        <div className='main-page-number'>BuyingPower:  $ {cash}
+          <hr></hr>
+        </div>
+        <div className='main-page-only-cash-word'>You haven't buy any stocks yet</div>
+        <div className='pei-chart-container'>
+          <span className='pie-chart-2'>
+            <Plot
+              data={[
+                {
+                  values: [cash],
+                  labels: 'cash',
+                  type: "pie",
+                  textinfo: "label+percent",
+                }
+              ]}
+              config={{
+                displayModeBar: false,
+              }}
+              layout={{
+                title: "Portfolio Propotion",
+                width: 320, height: 400,
+                autosize: false,
+                "xaxis": {
+                  "visible": false,
+                  fixedrange: true
                 },
-              }
-            ]}
-            config={{
-              displayModeBar: false,
-            }}
-            layout={{
-              title: "Quantity Propotion",
-              width: 320, height: 400,
-              autosize: false,
-              "xaxis": {
-                "visible": false,
-                fixedrange: true
-              },
-              "yaxis": {
-                "visible": false,
-                fixedrange: true
-              },
-              margin: {
-                l: 20,
-                r: 0,
-                b: 20,
-                t: 25,
-
-              },
-              showlegend: false
-            }} />
-        </span>
-      </div>
-
-    </div>
-  )}
-
-  else {return (
-    <div className='main-page-left-container'>
-      <div className='main-page-number'>Portfolio:  $ {totalAssetCash}</div>
-      <div className='main-page-number'>BuyingPower:  $ {cash}
-        <hr></hr>
-      </div>
-
-      <div className='pei-chart-container'>
-        <span className='pie-chart-2'>
-          <Plot
-            data={[
-              {
-                values: chartXValues,
-                labels: chartYValues,
-                type: "pie",
-                textinfo: "label+percent",
-              }
-            ]}
-            config={{
-              displayModeBar: false,
-            }}
-            layout={{
-              title: "Portfolio Propotion",
-              width: 320, height: 400,
-              autosize: false,
-              "xaxis": {
-                "visible": false,
-                fixedrange: true
-              },
-              "yaxis": {
-                "visible": false,
-                fixedrange: true
-              },
-              margin: {
-                l: 20,
-                r: 0,
-                b: 20,
-                t: 25,
-
-              },
-              showlegend: false
-            }}
-          />
-        </span>
-
-        <span className='pie-chart-2'>
-          <Plot
-
-            data={[
-              {
-                values: quantityValues,
-                labels: chartYValues,
-                type: "pie",
-                hole: .3,
-                textinfo: "label+percent",
-                marker: {
-                  colors: ultimateColors[1]
+                "yaxis": {
+                  "visible": false,
+                  fixedrange: true
                 },
-              }
-            ]}
-            config={{
-              displayModeBar: false,
-            }}
-            layout={{
-              title: "Quantity Propotion",
-              width: 320, height: 400,
-              autosize: false,
-              "xaxis": {
-                "visible": false,
-                fixedrange: true
-              },
-              "yaxis": {
-                "visible": false,
-                fixedrange: true
-              },
-              margin: {
-                l: 20,
-                r: 0,
-                b: 20,
-                t: 25,
+                margin: {
+                  l: 20,
+                  r: 0,
+                  b: 20,
+                  t: 25,
 
-              },
-              showlegend: false
-            }} />
-        </span>
+                },
+                showlegend: false
+              }}
+            />
+          </span>
+
+          <span className='pie-chart-2'>
+            <Plot
+
+              data={[
+                {
+                  values: [cash],
+                  labels: 'cash',
+                  type: "pie",
+                  hole: .3,
+                  textinfo: "label+percent",
+                  marker: {
+                    colors: ultimateColors[1]
+                  },
+                }
+              ]}
+              config={{
+                displayModeBar: false,
+              }}
+              layout={{
+                title: "Quantity Propotion",
+                width: 320, height: 400,
+                autosize: false,
+                "xaxis": {
+                  "visible": false,
+                  fixedrange: true
+                },
+                "yaxis": {
+                  "visible": false,
+                  fixedrange: true
+                },
+                margin: {
+                  l: 20,
+                  r: 0,
+                  b: 20,
+                  t: 25,
+
+                },
+                showlegend: false
+              }} />
+          </span>
+        </div>
+        <br></br>
+        <CompanyNewsMol symbol={'aapl'} />
       </div>
+    )
+  }
 
-    </div>
-  );}
+  else {
+    return (
+      <div className='main-page-left-container'>
+        <div className='main-page-number'>Portfolio:  $ {totalAssetCash}</div>
+        <div className='main-page-number'>BuyingPower:  $ {cash}
+          <hr></hr>
+        </div>
+
+        <div className='pei-chart-container'>
+          <span className='pie-chart-2'>
+            <Plot
+              data={[
+                {
+                  values: chartXValues,
+                  labels: chartYValues,
+                  type: "pie",
+                  textinfo: "label+percent",
+                }
+              ]}
+              config={{
+                displayModeBar: false,
+              }}
+              layout={{
+                title: "Portfolio Propotion",
+                width: 320, height: 400,
+                autosize: false,
+                "xaxis": {
+                  "visible": false,
+                  fixedrange: true
+                },
+                "yaxis": {
+                  "visible": false,
+                  fixedrange: true
+                },
+                margin: {
+                  l: 20,
+                  r: 0,
+                  b: 20,
+                  t: 25,
+
+                },
+                showlegend: false
+              }}
+            />
+          </span>
+
+          <span className='pie-chart-2'>
+            <Plot
+
+              data={[
+                {
+                  values: quantityValues,
+                  labels: chartYValues,
+                  type: "pie",
+                  hole: .3,
+                  textinfo: "label+percent",
+                  marker: {
+                    colors: ultimateColors[1]
+                  },
+                }
+              ]}
+              config={{
+                displayModeBar: false,
+              }}
+              layout={{
+                title: "Quantity Propotion",
+                width: 320, height: 400,
+                autosize: false,
+                "xaxis": {
+                  "visible": false,
+                  fixedrange: true
+                },
+                "yaxis": {
+                  "visible": false,
+                  fixedrange: true
+                },
+                margin: {
+                  l: 20,
+                  r: 0,
+                  b: 20,
+                  t: 25,
+
+                },
+                showlegend: false
+              }} />
+          </span>
+        </div>
+        <br></br>
+        <CompanyNewsMol symbol={'aapl'} />
+
+      </div>
+    );
+  }
 };
 
 export default PortfolioGraph;

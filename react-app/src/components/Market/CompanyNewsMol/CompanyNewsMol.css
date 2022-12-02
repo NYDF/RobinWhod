@@ -1,0 +1,39 @@
+.company-news-container{
+
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-between;
+    gap:70px;
+    text-decoration: none;
+    padding: 2%;
+    border-bottom: 1px solid lightgray;
+}
+
+.company-news-image{
+    width: 150px;
+
+}
+
+.news-title{
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-decoration: none;
+    color:black
+}
+
+.news-headline{
+    color:darkgray
+}
+
+.Company-News-top-title{
+    padding-top: 2.5%;
+    padding-bottom: 2%;
+    font-size: 30px;
+    font-weight: 400;
+    border-bottom: 1px solid lightgray;
+}
+
+.space{
+    height:30px
+}

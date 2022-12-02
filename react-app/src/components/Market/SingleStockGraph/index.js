@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import Plot from 'react-plotly.js';
 
 import "./SingleStockGraph.css"
+import CompanyNewsMol from '../CompanyNewsMol';
 
 // async function fetchAlphavantageData(symbol) {
 //   const response = await fetch(
@@ -132,6 +133,8 @@ const SingleStockGraph = ({ marketPrice, setMarketPrice }) => {
           <div className='single-stock-stat-down'>{yearlow}</div>
         </div>
       </div>
+
+      <CompanyNewsMol symbol={symbol}/>
     </div>
   )
 
