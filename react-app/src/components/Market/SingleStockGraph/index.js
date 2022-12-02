@@ -99,7 +99,7 @@ const SingleStockGraph = ({ marketPrice, setMarketPrice }) => {
           }
         ]}
         layout={{
-          width: 800, height: 400,
+          width: 800, height: 325,
           margin: {
             l: 0,
             r: 0,
