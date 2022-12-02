@@ -9,7 +9,9 @@
 .Main-page-right{
     border: 2px solid lightgray;
     width: 339px;;
-    height: 90%;
+    /* min-height: 50%; */
+    height: fit-content;
+    padding-bottom: 10px;
 }
 
 @media screen and (max-width: 2200px) and (min-width: 1901px){

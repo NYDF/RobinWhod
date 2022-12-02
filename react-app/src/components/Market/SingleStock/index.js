@@ -39,13 +39,13 @@ function SingleStock() {
           <div className='Single-Stock-page-right'>
 
             <span>
-              <button className='s-buy-btn' onClick={(e) => setIsBuy(true)}>Buy {symbol}
+              <button className={isBuy? 's-buy-btn' : 's-buy-btn-d'} onClick={(e) => setIsBuy(true)}>Buy {symbol}
               <AiOutlineDownCircle className='DownCircle'/>
               </button>
             </span>
 
             <span>
-              <button className='s-sell-btn' onClick={(e) => setIsBuy(false)}>
+              <button className={isBuy? 's-sell-btn-d' : 's-sell-btn'} onClick={(e) => setIsBuy(false)}>
               <AiOutlineDownCircle className='DownCircle' />
               Sell {symbol}
               </button>

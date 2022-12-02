@@ -19,7 +19,7 @@ const LoadCash = ({ marketPrice }) => {
   let currentCash = useSelector(state => state.assetReducer)
   let allAssetArr = Object.values(currentCash)
   const cash = allAssetArr?.filter(x => x.symbol == '$')[0]?.quantity.toFixed(2)
-  console.log('cash!!!!!!!!!!!!!!', cash)
+  // console.log('cash!!!!!!!!!!!!!!', cash)
   let currentAsset = useSelector(state => state.assetReducer)
 
   let currentAssetValue = Object.values(currentAsset).filter(x => x.symbol == symbol)[0]

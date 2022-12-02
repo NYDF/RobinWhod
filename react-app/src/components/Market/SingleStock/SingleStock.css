@@ -20,9 +20,35 @@
     font-weight: 600;
     cursor: pointer;
     margin-right: 2%;
+    padding-bottom: 5px;
+    background-color: rgba(0,200,5,0.2);
+    border-radius: 10px;
 }
 
 .s-sell-btn{
+    background-color: white;
+    border:none;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 2%;
+    margin-left: 80px;
+    padding-bottom: 5px;
+    background-color: rgba(0,200,5,0.2);
+    border-radius: 10px;
+}
+
+.s-buy-btn-d{
+    background-color: white;
+    border:none;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 2%;
+
+}
+
+.s-sell-btn-d{
     background-color: white;
     border:none;
     font-size: 20px;

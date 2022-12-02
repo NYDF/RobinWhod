@@ -30,9 +30,9 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
     setValidationErrors(errors);
   }, [quantity])
 
-  console.log(quantity)
-  console.log(validationErrors)
-  console.log(buyingPower)
+  // console.log(quantity)
+  // console.log(validationErrors)
+  // console.log(buyingPower)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
