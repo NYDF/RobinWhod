@@ -15,18 +15,18 @@ function SplashNavBar() {
 
     <div className='Splash-nav-container'>
       <div className='Splash-nav-left'>
-      <span className='Splash-nav-title'>RobinWhod</span>
-      <img id='logo' src={logo} />
-      <span className='About-link'>Link to Developer'
-      <a href=" https://www.linkedin.com/in/dongfang-song-25261218a/"><img id='linkedin' src={linkedin} /></a>
-      <a href=" https://github.com/NYDF"><img id='github' src={github} /></a>
+        <span className='Splash-nav-title'>RobinWhod</span>
+        <img id='logo' src={logo} />
+        <span className='About-link'>Link to Developer'
+          <a href=" https://www.linkedin.com/in/dongfang-song-25261218a/"><img id='linkedin' src={linkedin} /></a>
+          <a href=" https://github.com/NYDF"><img id='github' src={github} /></a>
 
-      </span>
+        </span>
       </div>
 
       <div className='Splash-nav-right'>
-      <NavLink className='splash-nav-signup-button' to={`/sign-up`}>Sign up</NavLink>
-      <NavLink className='splash-nav-login-button' to={`/login`}>Log in</NavLink>
+        <NavLink className='splash-nav-signup-button' to={`/sign-up`}>Sign up</NavLink>
+        <NavLink className='splash-nav-login-button' to={`/login`}>Log in</NavLink>
 
       </div>
 
