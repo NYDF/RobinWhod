@@ -5,6 +5,7 @@
     margin-top: 0.5%;
     margin-left: 2.5%;
     margin-right: 2.5%;
+    height: 66px
 }
 
 #logo-P {
@@ -32,7 +33,8 @@
 
 .Splash-nav-left {
     width: 80%;
-
+    display: flex;
+    flex-direction: row;
 }
 
 .Splash-nav-right {
@@ -54,19 +56,7 @@
     font-weight: 500;
 }
 
-/* .splash-nav-signup-button {
-    background-color: black;
-    color: white;
-    font-size: 20px;
-    margin-right: 5%;
-    float: right;
-    text-align: center;
-    border-radius: 20px;
-    cursor: pointer;
-    width: 120px;
-    height: 40px;
 
-} */
 
 
 #show-acc-btn {
@@ -128,4 +118,17 @@
 .logout-button{
     height: 100%;
     cursor: pointer;
+}
+
+.About-link-port{
+    padding-left: 55px;
+    font-size: 20px;
+    font-weight: 500;
+    width: 270px;
+    gap:5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
 }
