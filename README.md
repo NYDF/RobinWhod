@@ -1,148 +1,64 @@
-# Flask React Project
+# Welcome to Eriscord!
 
-This is the starter for the Flask React project.
+RobinWhod is a website clone of Robinhood, a stock trading website, where users are able to manage their portfolios of stocks and track the performance of various stocks on the market overtime.
 
-## Getting started
-1. Clone this repository (only this branch)
+## Live chat
+https://aa-robinwhod.onrender.com/
 
-2. Install dependencies
+## Languages, Frameworks, Platforms and Libraries
+### Languages
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+### Backend
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-100000?style=for-the-badge&logo=sql&logoColor=BA1212&labelColor=AD0000&color=A90000) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
+### Frontend
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+### Hosting
+![Render](https://img.shields.io/badge/Render-12100E?style=for-the-badge&logo=Render)
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
+## Wiki Link
+-[API Documentation](https://github.com/NYDF/RobinWhod/wiki/API-Documentation)
+-[Database Schema](https://github.com/NYDF/RobinWhod/wiki/Database-Schema)
+-[Feature List](https://github.com/NYDF/RobinWhod/wiki/Feature-List)
+-[Redux Store Shape](https://github.com/NYDF/RobinWhod/wiki/Redux-Store-Shape)
+-[User Stories](https://github.com/NYDF/RobinWhod/wiki/User-Stories)
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+## Major Features
+### Home page
 
 
-## Deployment through Render.com
+#### Login by clicking on the 'Login' button located on the top. Signup by clicking on the 'Singup' button located on the top. You can also sign up by following the Login button then clicking the 'Create an account' link located near the bottom of the form.
+### Login and Signup
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+#### After logging in or signing up, you will be at your portfolio page where you can manage your portfolios of stocks and track the performance of your porfolio. You can create and edit your watchlist. And you can track the performance of stocks in your watchlist on the market overtime.
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+### Main page
+#### Your portfolio value and buyingpower are showing here.
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
 
-### Part A: Configure the Start and Build Commands
+#### Watchlist
 
-Start by giving your application a name.
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+### Watchlist  Create , Edit, Delete
+#### By click portfolio page right side bar ... icon , you can open a edit watchlist page and edit where you can choose to edit and delete watchlist.
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+### Stock trend, buy stock, sell stock.
 
-Now, add your start command in the Start field:
+### Asset  Create, Edit, Delete
+#### By click buy or sell button and provide shares, you can buy or sell a stock as your asset. If you choose to sell all of stock shares, this stock will remove from you asset.
 
-```shell
-# start script
-gunicorn app:app
-```
 
-_If you are using websockets, use the following start command instead for increased performance:_
 
-`gunicorn --worker-class eventlet -w 1 app:app`
-
-### Part B: Add the Environment Variables
-
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
-
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from Internal Database URL field)
-
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
-
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
-
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/# RobinWhod
+ ## Features in Progress
+* Remove a stock from your watchlist
+* Add funds and remove funds from your account
+* create and Keep transaction records for each transaction
+* Search
+***
