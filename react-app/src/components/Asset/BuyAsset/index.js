@@ -20,7 +20,7 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
 
   useEffect(() => {
     const errors = [];
-    if (quantity <= 0) {
+    if (!(quantity > 0)) {
       errors.push("Please input valid numbers")
     }
     if (quantity * marketPrice > buyingPower) {
@@ -29,8 +29,8 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
     setValidationErrors(errors);
   }, [quantity])
 
-  // console.log(quantity)
-  // console.log(validationErrors)
+  // console.log('----------------------------',typeof Number(quantity))
+  console.log(validationErrors)
   // console.log(buyingPower)
 
   const handleSubmit = async (e) => {

@@ -19,7 +19,7 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
 
   useEffect(() => {
     const errors = [];
-    if (quantity <= 0) {
+    if (!(quantity > 0)) {
       errors.push("Please input valid numbers")
     }
     if (quantity * marketPrice > buyingPower) {
