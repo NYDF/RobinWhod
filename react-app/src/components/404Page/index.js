@@ -1,9 +1,8 @@
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import React from "react";
 import "./PageNotFound.css"
 
 function FourOhFourPage (){
-    const history= useHistory()
     return (
         <div className="pageNotFound">
             <Redirect to={"/login"}></Redirect>

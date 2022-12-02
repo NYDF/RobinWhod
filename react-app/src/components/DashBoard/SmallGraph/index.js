@@ -35,7 +35,7 @@ const SmallGraph = ({ symbol }) => {
       }
     ))
     // if(fetchYahooData(symbol)){return () => fetchYahooData?.abort()}
-    // return () => fetchYahooData?.abort()
+    // return fetchYahooData(symbol)
 
   }, [dispatch])
 

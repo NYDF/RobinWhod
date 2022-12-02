@@ -24,14 +24,14 @@ const CompanyNewsMol = ({ symbol }) => {
       }
     };
 
-    getComapanyNews();
+    // return getComapanyNews();
   }, [symbol]);
 
   return (
     <>
-    <div className='Company-News-top-title'>News</div>
-      {allNews?.slice(0,6).map((news) => (
-        <a href={news.url} target="_blank">
+      <div className='Company-News-top-title'>News</div>
+      {allNews?.slice(0, 6).map((news) => (
+        <a href={news.url} key={news.headline} target="_blank">
           <div className="company-news-container">
 
             <div className="company-news-right">
@@ -46,7 +46,7 @@ const CompanyNewsMol = ({ symbol }) => {
           </div>
         </a>
       ))}
-        <div className='space'></div>
+      <div className='space'></div>
     </>
   );
 };

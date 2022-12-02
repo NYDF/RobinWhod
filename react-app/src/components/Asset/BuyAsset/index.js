@@ -14,7 +14,6 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
 
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [validationErrors, setValidationErrors] = useState([]);
-  const [errors, setErrors] = useState([]);
   const history = useHistory();
   const { symbol } = useParams();
 
