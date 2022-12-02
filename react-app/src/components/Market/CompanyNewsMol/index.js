@@ -24,13 +24,15 @@ const CompanyNewsMol = ({ symbol }) => {
       }
     };
 
-    // return getComapanyNews();
+     getComapanyNews();
   }, [symbol]);
+
+
 
   return (
     <>
       <div className='Company-News-top-title'>News</div>
-      {allNews?.slice(0, 6).map((news) => (
+      {allNews?.slice(0, 5).map((news) => (
         <a href={news.url} key={news.headline} target="_blank">
           <div className="company-news-container">
 
