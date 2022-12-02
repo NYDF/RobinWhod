@@ -1,6 +1,8 @@
 
 import React from 'react';
 import logo from '../../../img/logo.png'
+import linkedin from '../../../img/linkedin.png'
+import github from '../../../img/github.png'
 import { NavLink } from 'react-router-dom';
 
 
@@ -15,7 +17,10 @@ function SplashNavBar() {
       <div className='Splash-nav-left'>
       <span className='Splash-nav-title'>RobinWhod</span>
       <img id='logo' src={logo} />
-
+      <span className='About-link'>Link to Developer'
+      <img id='linkedin' src={linkedin} />
+      <img id='github' src={github} />
+      </span>
       </div>
 
       <div className='Splash-nav-right'>

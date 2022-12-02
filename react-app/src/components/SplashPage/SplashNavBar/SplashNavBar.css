@@ -1,66 +1,85 @@
-.Splash-nav-container{
+.Splash-nav-container {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     margin-bottom: 0.5%;
 }
 
-#logo{
-    width:30px;
+#logo {
+    width: 30px;
     height: 30px;
 }
 
-.Splash-nav-title{
+.Splash-nav-title {
     font-size: 28px;
     font-weight: 500;
     text-align: center;
 }
 
-.Splash-nav-word-1{
+.Splash-nav-word-1 {
     font-size: 20px;
     margin-left: 2.5%;
 
 }
 
-.Splash-nav-word{
+.Splash-nav-word {
     font-size: 20px;
     margin-left: 2.5%;
 
 }
 
-.Splash-nav-left{
-    width:80%;
+.Splash-nav-left {
+    width: 80%;
 
 }
 
-.Splash-nav-right{
+.Splash-nav-right {
     width: 20%;
     margin-right: 0;
 }
 
-.splash-nav-login-button{
+.splash-nav-login-button {
     background-color: white;
     font-size: 20px;
     margin-right: 8%;
     float: right;
     border-radius: 20px;
     cursor: pointer;
-    text-align:center;
-    width:120px;
-    height:40px;
+    text-align: center;
+    width: 120px;
+    height: 40px;
     border: 1px solid black;
     font-weight: 500;
 }
 
-.splash-nav-signup-button{
+.splash-nav-signup-button {
     background-color: black;
-    color:white;
+    color: white;
     font-size: 20px;
     margin-right: 5%;
     float: right;
-text-align:center;
+    text-align: center;
     border-radius: 20px;
     cursor: pointer;
-    width:120px;
-    height:40px;
+    width: 120px;
+    height: 40px;
 
+}
+
+.About-link{
+    font-size: 24px;
+    font-weight: 500;
+    padding-bottom: 1%;
+    margin-left: 5%;
+}
+
+#linkedin{
+    height:25px;
+    padding-left: 1%;
+    margin-bottom: -0.2%;
+}
+
+#github{
+    height:25px;
+    padding-left: 0.5%;
+    margin-bottom: -0.2%;
 }

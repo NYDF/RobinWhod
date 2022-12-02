@@ -33,6 +33,9 @@ const PortfolioGraph = () => {
   let allAsset = useSelector(state => state.assetReducer)
   let allAssetArr = Object.values(allAsset)
   const cash = allAssetArr?.filter(x => x.symbol == '$')[0]?.quantity.toFixed(2)
+  const ownedStock = allAssetArr?.filter(x => x.symbol !== '$')[0]?.quantity.toFixed(2)
+
+  console.log('+++++++++++++++++++++++',ownedStock)
 
   useEffect(() => {
     dispatch(thunkLoadCash())
@@ -79,7 +82,7 @@ const PortfolioGraph = () => {
     )
   }, [dispatch]);
 
-  // console.log('stockOwned', stockOwned )
+
 
   // console.log('cash!!!!!!!!!!!!!!!', cash)
 
@@ -89,7 +92,97 @@ const PortfolioGraph = () => {
     return null
   }
 
-  return (
+  if(!ownedStock){return(
+<div className='main-page-left-container'>
+      <div className='main-page-number'>Portfolio:  $ {totalAssetCash}</div>
+      <div className='main-page-number'>BuyingPower:  $ {cash}
+        <hr></hr>
+      </div>
+      <div className='main-page-only-cash-word'>You haven't buy any stocks yet</div>
+      <div className='pei-chart-container'>
+        <span className='pie-chart-2'>
+          <Plot
+            data={[
+              {
+                values: [cash],
+                labels: 'cash',
+                type: "pie",
+                textinfo: "label+percent",
+              }
+            ]}
+            config={{
+              displayModeBar: false,
+            }}
+            layout={{
+              title: "Portfolio Propotion",
+              width: 320, height: 400,
+              autosize: false,
+              "xaxis": {
+                "visible": false,
+                fixedrange: true
+              },
+              "yaxis": {
+                "visible": false,
+                fixedrange: true
+              },
+              margin: {
+                l: 20,
+                r: 0,
+                b: 20,
+                t: 25,
+
+              },
+              showlegend: false
+            }}
+          />
+        </span>
+
+        <span className='pie-chart-2'>
+          <Plot
+
+            data={[
+              {
+                values: [cash],
+                labels: 'cash',
+                type: "pie",
+                hole: .3,
+                textinfo: "label+percent",
+                marker: {
+                  colors: ultimateColors[1]
+                },
+              }
+            ]}
+            config={{
+              displayModeBar: false,
+            }}
+            layout={{
+              title: "Quantity Propotion",
+              width: 320, height: 400,
+              autosize: false,
+              "xaxis": {
+                "visible": false,
+                fixedrange: true
+              },
+              "yaxis": {
+                "visible": false,
+                fixedrange: true
+              },
+              margin: {
+                l: 20,
+                r: 0,
+                b: 20,
+                t: 25,
+
+              },
+              showlegend: false
+            }} />
+        </span>
+      </div>
+
+    </div>
+  )}
+
+  else {return (
     <div className='main-page-left-container'>
       <div className='main-page-number'>Portfolio:  $ {totalAssetCash}</div>
       <div className='main-page-number'>BuyingPower:  $ {cash}
@@ -177,7 +270,7 @@ const PortfolioGraph = () => {
       </div>
 
     </div>
-  );
+  );}
 };
 
 export default PortfolioGraph;
