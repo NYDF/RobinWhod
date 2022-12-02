@@ -1,7 +1,9 @@
 .Splash-nav-container {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.5%;
+
+    margin-top: 0.7%;
+    margin-bottom: -0.4%;
 }
 
 #logo {
