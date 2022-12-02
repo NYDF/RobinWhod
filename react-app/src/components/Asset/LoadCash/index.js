@@ -19,13 +19,13 @@ const LoadCash = ({ marketPrice }) => {
   let currentCash = useSelector(state => state.assetReducer)
   let allAssetArr = Object.values(currentCash)
   const cash = allAssetArr?.filter(x => x.symbol == '$')[0]?.quantity.toFixed(2)
-  // console.log('currentCash!!!!!!!!!!!!!!', currentCash)
+  console.log('cash!!!!!!!!!!!!!!', cash)
   let currentAsset = useSelector(state => state.assetReducer)
 
   let currentAssetValue = Object.values(currentAsset).filter(x => x.symbol == symbol)[0]
   // console.log('currentAssetValue!!!!!!!!!!!!!!', currentAssetValue)
 
-  const buyingPower = currentCash?.quantity?.toFixed(2)
+  // const buyingPower = currentCash?.quantity?.toFixed(2)
 
   useEffect(() => {
     dispatch(thunkLoadCash())
@@ -58,11 +58,11 @@ const LoadCash = ({ marketPrice }) => {
 
 
       {(!isNew && <div>
-        <BuyAsset marketPrice={marketPrice} buyingPower={buyingPower} />
+        <BuyAsset marketPrice={marketPrice} buyingPower={cash} />
       </div>)}
 
       {(isNew && <div>
-        <AddAsset marketPrice={marketPrice} buyingPower={buyingPower} />
+        <AddAsset marketPrice={marketPrice} buyingPower={cash} />
       </div>)}
 
       <div className='sell-btn-down'>$ {cash} buying power available</div>

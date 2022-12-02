@@ -48,8 +48,8 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
       setHasSubmitted(true);
       if (createdAsset) {
 
-        setValidationErrors([]);
-        setErrors([]);
+        // setValidationErrors([]);
+        // setErrors([]);
 
         window.alert(`Successfully bought ${quantity} shares of ${symbol}`)
 

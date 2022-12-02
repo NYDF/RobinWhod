@@ -30,6 +30,10 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
     setValidationErrors(errors);
   }, [quantity])
 
+  console.log(quantity)
+  console.log(validationErrors)
+  console.log(buyingPower)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmitted(true);
@@ -50,8 +54,8 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
         dispatch(thunkGetOneAsset(symbol))
         dispatch(thunkLoadAllAsset())
         history.push(`/portfolio`)
-        setValidationErrors([]);
-        setErrors([]);
+        // setValidationErrors([]);
+        // setErrors([]);
       }
     }
   }

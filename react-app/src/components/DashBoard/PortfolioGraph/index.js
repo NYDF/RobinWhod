@@ -36,7 +36,7 @@ const PortfolioGraph = () => {
   const cash = allAssetArr?.filter(x => x.symbol == '$')[0]?.quantity.toFixed(2)
   const ownedStock = allAssetArr?.filter(x => x.symbol !== '$')[0]?.quantity.toFixed(2)
 
-  console.log('+++++++++++++++++++++++', ownedStock)
+  // console.log('+++++++++++++++++++++++', ownedStock)
 
   useEffect(() => {
     dispatch(thunkLoadCash())

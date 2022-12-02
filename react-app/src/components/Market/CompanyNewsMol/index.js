@@ -17,7 +17,7 @@ const CompanyNewsMol = ({ symbol }) => {
     const getComapanyNews = async () => {
       try {
         const companynews = await fetchCompanyNews(symbol);
-        console.log('=====================', companynews)
+        // console.log('=====================', companynews)
         setAllNews(companynews);
       } catch {
         setAllNews([]);

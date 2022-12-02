@@ -37,7 +37,7 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
   let handleSubmit
 
   // console.log('numShares--------------', numShares)
-  // console.log(validationErrors)
+  console.log(validationErrors)
 
   if (!!isDelete) {
     handleSubmit = async (e) => {
@@ -56,8 +56,8 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
       setHasSubmitted(true);
       setIsDelete(false)
 
-      setValidationErrors([]);
-      setErrors([]);
+      // setValidationErrors([]);
+      // setErrors([]);
 
       window.alert(`Successfully sold ${quantity} shares of ${symbol}`)
 
