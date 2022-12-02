@@ -18,8 +18,9 @@ function SplashNavBar() {
       <span className='Splash-nav-title'>RobinWhod</span>
       <img id='logo' src={logo} />
       <span className='About-link'>Link to Developer'
-      <img id='linkedin' src={linkedin} />
-      <img id='github' src={github} />
+      <a href=" https://www.linkedin.com/in/dongfang-song-25261218a/"><img id='linkedin' src={linkedin} /></a>
+      <a href=" https://github.com/NYDF"><img id='github' src={github} /></a>
+
       </span>
       </div>
 
