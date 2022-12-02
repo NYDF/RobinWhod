@@ -8,6 +8,8 @@ import PortfolioNavBar from '../../DashBoard/PortfolioNavBar';
 import AddToWatchlistModal from '../../WatchList/AddToWatchlist';
 import SingleStockGraph from '../SingleStockGraph';
 
+import { AiOutlineDownCircle } from "react-icons/ai";
+
 import './SingleStock.css'
 
 function SingleStock() {
@@ -37,11 +39,16 @@ function SingleStock() {
           <div className='Single-Stock-page-right'>
 
             <span>
-              <button className='buy-sell-btn' onClick={(e) => setIsBuy(true)}>Buy {symbol}</button>
+              <button className='s-buy-btn' onClick={(e) => setIsBuy(true)}>Buy {symbol}
+              <AiOutlineDownCircle className='DownCircle'/>
+              </button>
             </span>
 
             <span>
-              <button className='buy-sell-btn' onClick={(e) => setIsBuy(false)}>Sell {symbol}</button>
+              <button className='s-sell-btn' onClick={(e) => setIsBuy(false)}>
+              <AiOutlineDownCircle className='DownCircle' />
+              Sell {symbol}
+              </button>
             </span>
 
             <hr></hr>
@@ -56,7 +63,7 @@ function SingleStock() {
           </div>
 
           <AddToWatchlistModal />
-          
+
         </div>
 
       </div>

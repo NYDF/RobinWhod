@@ -110,6 +110,7 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
           <span>Shares</span>
           <span><input type="text"
             className="sell-input"
+            placeholder='0'
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           /></span>

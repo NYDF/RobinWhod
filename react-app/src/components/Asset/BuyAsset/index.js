@@ -73,6 +73,7 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
           <span>Shares</span>
           <span>
             <input type="text"
+              placeholder='0'
               className="sell-input"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
