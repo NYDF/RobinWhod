@@ -27,33 +27,45 @@ https://aa-robinwhod.onrender.com/
 
 ## Major Features
 ### Home page
+![HomePageImg](https://user-images.githubusercontent.com/105566877/205316098-963eb5d6-6dd4-41e3-8009-189d96e17966.png)
 
 
 #### Login by clicking on the 'Login' button located on the top. Signup by clicking on the 'Singup' button located on the top. You can also sign up by following the Login button then clicking the 'Create an account' link located near the bottom of the form.
 ### Login and Signup
+![loginpic](https://user-images.githubusercontent.com/105566877/205316122-94a0f496-9855-454c-865a-e0ec8d9e8a0a.png)
+![signuppagepic](https://user-images.githubusercontent.com/105566877/205316133-e3bc2711-0415-472b-932b-a684ffaaf90d.png)
 
 
 #### After logging in or signing up, you will be at your portfolio page where you can manage your portfolios of stocks and track the performance of your porfolio. You can create and edit your watchlist. And you can track the performance of stocks in your watchlist on the market overtime.
 
-### Main page
+### Portfolio page
 #### Your portfolio value and buyingpower are showing here.
+![portfoliopageimg](https://user-images.githubusercontent.com/105566877/205316179-1e2ee44d-83bd-49b1-a589-b9e189555183.png)
 
 
-#### Watchlist
+### Watchlist
+#### By click portfolio page right side bar + icon , you can open a modal and see all the stocks in each watchlist.
+![watchlistaddeditimg](https://user-images.githubusercontent.com/105566877/205316207-8bddd953-2651-4c41-9509-3118ebba49fa.png)
 
 
 
 ### Watchlist  Create , Edit, Delete
 #### By click portfolio page right side bar ... icon , you can open a edit watchlist page and edit where you can choose to edit and delete watchlist.
+![editwatchlistimg](https://user-images.githubusercontent.com/105566877/205316238-0363a6f4-c06d-46d2-9d8a-c905ba896fe9.png)
 
 
 
 
 ### Stock trend, buy stock, sell stock.
+![singlestockimg](https://user-images.githubusercontent.com/105566877/205316438-c13ce323-4f1d-4b94-9075-22a9049d45b8.png)
 
 ### Asset  Create, Edit, Delete
 #### By click buy or sell button and provide shares, you can buy or sell a stock as your asset. If you choose to sell all of stock shares, this stock will remove from you asset.
+![sellimg](https://user-images.githubusercontent.com/105566877/205316455-faf3e119-3441-476e-a0dc-4f03a4163053.png)
+![buyimg](https://user-images.githubusercontent.com/105566877/205316463-afdaaa7b-17c2-4ba1-9c89-747c407d9f5a.png)
 
+### Stock Market
+![browsestocksimg](https://user-images.githubusercontent.com/105566877/205316565-b3a52e93-1fa0-48bd-a759-f5c2818a1195.png)
 
 
  ## Features in Progress
