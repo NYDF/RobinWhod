@@ -1,6 +1,6 @@
 # Welcome to Eriscord!
 
-RobinWhod is  website clone of Robinhood, a stock trading website, where users are able to manage their portfolios of stocks and track the performance of various stocks on the market overtime.
+RobinWhod is a website clone of Robinhood, a stock trading website, where users are able to manage their portfolios of stocks and track the performance of various stocks on the market overtime.
 
 ## Live chat
 https://aa-robinwhod.onrender.com/
