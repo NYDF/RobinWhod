@@ -5,6 +5,7 @@ const ADD_ONE_WATCHLIST = 'watchlist/addWatchlist'
 const EDIT_WATCHLIST = 'watchlist/editWatchlist'
 const DELETE_WATCHLIST = 'watchlist/deleteOneWatchlist'
 const ADD_TO_WATCHLIST = 'watchlist/addtoWatchlist'
+const REMOVE_FROM_WATCHLIST = 'watchlist/addtoWatchlist'
 
 
 export const loadAllWatchlist = (watchlists) => {
@@ -45,6 +46,13 @@ export const deleteOneWatchlist = (id) => {
 export const addToWatchlist = (watchlist) => {
     return {
         type: ADD_TO_WATCHLIST,
+        watchlist
+    };
+};
+
+export const removeFromWatchlist = (watchlist) => {
+    return {
+        type: REMOVE_FROM_WATCHLIST,
         watchlist
     };
 };
@@ -98,7 +106,7 @@ export const thunkAddWatchlist = (data) => async dispatch => {
 }
 
 
-export const thunkDeleteOneWatchlist = ({watchlist_id}) => async dispatch => {
+export const thunkDeleteOneWatchlist = ({ watchlist_id }) => async dispatch => {
     console.log('watchlist_id!!!!!!!!!!', watchlist_id)
     const response = await fetch(`/api/watchlists/${watchlist_id}`, {
         method: 'DELETE',
@@ -156,6 +164,29 @@ export const thunkAddToWatchlist = (data) => async dispatch => {
 }
 
 
+export const thunkRemoveFromWatchlist = (data) => async dispatch => {
+    const { watchlistId, symbol } = data;
+
+
+    // console.log('data!!!!!!!!!', symbol, watchlistName )
+    let watchlist_id = watchlistId
+
+    const response = await fetch(`/api/watchlists/remove_item/${watchlist_id}`, {
+        method: "DELETE",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ symbol })
+    });
+    // console.log('response', response)
+
+    if (response.ok) {
+        const removeStockFromWatchlist = await response.json();
+        // console.log('removeStockFromWatchlist!!!!!!!!!!!!', removeStockFromWatchlist)
+        dispatch(removeFromWatchlist(removeStockFromWatchlist));
+        return removeStockFromWatchlist;
+    }
+}
+
+
 
 const watchlistReducer = (state = {}, action) => {
     switch (action.type) {
@@ -194,6 +225,9 @@ const watchlistReducer = (state = {}, action) => {
             // console.log('action!!!!!!!!!!!!', action.spot)
             return { ...state, [action.watchlist.id]: { ...state[action.watchlist.id], ...action.watchlist } }
 
+        case REMOVE_FROM_WATCHLIST:
+            // console.log('action!!!!!!!!!!!!', action.spot)
+            // return { ...state, [action.watchlist.id]: { ...state[action.watchlist.id], ...action.watchlist } }
 
         default:
             return state;

@@ -231,7 +231,6 @@ const PortfolioGraph = () => {
                   r: 0,
                   b: 20,
                   t: 25,
-
                 },
                 showlegend: false
               }}
@@ -247,11 +246,18 @@ const PortfolioGraph = () => {
                   y: quantityValues,
                   x: chartYValues,
                   type: "bar",
-                  marker:{
-                    color: ['rgba(204,204,204,1)', 'rgba(222,45,38,0.8)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)']
+                  marker: {
+                    color: ['rgba(204,204,204,1)', 'rgba(222,45,38,0.8)', 'rgb(177, 127, 38)',
+                      'rgb(205, 152, 36)', 'rgb(99, 79, 37)', 'rgb(129, 180, 179)', 'rgb(124, 103, 37)',
+                      'rgb(33, 75, 99)', 'rgb(79, 129, 102)', 'rgb(151, 179, 100)', 'rgb(175, 49, 35)',
+                      'rgb(146, 123, 21)', 'rgb(177, 180, 34)', 'rgb(206, 206, 40)', 'rgb(175, 51, 21)',
+                      'rgb(35, 36, 21)', 'rgb(36, 73, 147)']
                   },
                 }
               ]}
+              config={{
+                displayModeBar: false,
+              }}
               layout={{
                 title: "Quantity Propotion",
                 width: 400, height: 380,
@@ -271,10 +277,7 @@ const PortfolioGraph = () => {
                 },
                 showlegend: false
               }}
-               />
-
-
-
+            />
 
           </span>
         </div>

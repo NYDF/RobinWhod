@@ -74,14 +74,12 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
           </div>
         )}
 
-
-
         <div className="sell-input-container">
           <span>Shares</span>
           <span>
-            <input type="text"
+            <input type="number"
               value={quantity}
-              placeholder='0'
+              placeholder='0 '
               onChange={(e) => setQuantity(e.target.value)}
               className="sell-input"
             /></span>
@@ -90,6 +88,16 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
         <div className="sell-input-container">
           <span>Market Price</span>
           <span>${marketPrice}</span>
+        </div>
+
+        <br></br>
+
+        <div className="sell-input-container">
+          <span >Estimated Cost</span>
+          <span>{(marketPrice * quantity).toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })}</span>
         </div>
 
         <hr></hr>

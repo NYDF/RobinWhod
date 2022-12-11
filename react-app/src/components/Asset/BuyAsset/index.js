@@ -53,8 +53,7 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
         dispatch(thunkGetOneAsset(symbol))
         dispatch(thunkLoadAllAsset())
         history.push(`/portfolio`)
-        // setValidationErrors([]);
-        // setErrors([]);
+
       }
     }
   }
@@ -75,8 +74,8 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
         <div className="sell-input-container">
           <span>Shares</span>
           <span>
-            <input type="text"
-              placeholder='0'
+            <input type="number"
+              placeholder='0 '
               className="sell-input"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
@@ -86,6 +85,16 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
         <div className="sell-input-container">
           <span>Market Price</span>
           <span>${marketPrice}</span>
+        </div>
+
+        <br></br>
+
+        <div className="sell-input-container">
+          <span>Estimated Cost</span>
+          <span>{(marketPrice*quantity).toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })}</span>
         </div>
 
         <hr></hr>

@@ -114,3 +114,29 @@ def add_to_watchlist(watchlist_id):
             return form.errors
     else:
         return {"errors": "Cant add stock to watchlist"}, 406
+
+
+@watchlist_routes.route('/remove_item/<int:watchlist_id>', methods=['DELETE'])
+@login_required
+def remove_from_watchlist(watchlist_id):
+    # print("here-----")
+    watchlist = Watchlist.query.get(watchlist_id)
+    # print('watchlist!!!!!!!!', watchlist)
+    if watchlist:
+        form = AddtoWatchlistForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        # print('form++++++', form.data)
+        if form.validate_on_submit:
+            data = form.data
+            # print('form-------', form.data)
+            stock = Stock.query.filter_by(symbol=data['symbol']).first()
+            # print('++++++++++++++++++++++++++', stock, watchlist)
+            if(stock):
+                watchlist.item_in_list.remove(stock)
+
+                db.session.commit()
+                return watchlist.to_dict(), 200
+        else:
+            return form.errors
+    else:
+        return {"errors": "Cant remove stock from watchlist"}, 406
