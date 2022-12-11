@@ -238,45 +238,44 @@ const PortfolioGraph = () => {
             />
           </span>
 
-          <span className='pie-chart-2'>
+          <span className='bar-chart'>
+
             <Plot
 
               data={[
                 {
-                  values: quantityValues,
-                  labels: chartYValues,
-                  type: "pie",
-                  hole: .3,
-                  textinfo: "label+percent",
-                  marker: {
-                    colors: ultimateColors[1]
+                  y: quantityValues,
+                  x: chartYValues,
+                  type: "bar",
+                  marker:{
+                    color: ['rgba(204,204,204,1)', 'rgba(222,45,38,0.8)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)', 'rgba(204,204,204,1)']
                   },
                 }
               ]}
-              config={{
-                displayModeBar: false,
-              }}
               layout={{
                 title: "Quantity Propotion",
-                width: 320, height: 400,
+                width: 400, height: 380,
                 autosize: false,
                 "xaxis": {
-                  "visible": false,
                   fixedrange: true
                 },
                 "yaxis": {
-                  "visible": false,
                   fixedrange: true
                 },
                 margin: {
-                  l: 20,
+                  l: 50,
                   r: 0,
-                  b: 20,
+                  b: 40,
                   t: 25,
 
                 },
                 showlegend: false
-              }} />
+              }}
+               />
+
+
+
+
           </span>
         </div>
         <br></br>
