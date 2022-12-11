@@ -17,6 +17,19 @@ def get_all_transactions():
 
 
 
+@transaction_routes.route('/<int:id>')
+@login_required
+def get_one_transaction(id):
+    """
+    Query for one transaction by transaction_id
+    """
+    one_transaction = Transaction.query.get(id)
+    return one_transaction.to_dict()
+
+
+
+
+
 @transaction_routes.route('/new', methods=["POST"])
 @login_required
 def add_transaction():

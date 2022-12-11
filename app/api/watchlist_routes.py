@@ -21,10 +21,10 @@ def get_all_watchlists():
 @login_required
 def get_one_watchlists(id):
     """
-    Query for all watchlists belong to the current user
+    Query for watchlist based on id
     """
     one_watchlists = Watchlist.query.get(id)
-    return watchlist.to_dict()
+    return one_watchlists.to_dict()
 
 
 

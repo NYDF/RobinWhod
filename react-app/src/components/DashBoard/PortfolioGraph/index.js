@@ -33,7 +33,10 @@ const PortfolioGraph = () => {
   const sessionUser = useSelector((state) => state.session.user);
   let allAsset = useSelector(state => state.assetReducer)
   let allAssetArr = Object.values(allAsset)
-  const cash = allAssetArr?.filter(x => x.symbol == '$')[0]?.quantity.toFixed(2)
+  const cash = allAssetArr?.filter(x => x.symbol == '$')[0]?.quantity.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
   const ownedStock = allAssetArr?.filter(x => x.symbol !== '$')[0]?.quantity.toFixed(2)
 
   // console.log('+++++++++++++++++++++++', ownedStock)
@@ -75,7 +78,10 @@ const PortfolioGraph = () => {
           setChartXValues(x)
           setChartYValues(y)
           setQuantityValues(z)
-          setTotalAssetCash((sum).toFixed(2))
+          setTotalAssetCash((sum).toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          }))
         }
       ))
     }
@@ -96,8 +102,8 @@ const PortfolioGraph = () => {
   if (!ownedStock) {
     return (
       <div className='main-page-left-container'>
-        <div className='main-page-number'>Portfolio:  $ {totalAssetCash}</div>
-        <div className='main-page-number'>BuyingPower:  $ {cash}
+        <div className='main-page-number'>Portfolio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {totalAssetCash}</div>
+        <div className='main-page-number'>BuyingPower: &nbsp;&nbsp; {cash}
           <hr></hr>
         </div>
         <div className='main-page-only-cash-word'>You haven't buy any stocks yet</div>
@@ -189,8 +195,8 @@ const PortfolioGraph = () => {
   else {
     return (
       <div className='main-page-left-container'>
-        <div className='main-page-number'>Portfolio:  $ {totalAssetCash}</div>
-        <div className='main-page-number'>BuyingPower:  $ {cash}
+        <div className='main-page-number'>Portfolio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {totalAssetCash}</div>
+        <div className='main-page-number'>BuyingPower:  &nbsp;&nbsp; {cash}
           <hr></hr>
         </div>
 

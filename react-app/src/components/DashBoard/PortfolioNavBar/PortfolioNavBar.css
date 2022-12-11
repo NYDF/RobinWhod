@@ -5,7 +5,7 @@
     margin-top: 0.5%;
     margin-left: 2.5%;
     margin-right: 2.5%;
-    height: 66px
+    height: 66px;
 }
 
 #logo-P {
@@ -75,14 +75,15 @@
 #nav-account {
     border:1px solid grey;
     position: fixed;
-    top: 3%;
+    top: 3.5%;
     right: 2.6%;
-    width:240px;
-    height:150px;
+    width:300px;
+    height:240px;
     padding-left: 1%;
     padding-right: 1%;
     padding-top: 0.5%;
     background-color: white;
+    z-index: 999;
 }
 
 .acc-word-name{
@@ -104,7 +105,8 @@
 }
 
 .add-logout-container{
-    padding-top: 4%;
+    padding-top: 2%;
+    padding-bottom: 2%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -112,7 +114,7 @@
 
 .logout-icon{
     font-size: 24px;
-    padding-right: 10%;
+    padding-right: 5%;
 }
 
 .logout-button{
@@ -131,4 +133,19 @@
     align-items: center;
     justify-content: space-around;
     margin-top: 10px;
+}
+
+.nav-bar-second-row-container{
+    display: flex;
+    padding-bottom: 5%;
+    padding-top: 3%;
+}
+
+.nav-bar-second-row-left{
+    margin-right: 25%;
+}
+
+.nav-bar-second-number{
+    font-weight: 500;
+    font-size: 18px;
 }

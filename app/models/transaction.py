@@ -29,7 +29,6 @@ class Transaction(db.Model):
             "move": self.move,
             "quantity": self.quantity,
             "owner_id": self.owner_id,
-            "stock_id": self.stock_id,
             "purchased_price": self.purchased_price,
             "created_at": self.created_at,
         }
