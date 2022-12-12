@@ -1,0 +1,21 @@
+.item-single-line-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.Delete-item-from-watchlist{
+    background-color: white;
+    border: none;
+    font-size: large;
+    color:red;
+    font-weight: 700;
+}
+
+.item-single-line-left{
+    font-size: large;
+    font-weight: 500;
+}
+
