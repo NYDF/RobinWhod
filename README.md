@@ -40,7 +40,8 @@ https://aa-robinwhod.onrender.com/
 
 ### Portfolio page
 #### Your portfolio value and buyingpower are showing here.
-![portfoliopageimg](https://user-images.githubusercontent.com/105566877/205316179-1e2ee44d-83bd-49b1-a589-b9e189555183.png)
+
+![portfoliopageimg](https://user-images.githubusercontent.com/105566877/207326638-1e1263a2-3031-4a84-8a56-1ab424b13b1a.png)
 
 
 ### Watchlist
