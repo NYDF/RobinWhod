@@ -30,7 +30,7 @@ const stockReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_ALL_STOCKS:
             const newStocksState = {};
-            // console.log("action!!!!!!!!", action.watchlists.watchlists)
+            // console.log("action!!!!!!!!", action.stocks.stocks)
             action.stocks.stocks.forEach(stock => {
                 newStocksState[stock.id] = stock
             });
