@@ -30,6 +30,7 @@ const NavBar = () => {
         <li>
           <LogoutButton />
         </li> */}
+        <>hello</>
       </ul>
     </nav>
   );
