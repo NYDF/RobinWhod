@@ -63,18 +63,17 @@ export const thunkLoadOneTransaction = (transactionId) => async (dispatch) => {
 }
 
 export const thunkAddTransaction = (data) => async dispatch => {
-    const { name } = data
+    const { symbol, quantity, purchased_price } = data
 
-    // console.log('thunk!!!!', name)
+    // console.log('thunk!!!!', symbol, quantity, purchased_price)
 
     const response = await fetch(`/api/transactions/new`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name }),
+        body: JSON.stringify({ symbol, quantity, purchased_price }),
     })
     // console.log('!!!!!!response', response)
     if (response.ok) {
-        // console.log('!!!!!!response', response)
         const newTransaction = await response.json();
         // console.log(newTransaction)
         dispatch(addTransaction(newTransaction))

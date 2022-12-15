@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user, login_user
 from app.models import User, Transaction
 from app.forms import TransactionForm
@@ -29,7 +29,6 @@ def get_one_transaction(id):
 
 
 
-
 @transaction_routes.route('/new', methods=["POST"])
 @login_required
 def add_transaction():
@@ -39,7 +38,6 @@ def add_transaction():
 
     if form.validate_on_submit():
         new_transaction = TransactionForm(
-            name=form.data["name"],
             owner_id=current_user.id,
             symbol=form.data["symbol"],
             move=form.data["move"],

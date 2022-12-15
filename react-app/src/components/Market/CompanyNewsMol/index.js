@@ -14,6 +14,8 @@ const CompanyNewsMol = ({ symbol }) => {
   const [allNews, setAllNews] = useState();
 
   useEffect(() => {
+    let isSubscribed = true
+
     const getComapanyNews = async () => {
       try {
         const companynews = await fetchCompanyNews(symbol);
@@ -24,7 +26,8 @@ const CompanyNewsMol = ({ symbol }) => {
       }
     };
 
-     getComapanyNews();
+    getComapanyNews();
+    return () => isSubscribed = false
   }, [symbol]);
 
 
@@ -42,7 +45,8 @@ const CompanyNewsMol = ({ symbol }) => {
             </div>
 
             <div className="company-news-left">
-              {news.image && <img className='company-news-image' src={news.image} alt="Picture Unavailable" />}
+              {news.image && <img className='company-news-image'
+                src={news.image} alt="Picture Unavailable" />}
             </div >
 
           </div>
