@@ -108,9 +108,9 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
 
         <div className="sell-input-container">
           <span>Shares</span>
-          <span><input type="text"
+          <span><input type="number"
             className="sell-input"
-            placeholder='0'
+            placeholder='0 '
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           /></span>
@@ -119,6 +119,14 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
         <div className="sell-input-container">
           <span>Market Price</span>
           <span>${marketPrice}</span>
+        </div>
+        <br></br>
+        <div className="sell-input-container">
+          <span>Estimated Cost</span>
+          <span>{(marketPrice*quantity).toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })}</span>
         </div>
 
         <hr></hr>

@@ -1,0 +1,19 @@
+.sell-word{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.sell-quantity-container{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.sell-btn-down{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align:center
+}

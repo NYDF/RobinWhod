@@ -1,0 +1,27 @@
+.All-transaction-container{
+    padding-left: 23%;
+    padding-right: 23%;
+    padding-top: 2%;
+}
+
+.single-transaction-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.single-transaction-right{
+    /* align-items: center; */
+    font-weight: 500;
+}
+
+.single-transaction-symbol{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.single-transaction-total{
+    text-align: right
+}

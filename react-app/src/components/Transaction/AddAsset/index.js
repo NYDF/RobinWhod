@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router";
 
 import { thunkAddAsset, thunkLoadAllAsset, thunkGetOneAsset } from '../../../store/assetReducer';
-import { thunkAddTransaction } from '../../../store/transactionReducer';
 
 import "./AddAsset.css"
 
@@ -43,9 +42,8 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
     // console.log("!!!!!frontend", assetPayload)
 
     let createdAsset = await dispatch(thunkAddAsset(assetPayload))
-    let createdTransaction = dispatch(thunkAddTransaction(assetPayload))
 
-    // setErrors(validationErrors)
+    setErrors(validationErrors)
     if (!validationErrors.length) {
       setHasSubmitted(true);
       if (createdAsset) {
@@ -55,8 +53,8 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
 
         window.alert(`Successfully bought ${quantity} shares of ${symbol}`)
 
-        // dispatch(thunkGetOneAsset(symbol))
-        // dispatch(thunkLoadAllAsset())
+        dispatch(thunkGetOneAsset(symbol))
+        dispatch(thunkLoadAllAsset())
 
         history.push(`/portfolio`)
         // console.log(createdChannel)
@@ -76,12 +74,14 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
           </div>
         )}
 
+
+
         <div className="sell-input-container">
           <span>Shares</span>
           <span>
-            <input type="number"
+            <input type="text"
               value={quantity}
-              placeholder='0 '
+              placeholder='0'
               onChange={(e) => setQuantity(e.target.value)}
               className="sell-input"
             /></span>
@@ -90,16 +90,6 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
         <div className="sell-input-container">
           <span>Market Price</span>
           <span>${marketPrice}</span>
-        </div>
-
-        <br></br>
-
-        <div className="sell-input-container">
-          <span >Estimated Cost</span>
-          <span>{(marketPrice * quantity).toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          })}</span>
         </div>
 
         <hr></hr>

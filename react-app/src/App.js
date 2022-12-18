@@ -13,6 +13,7 @@ import Splash from './components/SplashPage/Splash';
 import UpdateWatchList from './components/WatchList/UpdateWatchList';
 import GetAllStocks from './components/Market/GetAllStocks';
 import FourOhFourPage from './components/404Page';
+import GetAllTransactions from './components/Transaction/GetAllTransactions';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -63,6 +64,10 @@ function App() {
 
         <Route path='/portfolio' exact={true} >
           <MainPage />
+        </Route>
+
+        <Route path='/transactions' exact={true} >
+          <GetAllTransactions />
         </Route>
 
         <Route path='/' exact={true} >

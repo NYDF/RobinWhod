@@ -3,7 +3,8 @@
     padding-right: 23%;
     display:grid;
     grid-template-columns: 3fr 1fr;
-    grid-gap: 1%;
+    grid-gap: 6%;
+    padding-top: 1%;
 }
 
 .Main-page-right{
@@ -12,6 +13,7 @@
     /* min-height: 50%; */
     height: fit-content;
     padding-bottom: 10px;
+    margin-top: 6px;
 }
 
 @media screen and (max-width: 2200px) and (min-width: 1901px){
