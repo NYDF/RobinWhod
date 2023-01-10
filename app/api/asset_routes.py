@@ -67,7 +67,7 @@ def add_new_asset():
     """
 
     form = AssetForm()
-    print('here!!in !! route')
+    # print('here!!in !! route')
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
@@ -80,9 +80,9 @@ def add_new_asset():
             is_cash=False
         )
 
-        print('here#####################', new_add_stock.symbol)
-        print('here#####################', new_add_stock.quantity)
-        print('here#####################', new_add_stock.purchased_price)
+        # print('here#####################', new_add_stock.symbol)
+        # print('here#####################', new_add_stock.quantity)
+        # print('here#####################', new_add_stock.purchased_price)
         db.session.add(new_add_stock)
 
         buyingPower = Asset.query.filter_by(

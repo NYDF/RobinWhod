@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import "./CompanyNewsMol.css"
 
-async function fetchCompanyNews(symbol) {
-  let todayDate = new Date();
-  todayDate.setDate(todayDate.getDate() - 1);
-  todayDate = todayDate.toISOString().split('T')[0];
-  // console.log('=====================', symbol)
-  const response = await fetch(`https://finnhub.io/api/v1/company-news?symbol=${symbol}&from=${todayDate}&to=${todayDate}&token=ce514fqad3i685aus8h0ce514fqad3i685aus8hg`);
+async function fetchCompanyNews() {
+  // let todayDate = new Date();
+  // todayDate.setDate(todayDate.getDate() - 1);
+  // todayDate = todayDate.toISOString().split('T')[0];
 
+  const response = await fetch(`https://finnhub.io/api/v1/news?category=general&token=ce514fqad3i685aus8h0ce514fqad3i685aus8hg`);
+  // https://finnhub.io/api/v1/company-news?symbol=snow&from=2023-01-09&to=2023-01-09&token=ce514fqad3i685aus8h0ce514fqad3i685aus8hg
   return response.json();
+
 }
 
 const CompanyNewsMol = ({ symbol }) => {

@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 import json
-from app.models import Stock
+from app.models import Stock, db
 from flask_login import login_required
 from app.forms import StockForm
 
@@ -25,14 +25,20 @@ def add_stock():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        print('here++++++++++', form.data)
-        new_stock = StockForm(
-            symbol=form.data["symbol"],
-        )
-        print('here@@@@@@@@@@@@@@@@@@@@', new_stock)
-        db.session.add(new_stock)
-        db.session.commit()
-        return new_stock.to_dict()
+        # print('here++++++++++++++++++++++++', form.data["symbol"])
+
+        old_stock = Stock.query.filter_by(symbol=form.data["symbol"]).first()
+        # print("********************", old_stock)
+
+        if old_stock:
+            return {"messages": "stock already exist"}
+
+        else:
+            new_stock = Stock(symbol=form.data["symbol"])
+            # print('here@@@@@@@@@@@@@@@@@@@@', new_stock)
+            db.session.add(new_stock)
+            db.session.commit()
+            return new_stock.to_dict()
 
     else:
         return form.errors

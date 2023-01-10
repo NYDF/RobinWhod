@@ -7,6 +7,7 @@ import { thunkAddAsset} from '../../../store/assetReducer';
 import { thunkAddTransaction } from '../../../store/transactionReducer';
 
 import "./AddAsset.css"
+import { thunkAddOneStock } from '../../../store/stockReducer';
 
 const AddAsset = ({ marketPrice, buyingPower }) => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
 
     let createdAsset = await dispatch(thunkAddAsset(assetPayload))
     await dispatch(thunkAddTransaction(assetPayload))
+    await dispatch(thunkAddOneStock(assetPayload))
 
     // setErrors(validationErrors)
     if (!validationErrors.length) {

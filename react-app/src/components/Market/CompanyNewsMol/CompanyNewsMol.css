@@ -1,12 +1,17 @@
 .company-news-container{
-
-    margin-top: 2%;
+    /* margin-top: 2%; */
     display: flex;
     justify-content: space-between;
     gap:70px;
     text-decoration: none;
     padding: 2%;
     border-bottom: 1px solid lightgray;
+}
+
+
+.company-news-container:hover {
+    background-color: rgb(245, 248, 252);
+    cursor: pointer;
 }
 
 .company-news-image{
