@@ -47,6 +47,7 @@ def add_transaction():
         db.session.add(new_transaction)
         db.session.commit()
         return {"messages": "Transaction successfully"}, 200
+        
     else:
         return form.errors
 

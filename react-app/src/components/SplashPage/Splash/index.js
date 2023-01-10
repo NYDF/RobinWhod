@@ -31,6 +31,7 @@ function Splash() {
         </div>
       </div>
     </div>
+
     </>
   );
 }

@@ -20,7 +20,7 @@ const UpdateWatchList = () => {
 
   const dispatch = useDispatch();
   const [name, setName] = useState('');
-
+  const [showModal, setShowModal] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
   const [errors, setErrors] = useState([]);
@@ -56,6 +56,9 @@ const UpdateWatchList = () => {
   if (!watchlist) { return null }
   if (!itemsInWatchlist) { return null }
 
+  const closetable = () => {
+    (showModal) ? setShowModal(false) : setShowModal(true)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -74,10 +77,10 @@ const UpdateWatchList = () => {
 
   return (
     <>
-      <PortfolioNavBar />
-      <div className='edit-watchlist-page-title'>Watchlist Name: {watchlist?.name}</div>
+      <PortfolioNavBar showModal={showModal} setShowModal={setShowModal} closetable={closetable} />
+      <div className='edit-watchlist-page-title' onClick={() => setShowModal(false)}>Watchlist Name: {watchlist?.name}</div>
 
-      <div className='edit-watchlist-page-container'>
+      <div className='edit-watchlist-page-container' onClick={() => setShowModal(false)}>
 
         <div className='edit-watchlist-page-left'>
           <form onSubmit={handleSubmit}

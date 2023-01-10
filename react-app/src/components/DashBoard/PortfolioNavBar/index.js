@@ -11,8 +11,6 @@ import './PortfolioNavBar.css'
 
 function PortfolioNavBar({ showModal, setShowModal, closetable }) {
 
-
-
   return (
 
     <div className='Splash-nav-container'>

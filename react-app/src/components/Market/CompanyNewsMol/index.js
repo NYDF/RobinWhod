@@ -6,7 +6,9 @@ async function fetchCompanyNews(symbol) {
   let todayDate = new Date();
   todayDate.setDate(todayDate.getDate() - 1);
   todayDate = todayDate.toISOString().split('T')[0];
+  // console.log('=====================', symbol)
   const response = await fetch(`https://finnhub.io/api/v1/company-news?symbol=${symbol}&from=${todayDate}&to=${todayDate}&token=ce514fqad3i685aus8h0ce514fqad3i685aus8hg`);
+
   return response.json();
 }
 
