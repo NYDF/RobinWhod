@@ -38,7 +38,7 @@ def add_transaction():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        print('here++++++++++', form.data)
+        # print('here++++++++++', form.data)
         data = form.data
         new_transaction = Transaction(
             owner_id=current_user.id,
@@ -48,11 +48,7 @@ def add_transaction():
             purchased_price=data["purchased_price"],
             created_at = datetime.now()
         )
-        # form.populate_obj(new_transaction)
-        print('here@@@@@@@@@@@@@@@@@@@@', new_transaction.symbol)
-        print('here@@@@@@@@@@@@@@@@@@@@', new_transaction.move)
-        print('here@@@@@@@@@@@@@@@@@@@@', new_transaction.quantity)
-        print('here@@@@@@@@@@@@@@@@@@@@', new_transaction.purchased_price)
+        
         db.session.add(new_transaction)
         db.session.commit()
         return new_transaction.to_dict()

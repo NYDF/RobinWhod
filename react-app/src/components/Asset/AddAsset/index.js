@@ -41,7 +41,7 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
     assetPayload.purchased_price = marketPrice
     assetPayload.move = 'in'
 
-    console.log("!!!!!frontend", assetPayload)
+    // console.log("!!!!!frontend", assetPayload)
 
     let createdAsset = await dispatch(thunkAddAsset(assetPayload))
     await dispatch(thunkAddTransaction(assetPayload))
