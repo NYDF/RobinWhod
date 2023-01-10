@@ -15,7 +15,7 @@ const DeleteWatchList = ({ watchlistId }) => {
 
   const handleDelete = async () => {
 
-    let deletedWatchlistPayload = {watchlist_id}
+    let deletedWatchlistPayload = { watchlist_id }
 
     dispatch(thunkDeleteOneWatchlist(deletedWatchlistPayload));
     // await dispatch(thunkLoadAllWatchlist())
@@ -26,9 +26,11 @@ const DeleteWatchList = ({ watchlistId }) => {
   return (
     <>
       <div className="w-delete-button-div">
+        <div className="delete-wl-btn-word">Are you sure you want to delete this watchlist?</div>
+        <div className="delete-wl-btn-word2">This watchlist will be deleted immediately. You can't undo this action.</div>
         <button type="submit"
-        className='w-delete-button'
-        onClick={handleDelete}>Delete WatchList</button>
+          className='w-delete-button'
+          onClick={handleDelete}>Delete WatchList</button>
       </div>
     </>
   );

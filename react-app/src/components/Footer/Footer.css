@@ -1,0 +1,58 @@
+.About-link-port-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 2%;
+    padding-right: 3%;
+    margin-right: 2%;
+    padding-top: 2%;
+    margin-bottom: 5%;
+    border-top: 1px solid black;
+    padding-left: 23%;
+    padding-right: 23%;
+}
+
+.About-link-port {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+#linkedin {
+    width: 40px;
+
+}
+
+#github {
+    width: 40px;
+}
+
+#portfolio {
+    width: 41px;
+    margin-top: 3%;
+}
+
+#angellist {
+    width: 40px;
+}
+
+@media screen and (max-width: 2200px) and (min-width: 1901px){
+    .About-link-port-div {
+        padding-left: 18%;
+        padding-right: 18%;
+    }
+
+}
+
+@media screen and (max-width: 1900px) and (min-width: 1601px){
+    .About-link-port-div {
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    .About-link-port-div {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+}

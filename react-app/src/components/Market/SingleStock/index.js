@@ -11,6 +11,7 @@ import SingleStockGraph from '../SingleStockGraph';
 import { AiOutlineDownCircle } from "react-icons/ai";
 
 import './SingleStock.css'
+import Footer from '../../Footer';
 
 function SingleStock() {
 
@@ -37,20 +38,20 @@ function SingleStock() {
 
         <div className='Single-Stock-page-right-big'>
           <div className='Single-Stock-page-right'>
+            <div className='Single-Stock-page-bs-div'>
 
-            <span>
-              <button className={isBuy? 's-buy-btn' : 's-buy-btn-d'} onClick={(e) => setIsBuy(true)}>Buy {symbol}
-              <AiOutlineDownCircle className='DownCircle'/>
-              </button>
-            </span>
+                <button className={isBuy ? 's-buy-btn' : 's-buy-btn-d'} onClick={(e) => setIsBuy(true)}>Buy {symbol}
+                  <AiOutlineDownCircle className='DownCircle' />
+                </button>
 
-            <span>
-              <button className={isBuy? 's-sell-btn-d' : 's-sell-btn'} onClick={(e) => setIsBuy(false)}>
-              <AiOutlineDownCircle className='DownCircle' />
-              Sell {symbol}
-              </button>
-            </span>
 
+
+                <button className={isBuy ? 's-sell-btn-d' : 's-sell-btn'} onClick={(e) => setIsBuy(false)}>
+                  <AiOutlineDownCircle className='DownCircle' />
+                  Sell {symbol}
+                </button>
+
+            </div>
             <hr></hr>
 
             {!isBuy && (
@@ -67,6 +68,7 @@ function SingleStock() {
         </div>
 
       </div>
+      <Footer />
     </>
   );
 }

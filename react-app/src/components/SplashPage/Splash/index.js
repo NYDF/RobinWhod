@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Footer from '../../Footer';
 import SplashNavBar from '../SplashNavBar';
 
 import './Splash.css'
@@ -31,7 +32,7 @@ function Splash() {
         </div>
       </div>
     </div>
-
+    <Footer />
     </>
   );
 }

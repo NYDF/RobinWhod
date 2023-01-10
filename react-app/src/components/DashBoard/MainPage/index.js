@@ -14,6 +14,7 @@ import { thunkLoadAllAsset } from '../../../store/assetReducer';
 
 
 import './MainPage.css'
+import Footer from '../../Footer';
 
 
 function MainPage() {
@@ -23,14 +24,6 @@ function MainPage() {
     (showModal) ? setShowModal(false) : setShowModal(true)
   }
   const dispatch = useDispatch();
-  // const sessionUser = useSelector((state) => state.session.user);
-  // let allAsset = useSelector(state => state.assetReducer)
-  // console.log('allAsset!!!!!!!!!!!!!!', allAsset)
-  // let allAssetArr = Object.values(allAsset)
-  // console.log('allAsset!!!!!!!!!!!!!!', allAssetArr)
-  // const portfolio = calculatePortfolio(allAsset)
-
-  // const cash = sessionUser?.assets.filter(x => x.symbol == '$')[0]?.quantity
 
   useEffect(() => { dispatch(thunkLoadAllAsset()) }, [dispatch]);
 
@@ -51,7 +44,9 @@ function MainPage() {
           <GetWatchlist />
 
         </div>
+
       </div>
+      <Footer />
     </>
   );
 }

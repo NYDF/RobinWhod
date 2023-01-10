@@ -100,10 +100,10 @@ const PortfolioGraph = () => {
   if (!ownedStock) {
     return (
       <div className='main-page-left-container'>
-        <div className='main-page-number'>Portfolio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {totalAssetCash}</div>
-        <div className='main-page-number'>BuyingPower: &nbsp;&nbsp; {cash}
-          <hr></hr>
-        </div>
+        <div className='main-page-number'>Portfolio: {totalAssetCash}</div>
+
+        <hr></hr>
+
         <div className='main-page-only-cash-word'>You haven't buy any stocks yet</div>
         <div className='pei-chart-container'>
           <span className='pie-chart-2'>
@@ -185,6 +185,14 @@ const PortfolioGraph = () => {
           </span>
         </div>
         <br></br>
+        <hr></hr>
+
+        <div className='main-page-number-2'>
+          <span>BuyingPower</span>
+          <span>{cash}</span>
+        </div>
+        <br></br>
+        <hr></hr>
         <CompanyNewsMol symbol={'aapl'} />
       </div>
     )
@@ -193,10 +201,10 @@ const PortfolioGraph = () => {
   else {
     return (
       <div className='main-page-left-container'>
-        <div className='main-page-number'>Portfolio: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {totalAssetCash}</div>
-        <div className='main-page-number'>BuyingPower:  &nbsp;&nbsp; {cash}
-          <hr></hr>
-        </div>
+        <div className='main-page-number'>Portfolio:  {totalAssetCash}</div>
+
+        <hr></hr>
+
 
         <div className='pei-chart-container'>
           <span className='pie-chart-2'>
@@ -280,6 +288,15 @@ const PortfolioGraph = () => {
           </span>
         </div>
         <br></br>
+        <hr></hr>
+
+        <div className='main-page-number-2'>
+          <span>BuyingPower</span>
+          <span>{cash}</span>
+        </div>
+        <br></br>
+        <hr></hr>
+
         <CompanyNewsMol symbol={'aapl'} />
 
       </div>

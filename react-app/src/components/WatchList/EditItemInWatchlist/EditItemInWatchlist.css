@@ -12,10 +12,10 @@
     font-size: large;
     color:red;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .item-single-line-left{
     font-size: large;
     font-weight: 500;
 }
-

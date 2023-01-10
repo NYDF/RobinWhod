@@ -1,5 +1,5 @@
 .w-delete-button{
-    width: 400px;
+    width: 90%;
     background-color: rgb(255,84,4);
     border:none;
     height: 40px;
@@ -8,4 +8,24 @@
     border-radius: 20px;
     cursor: pointer;
     margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+.w-delete-button-div{
+    /* background-color: aqua; */
+    margin-top: 5%;
+    /* margin-left: 3%; */
+    padding-top: 3%;
+    padding-bottom: 5%;
+    padding-left:6%;
+    border: 1px solid lightgray;
+}
+
+.delete-wl-btn-word{
+    font-weight: 700;
+    margin-bottom: 1%;
+}
+
+.delete-wl-btn-word2{
+    margin-right: 3%;
 }

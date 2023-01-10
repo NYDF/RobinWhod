@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import SmallGraph from '../../DashBoard/SmallGraph';
 
-
-
-
-
 import "./SingleWatchlist.css"
 
 
-const SingleWatchlist = ({ watchlist, showEditWatchlist, setShowEditWatchlist }) => {
+const SingleWatchlist = ({ watchlist }) => {
   const [showWatchlistitems, setShowWatchlistitems] = useState(false);
 
 
@@ -22,12 +18,12 @@ const SingleWatchlist = ({ watchlist, showEditWatchlist, setShowEditWatchlist })
         <span className='watchlist-name'>{watchlist?.name}</span>
 
         <span>
-        <NavLink to={`/watchlist/${watchlist.id}/edit`}>
-          <button
-            className="Edit-watchlist-modal-btn"
-           >
-            •••</button>
-            </NavLink>
+          <NavLink to={`/watchlist/${watchlist.id}/edit`}>
+            <button
+              className="Edit-watchlist-modal-btn"
+            >
+              •••</button>
+          </NavLink>
 
           <button
             className="Expand-watchlist-button"

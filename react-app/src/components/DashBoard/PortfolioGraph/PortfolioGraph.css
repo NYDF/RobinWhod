@@ -1,4 +1,4 @@
-.pei-chart-container{
+.pei-chart-container {
     padding: 3%;
     display: flex;
     flex-direction: row;
@@ -8,18 +8,37 @@
 
 }
 
-.main-page-number{
+.main-page-number {
     font-size: 36px;
-    font-weight: 500;
+    font-weight: 400;
 
 }
 
-.main-page-only-cash-word{
+.main-page-number-2 {
+    margin-top: 2%;
+    font-size: 22px;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-page-only-cash-word {
     font-size: 22px;
     margin-bottom: 3%;
 
 }
 
-.bar-chart{
+.bar-chart {
     margin-left: 10%;
+}
+
+@media screen and (max-width: 1260px) {
+    .pei-chart-container {
+        flex-direction: column;
+        height: 100%
+    }
+    .bar-chart {
+        margin-left: 0;
+        margin-top: 5%;
+    }
 }

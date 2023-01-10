@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import { thunkLoadAllStocks } from '../../../store/stockReducer';
 import PortfolioNavBar from '../../DashBoard/PortfolioNavBar';
-import SingleList from '../SingleList';
+
 
 import "./GetAllStocks.css"
 

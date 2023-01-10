@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router";
-
 import { thunkEditWatchlist, thunkLoadOneWatchlist } from '../../../store/watchlistReducer';
 import PortfolioNavBar from '../../DashBoard/PortfolioNavBar';
 import EditItemInWatchlist from '../EditItemInWatchlist';
 import DeleteWatchList from '../DeleteWatchList';
+import GetWatchlist from '../GetWatchlist';
+import AddWatchlist from '../AddWatchlist';
+import robinbird from '../../../img/robinbird.png'
 
 import "./UpdateWatchList.css"
-import GetWatchlist from '../GetWatchlist';
 
 
 const UpdateWatchList = () => {
-
 
   const { watchlistId } = useParams();
   // console.log(watchlistId)
@@ -78,7 +78,9 @@ const UpdateWatchList = () => {
   return (
     <>
       <PortfolioNavBar showModal={showModal} setShowModal={setShowModal} closetable={closetable} />
-      <div className='edit-watchlist-page-title' onClick={() => setShowModal(false)}>Watchlist Name: {watchlist?.name}</div>
+      <div className='edit-watchlist-page-title' onClick={() => setShowModal(false)}>
+      <img id='robinbird' src={robinbird} />
+        Watchlist: {watchlist?.name}</div>
 
       <div className='edit-watchlist-page-container' onClick={() => setShowModal(false)}>
 
@@ -97,16 +99,16 @@ const UpdateWatchList = () => {
             <div className="eidt-watchlist-input-container">
               <input type="text"
                 value={name}
+                placeholder=' Rename this watchlist'
                 className="eidt-watchlist-input"
                 onChange={(e) => setName(e.target.value)}
               />
-            </div>
 
-            <div className="edited-watchlist-button-div">
-              <button className="e-w-button"
-                onClick={handleSubmit}
-                type="submit">Save Changes</button>
-              <hr></hr>
+              <div className="edited-watchlist-button-div">
+                <button className="e-w-button"
+                  onClick={handleSubmit}
+                  type="submit">Save Changes</button>
+              </div>
             </div>
 
           </form>
@@ -125,8 +127,11 @@ const UpdateWatchList = () => {
           <DeleteWatchList watchlistId={watchlistId} />
         </div>
 
-        <div className='edit-watchlist-page-right'>
+        <div className='Main-page-right' >
+          <AddWatchlist />
+          <hr></hr>
           <GetWatchlist />
+
         </div>
 
       </div>
