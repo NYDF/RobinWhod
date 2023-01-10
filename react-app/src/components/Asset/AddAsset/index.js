@@ -39,11 +39,12 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
 
     const assetPayload = { quantity, symbol }
     assetPayload.purchased_price = marketPrice
+    assetPayload.move = 'in'
 
-    // console.log("!!!!!frontend", assetPayload)
+    console.log("!!!!!frontend", assetPayload)
 
     let createdAsset = await dispatch(thunkAddAsset(assetPayload))
-    let createdTransaction = dispatch(thunkAddTransaction(assetPayload))
+    await dispatch(thunkAddTransaction(assetPayload))
 
     // setErrors(validationErrors)
     if (!validationErrors.length) {
@@ -55,11 +56,8 @@ const AddAsset = ({ marketPrice, buyingPower }) => {
 
         window.alert(`Successfully bought ${quantity} shares of ${symbol}`)
 
-        // dispatch(thunkGetOneAsset(symbol))
-        // dispatch(thunkLoadAllAsset())
+        // history.push(`/portfolio`)
 
-        history.push(`/portfolio`)
-        // console.log(createdChannel)
       }
     }
   }

@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user, login_user
-from app.models import User, Transaction
+from app.models import User, Transaction, db
 from app.forms import TransactionForm
+from datetime import datetime
 
 transaction_routes = Blueprint('transactions', __name__)
 
@@ -32,35 +33,43 @@ def get_one_transaction(id):
 @transaction_routes.route('/new', methods=["POST"])
 @login_required
 def add_transaction():
-    # print('here')
+    # print('here--------------------------------------')
     form = TransactionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        new_transaction = TransactionForm(
+        print('here++++++++++', form.data)
+        data = form.data
+        new_transaction = Transaction(
             owner_id=current_user.id,
-            symbol=form.data["symbol"],
-            move=form.data["move"],
-            quantity=form.data["quantity"],
-            purchased_price=form.data["purchased_price"]
+            symbol=data["symbol"],
+            move=data["move"],
+            quantity=data["quantity"],
+            purchased_price=data["purchased_price"],
+            created_at = datetime.now()
         )
+        # form.populate_obj(new_transaction)
+        print('here@@@@@@@@@@@@@@@@@@@@', new_transaction.symbol)
+        print('here@@@@@@@@@@@@@@@@@@@@', new_transaction.move)
+        print('here@@@@@@@@@@@@@@@@@@@@', new_transaction.quantity)
+        print('here@@@@@@@@@@@@@@@@@@@@', new_transaction.purchased_price)
         db.session.add(new_transaction)
         db.session.commit()
-        return {"messages": "Transaction successfully"}, 200
-        
+        return new_transaction.to_dict()
+
     else:
         return form.errors
 
 
 
-@transaction_routes.route('/<int:transaction_id>', methods=['DELETE'])
-@login_required
-def delete_transaction_by_id(transaction_id):
-    transaction = Transaction.query.get(transaction_id)
+# @transaction_routes.route('/<int:transaction_id>', methods=['DELETE'])
+# @login_required
+# def delete_transaction_by_id(transaction_id):
+#     transaction = Transaction.query.get(transaction_id)
 
-    if transaction:
-        db.session.delete(transaction)
-        db.session.commit()
-        return {"messages": "Transaction delete successfully"}, 200
-    else:
-        return {"errors": "Transaction couldn't be found"}, 404
+#     if transaction:
+#         db.session.delete(transaction)
+#         db.session.commit()
+#         return {"messages": "Transaction delete successfully"}, 200
+#     else:
+#         return {"errors": "Transaction couldn't be found"}, 404

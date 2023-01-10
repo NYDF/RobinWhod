@@ -48,7 +48,7 @@ const PortfolioGraph = () => {
 
   useEffect(() => {
     dispatch(thunkLoadAllAsset()).then(res => {
-      let assetArrr = res.assets
+      let assetArrr = res?.assets
 
       const stockOwned = {}
       assetArrr?.forEach(
@@ -65,8 +65,6 @@ const PortfolioGraph = () => {
           // console.log('x!!!!!!!!!!!!!!!', x)
           // console.log('y!!!!!!!!!!!!!!!', y)
           // console.log('z!!!!!!!!!!!!!!!', z)
-
-
 
           let sum
           if (x.length) {

@@ -71,6 +71,7 @@ def add_new_asset():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
+        # print('here********************', form.data)
         new_add_stock = Asset(
             symbol=data["symbol"],
             owner_id=current_user.id,
@@ -78,6 +79,10 @@ def add_new_asset():
             purchased_price=data["purchased_price"],
             is_cash=False
         )
+
+        print('here#####################', new_add_stock.symbol)
+        print('here#####################', new_add_stock.quantity)
+        print('here#####################', new_add_stock.purchased_price)
         db.session.add(new_add_stock)
 
         buyingPower = Asset.query.filter_by(
