@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router";
 
-import { thunkAddAsset, thunkLoadAllAsset, thunkGetOneAsset } from '../../../store/assetReducer';
+import { thunkAddAsset} from '../../../store/assetReducer';
 import { thunkAddTransaction } from '../../../store/transactionReducer';
 
 import "./AddAsset.css"

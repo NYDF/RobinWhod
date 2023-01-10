@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from "react-router";
 import { useHistory } from 'react-router-dom';
-
+import { thunkAddTransaction } from '../../../store/transactionReducer';
 import { thunkDeleteOneAsset, thunkSellAsset, thunkGetOneAsset, thunkLoadAllAsset } from '../../../store/assetReducer';
 
 
@@ -49,9 +49,11 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
 
       let deletedAssetPayload = { quantity, symbol }
       deletedAssetPayload.purchased_price = marketPrice
+      deletedAssetPayload.move = 'out'
       // console.log('editedAssetPayload!!!!!!!!!!!!', editedAssetPayload)
 
       dispatch(thunkDeleteOneAsset(deletedAssetPayload))
+      await dispatch(thunkAddTransaction(deletedAssetPayload))
 
       setHasSubmitted(true);
       setIsDelete(false)
@@ -61,7 +63,7 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
 
       window.alert(`Successfully sold ${quantity} shares of ${symbol}`)
 
-      dispatch(thunkLoadAllAsset())
+      // dispatch(thunkLoadAllAsset())
 
       history.push(`/portfolio`)
 
@@ -75,15 +77,18 @@ const SellDeleteAsset = ({ marketPrice, numShares }) => {
 
       const editedAssetPayload = { quantity, symbol }
       editedAssetPayload.purchased_price = marketPrice
+      editedAssetPayload.move = 'out'
+
       // console.log('editedAssetPayload!!!!!!!!!!!!', editedAssetPayload)
 
       await dispatch(thunkSellAsset(editedAssetPayload))
+      await dispatch(thunkAddTransaction(editedAssetPayload))
 
       setHasSubmitted(true);
       window.alert(`Successfully sold ${quantity} shares of ${symbol}`)
       dispatch(thunkGetOneAsset(symbol))
 
-      dispatch(thunkLoadAllAsset())
+      // dispatch(thunkLoadAllAsset())
       history.push(`/portfolio`)
 
       setValidationErrors([]);

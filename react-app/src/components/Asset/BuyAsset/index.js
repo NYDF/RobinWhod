@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { useHistory } from 'react-router-dom';
 
 import { thunkEditAsset, thunkLoadCash, thunkGetOneAsset, thunkLoadAllAsset } from '../../../store/assetReducer';
+import { thunkAddTransaction } from '../../../store/transactionReducer';
 
 import "./BuyAsset.css"
 
@@ -40,9 +41,11 @@ const BuyAsset = ({ marketPrice, buyingPower }) => {
 
     const editedAssetPayload = { quantity, symbol }
     editedAssetPayload.purchased_price = marketPrice
+    editedAssetPayload.move = 'in'
     // console.log('editedAssetPayload!!!!!!!!!!!!', editedAssetPayload)
 
     let editedAsset = await dispatch(thunkEditAsset(editedAssetPayload))
+    await dispatch(thunkAddTransaction(editedAssetPayload))
 
     if (!validationErrors.length) {
       setHasSubmitted(true);
