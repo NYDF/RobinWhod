@@ -37,6 +37,7 @@ function Splash() {
         </div>
       </div>
 
+      <div className='api-about'>Check out</div>
       <div className='api-container'>
 
         <div className='api-small-container'>
