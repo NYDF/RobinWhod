@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-
-
 import GetAllAsset from '../../Asset/GetAllAsset';
 import AddWatchlist from '../../WatchList/AddWatchlist';
 import GetWatchlist from '../../WatchList/GetWatchlist';
