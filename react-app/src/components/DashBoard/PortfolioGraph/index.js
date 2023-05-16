@@ -58,7 +58,7 @@ const PortfolioGraph = () => {
 
       getEachStockCurrentPrice(stockOwned).then((
         function (data) {
-          // console.log('data------------------', data);
+          console.log('data------------------', data);
           let x = data
           let y = Object.keys(stockOwned)
           let z = Object.values(stockOwned)

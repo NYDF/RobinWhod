@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Plot from 'react-plotly.js';
-
+import { fetchfmp } from '../../../utils/helperFunc';
 import "./SmallGraph.css"
-
-// async function fetchYahooData(symbol) {
-//   const response = await fetch(
-//     `https://yahoo-finance-api.vercel.app/${symbol}`
-//   );
-//   return response.json();
-// }
 
 const SmallGraph = ({ symbol }) => {
 
@@ -18,29 +11,27 @@ const SmallGraph = ({ symbol }) => {
   const [stockChartYValues, setStockChartYValues] = useState([]);
   const [marketPrice, setMarketPrice] = useState([]);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   fetchYahooData(symbol).then((
-  //     function (data) {
-  //       // console.log('data------------------', data);
+    fetchfmp(symbol).then((
+      function (data) {
 
-  //       const x = data.chart?.result[0].timestamp.map(x => new Date(x * 1000))
+        const x = data.map(x => x.date).slice(0, 100)
 
-  //       const y = data.chart?.result[0].indicators.quote[0].open
+        const y = data.map(x => x.open).slice(0, 100)
 
-  //       setStockChartXValues(x);
-  //       setStockChartYValues(y);
+        // console.log(x, y);
+        const difference = (data[0].close - data[data.length - 1].close).toFixed(2)
 
-  //       setMarketPrice(data.chart?.result[0].meta.regularMarketPrice.toFixed(2))
-  //     }
-  //   ))
-  //   // if(fetchYahooData(symbol)){return () => fetchYahooData?.abort()}
-  //   // return fetchYahooData(symbol)
+        const percent = (difference / (data[0].close) * 100).toFixed(2)
 
-  // }, [dispatch])
+        setStockChartXValues(x);
+        setStockChartYValues(y);
 
-  // console.log('stockChartXValues--------------------', stockChartXValues)
-  // console.log('stockChartYValues--------------------', stockChartYValues)
+        setMarketPrice(data[0].close.toFixed(2))
+      }
+    )).catch(e => { alert(e) })
+  }, [dispatch])
 
   return (
     <div className='asset-bar-second-small-c'>

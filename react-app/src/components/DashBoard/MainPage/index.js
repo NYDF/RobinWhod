@@ -28,7 +28,6 @@ function MainPage() {
   return (
     <>
       <PortfolioNavBar showModal={showModal} setShowModal={setShowModal} closetable={closetable} />
-      <h2><center>Currently the Yahoo Finance API are temporarily closed, I am working on implementing a new API. </center></h2>
 
       <div className='Main-page-container' onClick={() => setShowModal(false)}>
 

@@ -5,27 +5,8 @@ import Plot from 'react-plotly.js';
 
 import "./SingleStockGraph.css"
 import CompanyNewsMol from '../CompanyNewsMol';
+import { fetchfmp, fetchCompanyData } from '../../../utils/helperFunc';
 
-// async function fetchAlphavantageData(symbol) {
-//   const response = await fetch(
-//     `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&outputsize=compact&apikey='TRV0RSAYZ07TFGYR'`
-//   );
-//   return response.json();
-// }
-
-async function fetchCompanyData(symbol) {
-  const response = await fetch(
-    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey='TRV0RSAYZ07TFGYR'`
-  );
-  return response.json();
-}
-
-async function fetchYahooData(symbol) {
-  const response = await fetch(
-    `https://yahoo-finance-api.vercel.app/${symbol}`
-  );
-  return response.json();
-}
 
 const SingleStockGraph = ({ marketPrice, setMarketPrice }) => {
   const { symbol } = useParams();
@@ -58,24 +39,24 @@ const SingleStockGraph = ({ marketPrice, setMarketPrice }) => {
 
   useEffect(() => {
 
-    fetchYahooData(symbol).then((
+    fetchfmp(symbol).then((
       function (data) {
-        // console.log('data------------------', data);
 
-        const x = data.chart.result[0].timestamp.map(x => new Date(x * 1000))
+        const x = data.map(x => x.date).slice(0, 100)
 
-        const y = data.chart.result[0].indicators.quote[0].open
+        const y = data.map(x => x.open).slice(0, 100)
 
-        const difference = (data.chart.result[0].meta.regularMarketPrice - data.chart.result[0].meta.chartPreviousClose).toFixed(2)
+        // console.log(x, y);
+        const difference = (data[0].close - data[data.length - 1].close).toFixed(2)
 
-        const percent = (difference / (data.chart.result[0].meta.regularMarketPrice) * 100).toFixed(2)
+        const percent = (difference / (data[0].close) * 100).toFixed(2)
 
         setStockChartXValues(x);
         setStockChartYValues(y);
 
         setPriceDifference(difference)
         setPercentDifference(percent)
-        setMarketPrice(data.chart.result[0].meta.regularMarketPrice.toFixed(2))
+        setMarketPrice(data[0].close.toFixed(2))
       }
     )).catch(e => { alert(e) })
   }, [dispatch])
@@ -134,7 +115,7 @@ const SingleStockGraph = ({ marketPrice, setMarketPrice }) => {
         </div>
       </div>
 
-      <CompanyNewsMol symbol={symbol}/>
+      <CompanyNewsMol symbol={symbol} />
     </div>
   )
 
